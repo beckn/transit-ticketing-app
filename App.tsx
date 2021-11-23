@@ -1,16 +1,14 @@
-import React from "react";
+import React, { ReactElement } from  "react";
 import { StyleSheet, View } from "react-native";
-import DropDown from "./src/components/DropDown";
+import DropDown from "./src/components/dropDown/DropDown";
 
-export default class App extends React.Component {
-  render(){
-    return(
-      <View style={styles.box}>
-        <DropDown/>
-      </View>
-    );
-  }
-}
+export const App = ():ReactElement => {
+  return(
+    <View style={styles.box}>
+      <DropDown/>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   box: {
