@@ -1,18 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import DropDown from './src/components/DropDown';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={styles.box}>
+      <DropDown/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  box: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
