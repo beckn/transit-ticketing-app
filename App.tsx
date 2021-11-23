@@ -1,14 +1,34 @@
-import React, { ReactElement } from  "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import DropDown from "./src/components/dropDown/DropDown";
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
+import AppContainer from './src/Navigators/index';
 
-export const App = ():ReactElement => {
-  return(
-    <View style={styles.box}>
-      <DropDown/>
-    </View>
-  );
-};
+const getFonts = () =>  Font.loadAsync({
+  "Inter-ExtraBold": require("./assets/fonts/Inter-ExtraBold.ttf"),
+  "Inter-SemiBoldItalic": require("./assets/fonts/Inter-SemiBoldItalic.ttf")
+});
+
+export default function App() {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  if(fontsLoaded){
+    return(
+      <AppContainer />
+    );
+  } else{
+    return(
+      <AppLoading 
+        startAsync={getFonts}
+        onError={() => console.log('Not Capuring Font: ')}
+        onFinish={() => {
+          setFontsLoaded(true)
+        }}
+      />
+    );
+  }
+
+}
 
 const styles = StyleSheet.create({
   box: {

@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.0",
-    "@react-navigation/drawer": "^6.1.8",
+    "@react-navigation/native": "^6.0.6",
     "@react-navigation/stack": "^6.0.11",
     "@testing-library/react-hooks": "^7.0.2",
     "expo": "~43.0.2",
@@ -25,8 +25,10 @@
     "react-native-gesture-handler": "^1.10.3",
     "react-native-modal": "^13.0.0",
     "react-native-reanimated": "^2.2.4",
-    "react-native-ui-lib": "^6.4.2",
+    "react-native-safe-area-context": "^3.3.2",
     "react-native-web": "0.17.1",
+    "react-navigation": "^4.4.4",
+    "react-navigation-stack": "^2.10.4",
     "save": "^2.4.0"
   },
   "devDependencies": {
