@@ -4,6 +4,7 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import AppContainer from './src/Navigators/index';
 
+// "Inter": require("./assets/fonts/Inter-Black.ttf"),
 const getFonts = () =>  Font.loadAsync({
   "Inter-ExtraBold": require("./assets/fonts/Inter-ExtraBold.ttf"),
   "Inter-SemiBoldItalic": require("./assets/fonts/Inter-SemiBoldItalic.ttf")
