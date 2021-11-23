@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     fontSize: 22,
     textAlign: 'left',
-    // fontFamily: 'Inter-ExtraBold',
     lineHeight: 27,
     marginVertical: 20,
   },

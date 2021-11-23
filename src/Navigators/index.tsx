@@ -22,7 +22,6 @@ const MainStackNavigator = () => {
         component={LoginComponent}
         options={{
           headerShown: false,
-          swipeEnabled: false,
           gestureEnabled: false
         }}
       />
@@ -31,7 +30,6 @@ const MainStackNavigator = () => {
         component={DropDown}
         options={{
           headerShown: false,
-          swipeEnabled: false,
           gestureEnabled: false
         }}
       />
