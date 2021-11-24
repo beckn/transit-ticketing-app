@@ -18,7 +18,7 @@ const MainStackNavigator = () => {
   return (
     <MainStack.Navigator>
       <MainStack.Screen
-        name="Login Page"
+        name="LoginPage"
         component={LoginComponent}
         options={{
           headerShown: false,
@@ -26,10 +26,10 @@ const MainStackNavigator = () => {
         }}
       />
       <MainStack.Screen
-        name="Select Drop Down Page"
+        name="DropDown"
         component={DropDown}
         options={{
-          headerShown: false,
+          // headerShown: false,
           gestureEnabled: false
         }}
       />

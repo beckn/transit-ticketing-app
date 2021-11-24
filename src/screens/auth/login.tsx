@@ -3,43 +3,49 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Image,
+  TextInput,
   Text,
   Dimensions 
 } from "react-native";
-import BannerSvg from "../../../assets/svg/slides.svg";
+import HeaderComponent from "../../components/header/index";
+import OutlineBox from "../../components/OutlineBox/OutlineBox";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-const LoginComponent = () => {
+const LoginComponent = ( props: { navigation: { navigate: (arg0: string) => void; }; } ) => {
+  const [userName, setUserName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
   return(
     <View style={styles.boxContainer}>
       <View style={styles.container}>
-        <View style={[ styles.logoBox, styles.fullWidth ]}>
-          <Image style={styles.logoIcon} source={require("../../../assets/icons/logo.png")} />
-          <Text style={[ styles.logoLabel, styles.fullWidth ]}> Government of Kerala </Text>
-        </View>
-
-        <View style={[ styles.bannerTextBox, styles.fullWidth ]}>
-          <Text style={styles.bannerText}> Kerala State WaterTransport Department </Text>
-          <View style={[ styles.fullWidth, styles.bannerImageBox ]}>
-            <BannerSvg  width={450} height={450}  />
-          </View>
-        </View>
+        <HeaderComponent />
 
         <View style={[ styles.inputTextBox, styles.fullWidth ]}>
           <Text style={[ styles.inputText ]}> Let’s get started </Text>
-          <View style={[ styles.fullWidth, styles.bannerImageBox ]}>
-
-          </View>
+          <OutlineBox>
+            <TextInput
+              style={styles.input}
+              placeholder="Username"
+              onChangeText={setUserName}
+              value={userName}
+            />
+            <View style={[ styles.singleLine ]} />
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              onChangeText={setPassword}
+              value={password}
+            />
+          </OutlineBox>
           <Text style={[ styles.inputTextForgot ]}> Forgot Password? </Text>
         </View>
 
         <View style={[ styles.buttonBox ]}>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => console.log("Simple Button pressed")}    // eslint-disable-line no-console
+            onPress={() => props.navigation.navigate("DropDown")}    // eslint-disable-line no-console
           >
             <Text style={styles.loginButtonText}> Login </Text>
           </TouchableOpacity>
@@ -63,47 +69,8 @@ const styles = StyleSheet.create({
     width: width / 1.1,
     height: height - 60
   },
-  logoBox: {
-    position: "relative",
-    top: 10,
-    height: 40,
-    marginBottom: 20
-  },
-  logoLabel: {
-    fontFamily: "Inter-ExtraBold",
-    marginBottom: 20,
-    fontWeight: "600",
-    fontSize: 9
-  },
-  logoIcon: {
-    width: 55,
-    height: 35,
-    marginLeft: 10
-  },
-  bannerTextBox: {
-    position: "relative",
-    width: width ,
-    textAlign: "left",
-    writingDirection: "ltr",
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  bannerText: {
-    fontWeight: "600",
-    fontSize: 36,
-    fontFamily: "Inter-ExtraBold",
-    includeFontPadding: false
-  },
-  bannerImageBox: {
-    flex: 1,
-    flexDirection: "column",
-		justifyContent: "center", 
-		alignItems: "center",
-    position: "relative",
-    bottom: -50
-  },
   inputTextBox: {
-    marginTop: 100,
+    marginTop: 60,
   },
   inputText: {
     fontWeight: "100",
@@ -115,11 +82,11 @@ const styles = StyleSheet.create({
   inputTextForgot: {
     fontWeight: "100",
     fontSize: 16,
-    marginVertical: 20,
+    marginTop: 30,
     lineHeight: 17
   },
   buttonBox: {
-    marginTop: 70,
+    marginTop: 25,
     width: width /1.1
   },
   loginButton: {
@@ -134,6 +101,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     letterSpacing: 2,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    padding: 10,
+  },
+  singleLine: {
+    height: 10,
+    borderBottomWidth: 1,
+    width: width /1.1
   },
 });
 
