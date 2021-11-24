@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import DropDown from "../components/dropDown/DropDown";
-import LoginComponent from '../screens/auth/login';
+import LoginComponent from "../screens/auth/login";
 
 const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: 'white'
+    background: "white"
   }
-}
+};
 
 const MainStack = createStackNavigator();
 
@@ -35,14 +35,14 @@ const MainStackNavigator = () => {
       />
     </MainStack.Navigator>
   )
-}
+};
 
 const AppContainer = () => {
   return(
     <NavigationContainer theme={MyTheme}>
       <MainStackNavigator />
     </NavigationContainer>
-  )
-}
+  );
+};
 
 export default AppContainer;

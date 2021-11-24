@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Image,
   Text,
-  Dimensions
+  Dimensions 
 } from "react-native";
 import BannerSvg from "../../../assets/svg/slides.svg";
 
@@ -16,37 +16,37 @@ const LoginComponent = () => {
   return(
     <View style={styles.boxContainer}>
       <View style={styles.container}>
-        <View style={[styles.logoBox, styles.fullWidth]}>
+        <View style={[ styles.logoBox, styles.fullWidth ]}>
           <Image style={styles.logoIcon} source={require("../../../assets/icons/logo.png")} />
-          <Text style={[styles.logoLabel, styles.fullWidth]}> Government of Kerala </Text>
+          <Text style={[ styles.logoLabel, styles.fullWidth ]}> Government of Kerala </Text>
         </View>
 
-        <View style={[styles.bannerTextBox, styles.fullWidth]}>
+        <View style={[ styles.bannerTextBox, styles.fullWidth ]}>
           <Text style={styles.bannerText}> Kerala State WaterTransport Department </Text>
-          <View style={[styles.fullWidth, styles.bannerImageBox]}>
+          <View style={[ styles.fullWidth, styles.bannerImageBox ]}>
             <BannerSvg  width={450} height={450}  />
           </View>
         </View>
 
-        <View style={[styles.inputTextBox, styles.fullWidth]}>
-          <Text style={[styles.inputText]}> Let’s get started </Text>
-          <View style={[styles.fullWidth, styles.bannerImageBox]}>
+        <View style={[ styles.inputTextBox, styles.fullWidth ]}>
+          <Text style={[ styles.inputText ]}> Let’s get started </Text>
+          <View style={[ styles.fullWidth, styles.bannerImageBox ]}>
 
           </View>
-          <Text style={[styles.inputTextForgot]}> Forgot Password? </Text>
+          <Text style={[ styles.inputTextForgot ]}> Forgot Password? </Text>
         </View>
 
-        <View style={[styles.buttonBox]}>
+        <View style={[ styles.buttonBox ]}>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => console.log("Simple Button pressed")}
+            onPress={() => console.log("Simple Button pressed")}    // eslint-disable-line no-console
           >
-            <Text style={{color: "#fff", fontSize: 18}}> Login </Text>
+            <Text style={styles.loginButtonText}> Login </Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
