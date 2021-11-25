@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import DropDown from "../components/dropDown/DropDown";
+import DropDown from "../components/DropDown/DropDown";
 import LoginComponent from "../screens/auth/login";
 
 const MyTheme = {

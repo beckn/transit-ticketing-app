@@ -8,7 +8,7 @@ import {
   Dimensions 
 } from "react-native";
 import { colors } from "../../../assets/theme/colors";
-import HeaderComponent from "../../components/header/index";
+import Header from "../../components/Header/Header";
 import OutlineBox from "../../components/OutlineBox/OutlineBox";
 import { NavigationScreenProp } from "react-navigation";
 
@@ -24,7 +24,7 @@ const LoginComponent :React.FC<{
   return(
     <View style={styles.boxContainer}>
       <View style={styles.container}>
-        <HeaderComponent />
+        <Header />
 
         <View style={[ styles.inputTextBox, styles.fullWidth ]}>
           <Text style={[ styles.inputText ]}> Let’s get started </Text>

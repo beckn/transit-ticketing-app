@@ -17,7 +17,7 @@ import {
 
 const width = Dimensions.get("window").width;
 
-const HeaderComponent = (): ReactElement => {
+const Header = (): ReactElement => {
   return(
     <>
       <View style={[ styles.logoBox, styles.fullWidth ]}>
@@ -86,4 +86,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HeaderComponent;
+export default Header;
