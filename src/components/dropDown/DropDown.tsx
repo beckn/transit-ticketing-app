@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import { StyleSheet, View, Image, TouchableOpacity, Text } from "react-native";
 import Modal from "react-native-modal";
-import Icon from "../Icon";
+import Icon from "../OriginToDestinationIcon/originToDestinationIcon";
 import * as Font from "expo-font";
 import { colors } from "../../../assets/theme/colors";
 

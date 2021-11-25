@@ -4,9 +4,9 @@ import React, { ReactElement } from "react";
 const Icon = ():ReactElement => {
   return(
     <View style={styles.container}>
-      <Image source={require("../../assets/icons/greenOval.png")} />
-      <Image style={styles.line} source={require("../../assets/icons/line.png")} />
-      <Image source={require("../../assets/icons/orangeOval.png")} />
+      <Image source={require("../../../assets/icons/greenOval.png")} />
+      <Image style={styles.line} source={require("../../../assets/icons/line.png")} />
+      <Image source={require("../../../assets/icons/orangeOval.png")} />
     </View>
   );
 };
