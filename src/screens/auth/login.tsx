@@ -55,7 +55,7 @@ const LoginComponent :React.FC<{
         <View style={[ styles.buttonBox ]}>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => navigation.navigate("DropDown")}    // eslint-disable-line no-console
+            onPress={() => navigation.navigate("Ticket")}    // eslint-disable-line no-console
           >
             <Text style={styles.loginButtonText}> Login </Text>
           </TouchableOpacity>
