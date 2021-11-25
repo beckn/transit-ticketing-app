@@ -9,13 +9,13 @@ export const Navigator: React.FC<{
 }> = ({ label, iconPath, otherIconPath, tanslateIcon }): ReactElement => {
 
   const [ toggleColor, setToggleColor ] = useState(false);
-  const changeBackground = () => {
+  const changeBackground = () : void => {
     setToggleColor(true);
-  }
+  };
   return (
-    <View style={[styles.container, toggleColor && styles.highlight ]}
-          onTouchStart={changeBackground}
-          onTouchEndCapture={()=>setToggleColor(!toggleColor)}
+    <View style={[ styles.container, toggleColor && styles.highlight ]}
+      onTouchStart={changeBackground}
+      onTouchEndCapture={() => setToggleColor(!toggleColor)}
     >
       <Image source={iconPath} style={styles.icon}></Image>
       <Text style={styles.label}>{label}</Text>
