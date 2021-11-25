@@ -53,5 +53,10 @@ module.exports = {
     "jest/no-identical-title": "error",
     "jest/valid-title": "error",
     "jest/valid-expect": "error", "jest/valid-expect-in-promise": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 };
