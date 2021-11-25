@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import DropDown from "../components/dropDown/DropDown";
@@ -14,7 +14,7 @@ const MyTheme = {
 
 const MainStack = createStackNavigator();
 
-const MainStackNavigator = () => {
+const MainStackNavigator = () :ReactElement => {
   return (
     <MainStack.Navigator>
       <MainStack.Screen
@@ -34,10 +34,10 @@ const MainStackNavigator = () => {
         }}
       />
     </MainStack.Navigator>
-  )
+  );
 };
 
-const AppContainer = () => {
+const AppContainer = () :ReactElement => {
   return(
     <NavigationContainer theme={MyTheme}>
       <MainStackNavigator />

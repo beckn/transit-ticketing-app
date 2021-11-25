@@ -1,25 +1,29 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
+import { colors } from "../../../assets/theme/colors";
 
 const width = Dimensions.get("window").width;
 
-export default function OutlineBox(props: { children: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }){
-  return(
+const OutlineBox :React.FC<{
+  children: React.ReactNode
+}> = ({ children }): ReactElement => {
+  return (
     <View style={styles.outlineBoxContainer}>
-      { props.children }
+      { children }
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   outlineBoxContainer: {
-    position: 'relative',
+    position: "relative",
     width: width / 1.1,
     borderRadius: 10,
-    elevation: 3,
-    backgroundColor: "#fff",
+    backgroundColor: colors.White,
     borderWidth: 1,
-    borderColor: "#424242",
-    borderStyle: "solid",
+    borderColor: colors.Dim_Black,
+    borderStyle: "solid"
   }
 });
+
+export default OutlineBox;

@@ -1,7 +1,7 @@
 /**
  * Import Node Modules
  */
-import React from "react";
+import React, { ReactElement } from "react";
 import { 
   StyleSheet,
   View,
@@ -13,12 +13,11 @@ import {
 /**
  * Import Other Dependencies
  */
-import BannerSvg from "../../../assets/svg/slides.svg";
 
 
 const width = Dimensions.get("window").width;
 
-const HeaderComponent = () => {
+const HeaderComponent = (): ReactElement => {
   return(
     <>
       <View style={[ styles.logoBox, styles.fullWidth ]}>
@@ -29,7 +28,7 @@ const HeaderComponent = () => {
       <View style={[ styles.bannerTextBox, styles.fullWidth ]}>
         <Text style={styles.bannerText}> Kerala State WaterTransport Department </Text>
         <View style={[ styles.fullWidth, styles.bannerImageBox ]}>
-          <BannerSvg  width={450} height={450}  />
+          <Image style={styles.bannerImage} source={require("../../../assets/icons/slide.png")} />
         </View>
       </View>
     </>
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
     writingDirection: "ltr",
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 20
   },
   bannerText: {
     fontWeight: "600",
@@ -74,10 +73,16 @@ const styles = StyleSheet.create({
   bannerImageBox: {
     flex: 1,
     flexDirection: "column",
-		justifyContent: "center", 
-		alignItems: "center",
+    justifyContent: "center", 
+    alignItems: "center",
     position: "relative",
-    bottom: -50
+    bottom: -40
+  },
+  bannerImage:{
+    position: "absolute",
+    left: -15,
+    width: width ,
+    resizeMode: "stretch"
   }
 });
 

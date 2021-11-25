@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { 
   StyleSheet,
   View,
@@ -7,15 +7,19 @@ import {
   Text,
   Dimensions 
 } from "react-native";
+import { colors } from "../../../assets/theme/colors";
 import HeaderComponent from "../../components/header/index";
 import OutlineBox from "../../components/OutlineBox/OutlineBox";
+import { NavigationScreenProp } from "react-navigation";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-const LoginComponent = ( props: { navigation: { navigate: (arg0: string) => void; }; } ) => {
-  const [userName, setUserName] = React.useState("");
-  const [password, setPassword] = React.useState("");
+const LoginComponent :React.FC<{
+  navigation: NavigationScreenProp<any,any>
+}> = ({ navigation }): ReactElement => {
+  const [ userName, setUserName ] = React.useState("");
+  const [ password, setPassword ] = React.useState("");
 
   return(
     <View style={styles.boxContainer}>
@@ -45,7 +49,7 @@ const LoginComponent = ( props: { navigation: { navigate: (arg0: string) => void
         <View style={[ styles.buttonBox ]}>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => props.navigation.navigate("DropDown")}    // eslint-disable-line no-console
+            onPress={() => navigation.navigate("DropDown")}    // eslint-disable-line no-console
           >
             <Text style={styles.loginButtonText}> Login </Text>
           </TouchableOpacity>
@@ -53,7 +57,7 @@ const LoginComponent = ( props: { navigation: { navigate: (arg0: string) => void
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   fullWidth: {
@@ -70,14 +74,14 @@ const styles = StyleSheet.create({
     height: height - 60
   },
   inputTextBox: {
-    marginTop: 60,
+    marginTop: 60
   },
   inputText: {
     fontWeight: "100",
     fontSize: 22,
     textAlign: "left",
     lineHeight: 27,
-    marginVertical: 20,
+    marginVertical: 20
   },
   inputTextForgot: {
     fontWeight: "100",
@@ -90,28 +94,28 @@ const styles = StyleSheet.create({
     width: width /1.1
   },
   loginButton: {
-    backgroundColor: "#3E4059",
+    backgroundColor: colors.Black,
     borderRadius: 14,
     paddingVertical: 15,
     justifyContent: "center",
     alignItems: "center"
   },
   loginButtonText: {
-    color: "#fff",
+    color: colors.White,
     fontSize: 18,
     fontWeight: "500",
-    letterSpacing: 2,
+    letterSpacing: 2
   },
   input: {
     height: 40,
     margin: 12,
-    padding: 10,
+    padding: 10
   },
   singleLine: {
     height: 10,
     borderBottomWidth: 1,
     width: width /1.1
-  },
+  }
 });
 
 export default LoginComponent;
