@@ -1,11 +1,11 @@
 import React, { ReactElement, useState } from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image, Text, ImageProps } from "react-native";
 import { colors } from "../../../assets/theme/colors";
-export const Navigator: React.FC<{
+export const Card: React.FC<{
   label: string,
-  iconPath:any,
-  otherIconPath:any,
-  tanslateIcon:any
+  iconPath:ImageProps,
+  otherIconPath:ImageProps,
+  tanslateIcon:ImageProps
 }> = ({ label, iconPath, otherIconPath, tanslateIcon }): ReactElement => {
 
   const [ toggleColor, setToggleColor ] = useState(false);
