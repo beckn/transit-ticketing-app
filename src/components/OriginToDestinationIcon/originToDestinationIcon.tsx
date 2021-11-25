@@ -1,7 +1,7 @@
 import { Image, StyleSheet, View } from "react-native";
 import React, { ReactElement } from "react";
 
-const Icon = ():ReactElement => {
+const OriginToDestinationIcon = ():ReactElement => {
   return(
     <View style={styles.container}>
       <Image source={require("../../../assets/icons/greenOval.png")} />
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Icon;
+export default OriginToDestinationIcon;

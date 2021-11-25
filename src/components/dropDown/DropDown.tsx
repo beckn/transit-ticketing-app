@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import { StyleSheet, View, Image, TouchableOpacity, Text } from "react-native";
 import Modal from "react-native-modal";
-import Icon from "../OriginToDestinationIcon/originToDestinationIcon";
+import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
 import * as Font from "expo-font";
 import { colors } from "../../../assets/theme/colors";
 
@@ -56,7 +56,7 @@ const DropDown = (): ReactElement => {
       <View style={styles.destination} onTouchStart={() => setModalVisibility(true)}>
         {selectLocation(destinationLocation, DESTINATION_PLACEHOLER)}
       </View>
-      <View style={styles.icon}><Icon /></View>
+      <View style={styles.icon}><OriginToDestinationIcon /></View>
       <Modal
         style={styles.modal}
         animationIn="slideInUp"
