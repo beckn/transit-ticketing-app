@@ -1,14 +1,16 @@
 import React, { ReactElement } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
-import { colors } from "../../../assets/theme/colors";
-
-const width = Dimensions.get("window").width;
+import { View, StyleSheet } from "react-native";
 
 const OutlineBox :React.FC<{
-  children: React.ReactNode
-}> = ({ children }): ReactElement => {
+  children: React.ReactNode,
+  width: any,
+  borderRadius: number,
+  backgroundColor: string,
+  borderWidth: number,
+  borderColor: string,
+}> = ({ children, width, borderRadius, backgroundColor, borderWidth, borderColor }): ReactElement => {
   return (
-    <View style={styles.outlineBoxContainer}>
+    <View style={[ styles.outlineBoxContainer, { width , borderRadius, backgroundColor, borderWidth, borderColor } ]}>
       { children }
     </View>
   );
@@ -17,11 +19,6 @@ const OutlineBox :React.FC<{
 const styles = StyleSheet.create({
   outlineBoxContainer: {
     position: "relative",
-    width: width / 1.1,
-    borderRadius: 10,
-    backgroundColor: colors.White,
-    borderWidth: 1,
-    borderColor: colors.Dim_Black,
     borderStyle: "solid"
   }
 });

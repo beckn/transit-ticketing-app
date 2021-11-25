@@ -28,7 +28,13 @@ const LoginComponent :React.FC<{
 
         <View style={[ styles.inputTextBox, styles.fullWidth ]}>
           <Text style={[ styles.inputText ]}> Let’s get started </Text>
-          <OutlineBox>
+          <OutlineBox
+            width= { width/1.1 }
+            borderRadius= { 10 }
+            backgroundColor= { colors.White }
+            borderWidth= { 1 }
+            borderColor= { colors.Dim_Black }
+          >
             <TextInput
               style={styles.input}
               placeholder="Username"
