@@ -35,8 +35,8 @@ module.exports = {
       "after": true
     } ],
     "@typescript-eslint/indent": [ "error", 2 ],
-    "react-native/no-inline-styles": 2,
-    "react-native/no-color-literals": 2,
+    "react-native/no-inline-styles": [ "error", 2 ],
+    "react-native/no-color-literals": [ "error", 2 ],
     "react/no-access-state-in-setstate": 2,
     "no-return-await": "warn",
     "@typescript-eslint/no-empty-interface": "off",
