@@ -1,22 +1,30 @@
 import React, { ReactElement, useState } from "react";
 import { StyleSheet, View, Image, Text, ImageProps } from "react-native";
 import { colors } from "../../../assets/theme/colors";
+import { NavigationScreenProp } from "react-navigation";
 
 export const Card: React.FC<{
   label: string,
   iconPath:ImageProps,
   otherIconPath:ImageProps,
-  tanslateIcon:ImageProps
-}> = ({ label, iconPath, otherIconPath, tanslateIcon }): ReactElement => {
-
+  tanslateIcon:ImageProps,
+  navigationStatus?: boolean,
+  navigation?: NavigationScreenProp<any,any>    // eslint-disable-line @typescript-eslint/no-explicit-any
+}> = ({ label, iconPath, otherIconPath, tanslateIcon, navigation, navigationStatus }): ReactElement => {
   const [ toggleColor, setToggleColor ] = useState(false);
   const changeBackground = () : void => {
     setToggleColor(true);
   };
+
+  const pushedToNavigate = () :void => {
+    setToggleColor(!toggleColor);
+    navigation?.navigate("Ticket");
+  };
+
   return (
     <View style={[ styles.container, toggleColor && styles.highlight ]}
       onTouchStart={changeBackground}
-      onTouchEndCapture={() => setToggleColor(!toggleColor)}
+      onTouchEndCapture={() => navigationStatus ? pushedToNavigate() : setToggleColor(!toggleColor)}
     >
       <Image source={iconPath} style={styles.icon}></Image>
       <Text style={styles.label}>{label}</Text>

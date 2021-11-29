@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 
 const OutlineBox :React.FC<{
   children: React.ReactNode,
-  width: any,
+  width: number,
   borderRadius: number,
   backgroundColor: string,
   borderWidth: number,

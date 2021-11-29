@@ -9,6 +9,7 @@ import {
   Text,
   Dimensions 
 } from "react-native";
+import { NavigationScreenProp } from "react-navigation";
 
 /**
  * Import Other Dependencies
@@ -17,16 +18,26 @@ import {
 
 const width = Dimensions.get("window").width;
 
-const Header = (): ReactElement => {
+const Header: React.FC<{
+  navigation?: NavigationScreenProp<any,any>    // eslint-disable-line @typescript-eslint/no-explicit-any
+  logStatus?: boolean,
+}> = ({ navigation, logStatus }): ReactElement => {
   return(
     <>
       <View style={[ styles.logoBox, styles.fullWidth ]}>
-        <Image style={styles.logoIcon} source={require("../../../assets/icons/logo.png")} />
-        <Text style={[ styles.logoLabel, styles.fullWidth ]}> Government of Kerala </Text>
+        <View style={styles.logoContainer}>
+          <Image style={styles.logoIcon} source={require("../../../assets/icons/logo.png")} />
+          <Text style={[ styles.logoLabel, styles.fullWidth ]}> Government of Kerala </Text>
+        </View>
+        {logStatus && 
+          <View onTouchEndCapture={() => navigation?.navigate("LoginPage")} >
+            <Image style={styles.logoutIcon} source={require("../../../assets/icons/logout.png")} />
+          </View>
+        } 
       </View>
 
       <View style={[ styles.bannerTextBox, styles.fullWidth ]}>
-        <Text style={styles.bannerText}> Kerala State WaterTransport Department </Text>
+        <Text style={styles.bannerText}> Kerala State Water {"\n"} Transport Department </Text>
         <View style={[ styles.fullWidth, styles.bannerImageBox ]}>
           <Image style={styles.bannerImage} source={require("../../../assets/icons/slide.png")} />
         </View>
@@ -43,11 +54,17 @@ const styles = StyleSheet.create({
     position: "relative",
     top: 10,
     height: 40,
-    marginBottom: 20
+    marginBottom: 20,
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  logoContainer: {
+    position: "relative"
   },
   logoLabel: {
     fontFamily: "Inter-ExtraBold",
     marginBottom: 20,
+    marginLeft: 10,
     fontWeight: "600",
     fontSize: 9
   },
@@ -55,6 +72,12 @@ const styles = StyleSheet.create({
     width: 55,
     height: 35,
     marginLeft: 10
+  },
+  logoutIcon: {
+    position: "absolute",
+    width: 35,
+    height: 35,
+    right: 40
   },
   bannerTextBox: {
     position: "relative",
@@ -65,9 +88,8 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   bannerText: {
-    fontWeight: "600",
-    fontSize: 36,
-    fontFamily: "Inter-ExtraBold",
+    fontWeight: "200",
+    fontSize: 24,
     includeFontPadding: false
   },
   bannerImageBox: {
@@ -80,8 +102,8 @@ const styles = StyleSheet.create({
   },
   bannerImage:{
     position: "absolute",
-    left: -15,
-    width: width ,
+    right: 0,
+    width: width,
     resizeMode: "stretch"
   }
 });

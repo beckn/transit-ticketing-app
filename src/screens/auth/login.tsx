@@ -16,7 +16,7 @@ const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
 const LoginComponent :React.FC<{
-  navigation: NavigationScreenProp<any,any>
+  navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
 }> = ({ navigation }): ReactElement => {
   const [ userName, setUserName ] = React.useState("");
   const [ password, setPassword ] = React.useState("");
