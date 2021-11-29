@@ -47,6 +47,7 @@ const LoginComponent :React.FC<{
               placeholder="Password"
               onChangeText={setPassword}
               value={password}
+              secureTextEntry={true}
             />
           </OutlineBox>
           <Text style={[ styles.inputTextForgot ]}> Forgot Password? </Text>
