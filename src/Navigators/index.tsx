@@ -44,7 +44,7 @@ const MainStackNavigator = () :ReactElement => {
             headerTitle: () => <TicketHeader  />,
             headerLeft: () => (
               <TouchableOpacity 
-                onPress={() => navigation.navigate("LoginPage")}
+                onPress={() => navigation.goBack()}
               >
                 <Image source={require("../../assets/icons/backIcon.png")} style={ styles.iconRotate } />
               </TouchableOpacity>
