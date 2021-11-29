@@ -42,6 +42,8 @@ const initialState: State =  {
 export default (state = initialState, action: StationAction ): State => {  
   switch (action.type) {
     case STATION_ACTIONS.setOriginStation:
+      // eslint-disable-next-line no-console
+      console.log("----------------->", action);
       return { 
         ...state, originStation: action.payload
       };
