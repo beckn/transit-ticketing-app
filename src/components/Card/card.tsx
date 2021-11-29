@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import { StyleSheet, View, Image, Text, ImageProps } from "react-native";
 import { colors } from "../../../assets/theme/colors";
+
 export const Card: React.FC<{
   label: string,
   iconPath:ImageProps,

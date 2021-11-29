@@ -55,7 +55,7 @@ const LoginComponent :React.FC<{
         <View style={[ styles.buttonBox ]}>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => navigation.navigate("LandingPage")}    // eslint-disable-line no-console
+            onPress={() => navigation.navigate("LandingPage")}
           >
             <Text style={styles.loginButtonText}> Login </Text>
           </TouchableOpacity>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     width: width /1.1
   },
   loginButton: {
-    backgroundColor: colors.Black,
+    backgroundColor: colors.GreyBlack,
     borderRadius: 14,
     paddingVertical: 15,
     justifyContent: "center",
