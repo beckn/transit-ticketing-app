@@ -1,10 +1,12 @@
 import React, { ReactElement, useState } from "react";
-import { StyleSheet, View, Image, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, View, Image, Text, ImageProps } from "react-native";
 import Modal from "react-native-modal";
 import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
 import * as Font from "expo-font";
 import { colors } from "../../../assets/theme/colors";
-
+import { List } from "../List/List";
+import { useSelector } from "react-redux";
+import { State } from "../../store/reducers/stationsReducer";
 
 const selectLocation = (location: string, placeholder: string): ReactElement => {
   return (
@@ -17,61 +19,74 @@ const selectLocation = (location: string, placeholder: string): ReactElement => 
 };
 
 const DropDown = (): ReactElement => {
+  const stationsList = useSelector((state:State) => state.stations);
+  const originStation = useSelector((state:State) => state.originStation);
+  const destinationStation = useSelector((state:State) => state.destinationStation);
+
   const modalContent = (): ReactElement => {
+    const label = location === "origin" ? ORIGIN_PLACEHOLDER: DESTINATION_PLACEHOLER;
     return (
-      <TouchableOpacity
-        onPress={() => {
-          setModalVisibility(!modalVisibility);
-          setOriginLocation("Alaska");
-          setDestinationLocation("Manhattan");
-        }}>
-        <Text>Close</Text>
-      </TouchableOpacity>
+      <View style={styles.modalContent}>
+        <ListHeader label={label} icon={require("../../../assets/icons/cross.png")}></ListHeader>
+        <View style={styles.list} >
+          <List list={stationsList} ></List>
+        </View>
+      </View>
     );
   };
 
+  const ListHeader: React.FC<{label: string, icon: ImageProps}> = ({ label, icon }) => {
+    return ( 
+      <View style={styles.header}>
+        <Text style={styles.headerText}>{label}</Text>
+        <View style={styles.headerIcon} onTouchEnd={() => setModalVisibility(!modalVisibility)}>
+          <Image source={icon}></Image>
+        </View>
+      </View>
+    );
+  };
   const [ modalVisibility, setModalVisibility ] = useState(false);
-  const [ originLocation, setOriginLocation ] = useState("");
-  const [ destinationLocation, setDestinationLocation ] = useState("");
+  const [ location, setLocation ] = useState("");
 
   const customFonts = {
     "Inter-ExtraBold": require("../../../assets/fonts/Inter-ExtraBold.ttf"),
     "Inter-SemiBoldItalic": require("../../../assets/fonts/Inter-SemiBoldItalic.ttf")
   };
 
-  const ORIGIN_PLACEHOLDER = "Select Origin Station";
-  const DESTINATION_PLACEHOLER = "Select Destination Station";
+  const ORIGIN_PLACEHOLDER = "Select origin station";
+  const DESTINATION_PLACEHOLER = "Select destination station";
 
   Font.loadAsync(customFonts).then(() => {
     styles.text.fontFamily = "Inter-SemiBoldItalic";
   });
 
   return (
-    <View style={styles.container}>
+    <><View style={styles.container}>
       <View style={styles.box} />
       <View style={styles.lineStyle} />
-      <View style={styles.origin} onTouchStart={() => setModalVisibility(true)}>
-        {selectLocation(originLocation, ORIGIN_PLACEHOLDER)}
+      <View style={styles.origin} onTouchStart={() => {setModalVisibility(true);  setLocation("origin"); }}>
+        {selectLocation(originStation, ORIGIN_PLACEHOLDER)}
       </View>
-      <View style={styles.destination} onTouchStart={() => setModalVisibility(true)}>
-        {selectLocation(destinationLocation, DESTINATION_PLACEHOLER)}
+      <View style={styles.destination} onTouchStart={() => {setModalVisibility(true); setLocation("destination"); }}>
+        {selectLocation(destinationStation, DESTINATION_PLACEHOLER)}
       </View>
       <View style={styles.icon}><OriginToDestinationIcon /></View>
-      <Modal
-        style={styles.modal}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        isVisible={modalVisibility}
-        backdropTransitionInTiming={1000}
-        backdropOpacity={0.5}
-        hideModalContentWhileAnimating={true}
-        onBackdropPress={() => setModalVisibility(false)}
-      >
-        {modalContent()}
-      </Modal>
     </View>
+    <Modal
+      style={styles.modal}
+      animationIn="slideInUp"
+      animationOut="slideOutDown"
+      isVisible={modalVisibility}
+      backdropTransitionInTiming={1000}
+      backdropOpacity={0.5}
+      hideModalContentWhileAnimating={true}
+      onBackdropPress={() => setModalVisibility(false)}
+    >
+      {modalContent()}
+    </Modal></>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -123,7 +138,7 @@ const styles = StyleSheet.create({
     color: colors.Black,
     fontWeight: "600",
     fontStyle: "normal",
-    fontFamily: "",
+    fontFamily: "Inter-SemiBoldItalic",
     fontSize: 14
   },
   arrow: {
@@ -135,6 +150,35 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: colors.Black,
     marginHorizontal: 50
+  },
+  header:{
+    position: "absolute",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent:"flex-start",
+    left: "7%",
+    width:"100%"
+  },
+  headerText:{
+    color: colors.GreyBlack,
+    fontWeight: "600",
+    fontSize: 14,
+    lineHeight: 22,
+    width:"45%",
+    marginRight: "35%"
+  },
+  headerIcon:{
+    width: 17,
+    height: 17
+  },
+  list: {
+    marginTop: "7%"
+  },
+  modalContent:{
+    display: "flex",
+    height:"100%",
+    marginTop:"15%",
+    flexDirection: "column"
   }
 });
 

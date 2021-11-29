@@ -5,6 +5,8 @@ import DropDown from "../components/DropDown/DropDown";
 import LoginComponent from "../screens/auth/login";
 import LandingPage from "../screens/landingPage/LandingPage";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { Provider } from "react-redux";
+import store from "../store/store";
 
 const MyTheme = {
   ...DefaultTheme,
@@ -13,51 +15,52 @@ const MyTheme = {
     background: "white"
   }
 };
-
 const MainStack = createStackNavigator();
 
 const MainStackNavigator = () :ReactElement => {
   return (
-    <MainStack.Navigator>
-      <MainStack.Screen
-        name="LoginPage"
-        component={LoginComponent}
-        options={{
-          headerShown: false,
-          gestureEnabled: false
-        }}
-      />
-      <MainStack.Screen
-        name="LandingPage"
-        component={LandingPage}
-        options={{
-          headerShown: false,
-          gestureEnabled: false
-        }}
-      />
-      <MainStack.Screen
-        name="Ticket"
-        component={DropDown}
-        options={({ navigation }) => ({
-          headerTitle: () => <TicketHeader  />,
-          headerLeft: () => (
-            <TouchableOpacity 
-              onPress={() => navigation.goBack()}
-            >
-              <Image source={require("../../assets/icons/arrow1.png")} style={ styles.iconRotate } />
-            </TouchableOpacity>
-          ),
-          headerRight: () => (
-            <TouchableOpacity 
-              onPress={() => navigation.navigate("LoginPage")}
-            >
-              <Image source={require("../../assets/icons/logout.png")} style={ styles.logoutIcon } />
-            </TouchableOpacity>
-          ),
-          gestureEnabled: false
-        })}
-      />
-    </MainStack.Navigator>
+    <Provider store={store}>
+      <MainStack.Navigator>
+        <MainStack.Screen
+          name="LoginPage"
+          component={LoginComponent}
+          options={{
+            headerShown: false,
+            gestureEnabled: false
+          }}
+        />
+        <MainStack.Screen
+          name="LandingPage"
+          component={LandingPage}
+          options={{
+            headerShown: false,
+            gestureEnabled: false
+          }}
+        />
+        <MainStack.Screen
+          name="Ticket"
+          component={DropDown}
+          options={({ navigation }) => ({
+            headerTitle: () => <TicketHeader  />,
+            headerLeft: () => (
+              <TouchableOpacity 
+                onPress={() => navigation.navigate("LoginPage")}
+              >
+                <Image source={require("../../assets/icons/backIcon.png")} style={ styles.iconRotate } />
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity 
+                onPress={() => navigation.navigate("LoginPage")}
+              >
+                <Image source={require("../../assets/icons/logout.png")} style={ styles.logoutIcon } />
+              </TouchableOpacity>
+            ),
+            gestureEnabled: false
+          })}
+        />
+      </MainStack.Navigator>
+    </Provider>
   );
 };
 
