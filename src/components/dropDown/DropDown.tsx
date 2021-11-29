@@ -23,7 +23,7 @@ const DropDown = (): ReactElement => {
   const originStation = useSelector((state:State) => state.originStation);
   const destinationStation = useSelector((state:State) => state.destinationStation);
 
-  const modalContent = (): ReactElement => {
+  const ModalContent = (): ReactElement => {
     const label = location === "origin" ? ORIGIN_PLACEHOLDER: DESTINATION_PLACEHOLER;
     return (
       <View style={styles.modalContent}>
@@ -82,7 +82,7 @@ const DropDown = (): ReactElement => {
       hideModalContentWhileAnimating={true}
       onBackdropPress={() => setModalVisibility(false)}
     >
-      {modalContent()}
+      {<ModalContent></ModalContent>}
     </Modal></>
   );
 };

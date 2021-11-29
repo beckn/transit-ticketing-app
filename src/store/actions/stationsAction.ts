@@ -3,12 +3,12 @@ export const enum STATION_ACTIONS {
   setDestinationStation= "SET_DESTINATION_STATION"
 }
 
-export interface StationAction {
+export type StationAction = {
   type: string,
   payload: string
 }
 
-export const setOriginStation = (id: string):StationAction  => ({
+export const setOriginStation = (id: string): StationAction  => ({
   type: STATION_ACTIONS.setOriginStation,
   payload: id
 });
