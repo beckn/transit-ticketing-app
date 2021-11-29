@@ -11,7 +11,7 @@ import { colors } from "../../../assets/theme/colors";
 import Header from "../../components/Header/Header";
 import OutlineBox from "../../components/OutlineBox/OutlineBox";
 import { NavigationScreenProp } from "react-navigation";
-
+import { stationService } from "../../services/stationService";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
@@ -56,7 +56,7 @@ const LoginComponent :React.FC<{
         <View style={[ styles.buttonBox ]}>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => navigation.navigate("LandingPage")}
+            onPress={() => {navigation.navigate("LandingPage"); stationService.SearchStations();}}
           >
             <Text style={styles.loginButtonText}> Login </Text>
           </TouchableOpacity>
@@ -126,3 +126,5 @@ const styles = StyleSheet.create({
 });
 
 export default LoginComponent;
+
+

@@ -9,7 +9,7 @@ export interface StationAction {
 }
 
 export const setOriginStation = (id: string):StationAction  => ({
-  type: STATION_ACTIONS.setDestinationStation,
+  type: STATION_ACTIONS.setOriginStation,
   payload: id
 });
 
