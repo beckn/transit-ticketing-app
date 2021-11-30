@@ -10,7 +10,7 @@ export interface Trip {
   date: string
 }
 
-export interface Trips {
+export interface TripResponse {
   trip: Trip,
   availability : Array<Availability>
 }

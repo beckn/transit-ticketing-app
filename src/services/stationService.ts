@@ -1,7 +1,6 @@
 import axios from "axios";
-import { Station } from "../types/stations";
-import { Trips } from "../types/trip";
-
+import { Station } from "../response/searchStationsResponse";
+import { TripResponse } from "../response/searchTripResponse" ;
 const baseUrl = "http://10.0.2.2:8080/api/v1/secure";
 const axiosInstance = axios.create({
   headers: { "X-API-KEY": "abc123" }
@@ -18,8 +17,8 @@ const SearchStations = (origin?:string): Station [] => {
   return response;
 };
 
-const SearchTrips = (trip: { origin: string, destination: string }): Trips => {
-  const defaultTrip: Trips = { trip: {
+const SearchTrips = (trip: { origin: string, destination: string }): TripResponse => {
+  const defaultTrip: TripResponse = { trip: {
     source: "",
     destination: "",
     date: ""
@@ -27,7 +26,7 @@ const SearchTrips = (trip: { origin: string, destination: string }): Trips => {
   availability: [ ]
   }; 
   const searchTripUrl = baseUrl+"/search?origin="+ trip.origin + "&destination=" + trip.destination; 
-  let response: Trips = defaultTrip;
+  let response: TripResponse = defaultTrip;
   axiosInstance.get(searchTripUrl).then((res => {
     response = res.status === 200 ? res.data : defaultTrip; 
   })).catch( () => {

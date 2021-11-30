@@ -1,4 +1,4 @@
-import { Station } from "../../types/stations";
+import { Station } from "../../response/searchStationsResponse";
 import { StationAction, STATION_ACTIONS } from "../actions/stationsAction";
 
 export type State = {
@@ -42,8 +42,6 @@ const initialState: State =  {
 export default (state = initialState, action: StationAction ): State => {  
   switch (action.type) {
     case STATION_ACTIONS.setOriginStation:
-      // eslint-disable-next-line no-console
-      console.log("----------------->", action);
       return { 
         ...state, originStation: action.payload
       };

@@ -1,12 +1,10 @@
-import React, { ReactElement, useCallback, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { useDispatch } from "react-redux";
 import { colors } from "../../../assets/theme/colors";
 import { setOriginStation } from "../../store/actions/stationsAction";
-import { Station } from "../../types/stations";
-
-// TODO---have to intergrate dispatch to update the origin and destination
+import { Station } from "../../response/searchStationsResponse";
 
 export const List: React.FC<{ list: Station[] }> = (props): ReactElement => {
   const dispatch = useDispatch();
