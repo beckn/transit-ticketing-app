@@ -1,4 +1,14 @@
 import { createStore } from "redux";
-import stationsReducer from "./reducers/stationsReducer";
+import { combineReducers } from "redux";
+import { linkedStationsToOriginReducer, stationListReducer } from "./reducers/stationListReducer";
+import { destinationStationReducer, originStationReducer } from "./reducers/stationsReducer";
 
-export default createStore(stationsReducer);
+
+export const rootReducer  =  combineReducers({
+  originStation: originStationReducer,
+  destinationStation: destinationStationReducer,
+  linkedStationsToOrigin : linkedStationsToOriginReducer,
+  stations: stationListReducer
+});
+
+export default createStore(rootReducer);

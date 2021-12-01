@@ -56,7 +56,7 @@ const LoginComponent :React.FC<{
         <View style={[ styles.buttonBox ]}>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => {navigation.navigate("LandingPage"); stationService.searchStations();}}
+            onPress={() => navigation.navigate("LandingPage")}
           >
             <Text style={styles.loginButtonText}> Login </Text>
           </TouchableOpacity>

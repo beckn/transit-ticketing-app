@@ -1,6 +1,7 @@
+
 export const enum STATION_ACTIONS {
   setOriginStation = "SET_ORIGIN_STATION",
-  setDestinationStation= "SET_DESTINATION_STATION"
+  setDestinationStation= "SET_DESTINATION_STATION",
 }
 
 export type StationDetail = {
@@ -20,4 +21,3 @@ export const setDestinationStation = (payload: StationDetail): StationAction => 
   return { type: STATION_ACTIONS.setDestinationStation, payload };
 };
 
-// export type StationActions = setOriginStation | setDestinationStation ;

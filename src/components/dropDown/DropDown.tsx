@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { StyleSheet, View, Image, Text, ImageProps } from "react-native";
 import Modal from "react-native-modal";
 import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
@@ -6,7 +6,7 @@ import * as Font from "expo-font";
 import { colors } from "../../../assets/theme/colors";
 import { List } from "../List/List";
 import { useSelector } from "react-redux";
-import { State } from "../../store/reducers/stationsReducer";
+import { State } from "../../store/reducers/reducer";
 import { setOriginStation, setDestinationStation } from "../../store/actions/stationsAction";
 
 const selectLocation = (location: string, placeholder: string): ReactElement => {
@@ -20,18 +20,22 @@ const selectLocation = (location: string, placeholder: string): ReactElement => 
 };
 
 const DropDown = (): ReactElement => {
-  const stationsList = useSelector((state: State) => state.stations);
   const originStation = useSelector((state: State) => state.originStation);
   const destinationStation = useSelector((state: State) => state.destinationStation);
-
+  const stationlist = useSelector((state: State) => state.stations);
   const ModalContent = (): ReactElement => {
-    const label = location === "origin" ? ORIGIN_PLACEHOLDER : DESTINATION_PLACEHOLER;
-    const action = location === "origin" ? setOriginStation: setDestinationStation;
+    const isLocationIsOrigin= (): boolean => {
+      return location === "origin";
+    };
+   
+    const label = isLocationIsOrigin()? ORIGIN_PLACEHOLDER : DESTINATION_PLACEHOLER;
+    const action = isLocationIsOrigin() ? setOriginStation: setDestinationStation;
+
     return (
       <View style={styles.modalContent}>
         <ListHeader label={label} icon={require("../../../assets/icons/cross.png")}></ListHeader>
-        <View style={styles.list} >
-          <List action={action} list={stationsList} ></List>
+        <View style={styles.list}>
+          <List action={action} list={stationlist} ></List>
         </View>
       </View>
     );

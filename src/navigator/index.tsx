@@ -22,28 +22,6 @@ const MainStackNavigator = () :ReactElement => {
     <Provider store={store}>
       <MainStack.Navigator>
         <MainStack.Screen
-          name="Ticket"
-          component={DropDown}
-          options={({ navigation }) => ({
-            headerTitle: () => <TicketHeader  />,
-            headerLeft: () => (
-              <TouchableOpacity 
-                onPress={() => navigation.goBack()}
-              >
-                <Image source={require("../../assets/icons/backIcon.png")} style={ styles.iconRotate } />
-              </TouchableOpacity>
-            ),
-            headerRight: () => (
-              <TouchableOpacity 
-                onPress={() => navigation.navigate("LoginPage")}
-              >
-                <Image source={require("../../assets/icons/logout.png")} style={ styles.logoutIcon } />
-              </TouchableOpacity>
-            ),
-            gestureEnabled: false
-          })}
-        />
-        <MainStack.Screen
           name="LoginPage"
           component={LoginComponent}
           options={{
@@ -59,7 +37,7 @@ const MainStackNavigator = () :ReactElement => {
             gestureEnabled: false
           }}
         />
-        {/* <MainStack.Screen
+        <MainStack.Screen
           name="Ticket"
           component={DropDown}
           options={({ navigation }) => ({
@@ -80,7 +58,7 @@ const MainStackNavigator = () :ReactElement => {
             ),
             gestureEnabled: false
           })}
-        /> */}
+        />
       </MainStack.Navigator>
     </Provider>
   );

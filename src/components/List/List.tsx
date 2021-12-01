@@ -28,7 +28,6 @@ export const List: React.FC<{ list: Station[], action: (payload: StationDetail)=
   return (<View style={styles.container}>
     <FlatList data={list}
       renderItem={Item}
-      // keyExtractor={(item) => item.id}
       extraData={selectedItem}
       ItemSeparatorComponent={ListSeperator}>
     </FlatList>
