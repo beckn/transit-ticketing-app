@@ -1,12 +1,12 @@
 import React, { ReactElement } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import DropDown from "../components/DropDown/DropDown";
 import LoginComponent from "../screens/auth/login";
 import LandingPage from "../screens/landingPage/LandingPage";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import store from "../store/store";
+import { Ticket } from "../screens/ticket/Ticket";
 
 const MyTheme = {
   ...DefaultTheme,
@@ -39,7 +39,7 @@ const MainStackNavigator = () :ReactElement => {
         />
         <MainStack.Screen
           name="Ticket"
-          component={DropDown}
+          component={Ticket}
           options={({ navigation }) => ({
             headerTitle: () => <TicketHeader  />,
             headerLeft: () => (

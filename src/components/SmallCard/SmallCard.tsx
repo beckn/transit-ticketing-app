@@ -18,7 +18,7 @@ export const SmallCard : React.FC<{label: string,
 
 const styles = StyleSheet.create({
   container: {
-    width: 320,
+    width: 350,
     height: 53,
     borderStyle: "solid",
     borderWidth: 1,

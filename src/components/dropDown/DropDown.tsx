@@ -122,13 +122,13 @@ const DropDown = (): ReactElement => {
 const styles = StyleSheet.create({
   container: {
     position: "relative",
-    width: 300,
+    width: 350,
     height: 105
   },
   lineStyle: {
     position: "absolute",
     borderWidth: 0.5,
-    width: 250,
+    width: 300,
     borderColor: colors.Dim_Black,
     marginVertical: 50,
     left: 50
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   box: {
     position: "absolute",
     height: 100,
-    width: 300,
+    width: 350,
     borderWidth: 1,
     borderColor: colors.Dim_Black,
     borderStyle: "solid",
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   arrow: {
     position: "absolute",
     marginVertical: 10,
-    left: 270
+    left: 300
   },
   placeholder: {
     fontSize: 10,
