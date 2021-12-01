@@ -1,4 +1,5 @@
 import { Station } from "../../response/searchStationsResponse";
+import { TripResponse } from "../../response/searchTripResponse";
 import { StationDetail } from "../actions/stationsAction";
 
 const DATA: Station[] = [
@@ -33,11 +34,13 @@ export type State = {
   originStation: StationDetail,
   destinationStation: StationDetail,
   stations: Station [],
-  linkedStationsToOrigin: Station []
+  linkedStationsToOrigin: Station [],
+  trip: TripResponse
 }
 export const initialState: State =  {
   originStation: { id: "", name: "" },
   destinationStation: { id: "", name: "" },
   stations: DATA,
-  linkedStationsToOrigin: []
+  linkedStationsToOrigin: [],
+  trip: { trip: { source: "", destination: "", date: "" }, availability: [] }
 };

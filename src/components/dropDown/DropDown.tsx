@@ -11,6 +11,7 @@ import { setOriginStation, setDestinationStation } from "../../store/actions/sta
 import { stationService } from "../../services/stationService";
 import { setStationsLinkedToOrigin } from "../../store/actions/linkedStationAction";
 import { Station } from "../../response/searchStationsResponse";
+import { setTrip } from "../../store/actions/tripsAction";
 
 const selectLocation = (location: string, placeholder: string): ReactElement => {
   return (
@@ -34,6 +35,14 @@ const DropDown = (): ReactElement => {
       dispatch(setStationsLinkedToOrigin(data));
     });
   },[ originStation.id ]);
+
+  useEffect(() => {
+    if(destinationStation.id === "") return;
+    stationService.searchTrips({  origin: originStation.id, destination: destinationStation.id }).then((data) => {
+      dispatch(setTrip(data));
+    });
+  }, [ destinationStation.id ]);
+
 
   const ModalContent = (): ReactElement => {
     let list: Station [] = [];

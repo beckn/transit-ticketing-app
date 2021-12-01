@@ -21,7 +21,7 @@ const searchStations = async (origin?:string): Promise<Station []> => {
   return response;
 };
 
-const searchTrips = async (trip: { origin: string, destination: string }): Promise<TripResponse | null> => {
+const searchTrips = async (trip: { origin: string, destination: string }): Promise<TripResponse> => {
   const searchTripURL = baseURL+"/search?origin="+ trip.origin + "&destination=" + trip.destination; 
   const response = await axiosInstance.get(searchTripURL).then((res => {
     return res.status === 200 && res.data ;
@@ -31,7 +31,7 @@ const searchTrips = async (trip: { origin: string, destination: string }): Promi
   return response;
 };
 
-const blockTicket = async (requestBody: BlockTicketRequest): Promise<BlockTicketResponse | null> => {
+const blockTicket = async (requestBody: BlockTicketRequest): Promise<BlockTicketResponse> => {
   const blockTicketURL = baseURL+"block_ticket";
   const response = await axiosInstance.post(blockTicketURL, requestBody).then((res => {
     return res.status === 200 && res.data ; 
@@ -41,7 +41,7 @@ const blockTicket = async (requestBody: BlockTicketRequest): Promise<BlockTicket
   return response;
 };
 
-const bookTicket = async (requestBody: BookTicketRequest): Promise<BookTicketResponse | null> => {
+const bookTicket = async (requestBody: BookTicketRequest): Promise<BookTicketResponse> => {
   const bookTicketURL = baseURL+"book_ticket";
   const response = await axiosInstance.post(bookTicketURL, requestBody).then((res => {
     return res.status === 200 && res.data ; 
