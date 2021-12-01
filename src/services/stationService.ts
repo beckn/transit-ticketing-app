@@ -14,7 +14,7 @@ const ERROR_MESSAGE = "Something went wrong!";
 
 const searchStations = (origin?:string): Station [] => {
   const searchURL = baseURL+"/stations";
-  const url = !origin ? searchURL: searchURL + "?origin="+origin ;
+  const url = origin === undefined ? searchURL: searchURL + "?origin="+ origin ;
   axiosInstance.get(url).then((res) => {
     const response: Station [] =  res.status === 200 && res.data ;
     return response;

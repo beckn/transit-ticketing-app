@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { StyleSheet, View, Image, Text, ImageProps } from "react-native";
 import Modal from "react-native-modal";
 import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
