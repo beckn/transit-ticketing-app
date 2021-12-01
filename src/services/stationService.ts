@@ -12,47 +12,44 @@ const axiosInstance = axios.create({
 });
 const ERROR_MESSAGE = "Something went wrong!";
 
-const searchStations = (origin?:string): Station [] => {
+const searchStations = async (origin?:string): Promise<Station []> => {
   const searchURL = baseURL+"/stations";
   const url = origin === undefined ? searchURL: searchURL + "?origin="+ origin ;
-  axiosInstance.get(url).then((res) => {
-    const response: Station [] =  res.status === 200 && res.data ;
-    return response;
+  const response = await axiosInstance.get(url).then((res) => {
+    return res.status === 200 && res.data ;
   }).catch( () => alert(ERROR_MESSAGE));
-  return [];
+  return response;
 };
 
-const searchTrips = (trip: { origin: string, destination: string }): TripResponse | null => {
+const searchTrips = async (trip: { origin: string, destination: string }): Promise<TripResponse | null> => {
   const searchTripURL = baseURL+"/search?origin="+ trip.origin + "&destination=" + trip.destination; 
-  axiosInstance.get(searchTripURL).then((res => {
-    const response: TripResponse = res.status === 200 && res.data; 
-    return response;
+  const response = await axiosInstance.get(searchTripURL).then((res => {
+    return res.status === 200 && res.data ;
   })).catch( () => {
     alert(ERROR_MESSAGE);
   });
-  return null;
+  return response;
 };
 
-const blockTicket = (requestBody: BlockTicketRequest): BlockTicketResponse | null => {
+const blockTicket = async (requestBody: BlockTicketRequest): Promise<BlockTicketResponse | null> => {
   const blockTicketURL = baseURL+"block_ticket";
-  axiosInstance.post(blockTicketURL, requestBody).then((res => {
-    const response:BlockTicketResponse = res.status === 200 && res.data ; 
-    return response;
+  const response = await axiosInstance.post(blockTicketURL, requestBody).then((res => {
+    return res.status === 200 && res.data ; 
   })).catch( () => {
     alert(ERROR_MESSAGE);
   });
-  return null;
+  return response;
 };
 
-const bookTicket = (requestBody: BookTicketRequest): BookTicketResponse | null => {
+const bookTicket = async (requestBody: BookTicketRequest): Promise<BookTicketResponse | null> => {
   const bookTicketURL = baseURL+"book_ticket";
-  axiosInstance.post(bookTicketURL, requestBody).then((res => {
-    const response:BlockTicketResponse = res.status === 200 && res.data ; 
-    return response;
+  const response = await axiosInstance.post(bookTicketURL, requestBody).then((res => {
+    return res.status === 200 && res.data ; 
+    
   })).catch( () => {
     alert(ERROR_MESSAGE);
   });
-  return null;
+  return response;
 };
 
 export const stationService = {

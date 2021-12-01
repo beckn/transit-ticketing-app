@@ -1,13 +1,16 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { StyleSheet, View, Image, Text, ImageProps } from "react-native";
 import Modal from "react-native-modal";
 import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
 import * as Font from "expo-font";
 import { colors } from "../../../assets/theme/colors";
 import { List } from "../List/List";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../store/reducers/reducer";
 import { setOriginStation, setDestinationStation } from "../../store/actions/stationsAction";
+import { stationService } from "../../services/stationService";
+import { setStationsLinkedToOrigin } from "../../store/actions/linkedStationAction";
+import { Station } from "../../response/searchStationsResponse";
 
 const selectLocation = (location: string, placeholder: string): ReactElement => {
   return (
@@ -23,19 +26,32 @@ const DropDown = (): ReactElement => {
   const originStation = useSelector((state: State) => state.originStation);
   const destinationStation = useSelector((state: State) => state.destinationStation);
   const stationlist = useSelector((state: State) => state.stations);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if( originStation.id === "") return;
+    stationService.searchStations(originStation.id).then((data) => {
+      dispatch(setStationsLinkedToOrigin(data));
+    });
+  },[ originStation.id ]);
+
   const ModalContent = (): ReactElement => {
+    let list: Station [] = [];
     const isLocationIsOrigin= (): boolean => {
       return location === "origin";
     };
-   
+    const isLocationIsDestination = (): boolean => {
+      return location === "destination";
+    };
+
     const label = isLocationIsOrigin()? ORIGIN_PLACEHOLDER : DESTINATION_PLACEHOLER;
     const action = isLocationIsOrigin() ? setOriginStation: setDestinationStation;
-
+    list = isLocationIsDestination() ?  useSelector((state: State) => state.linkedStationsToOrigin) : stationlist;
     return (
       <View style={styles.modalContent}>
         <ListHeader label={label} icon={require("../../../assets/icons/cross.png")}></ListHeader>
         <View style={styles.list}>
-          <List action={action} list={stationlist} ></List>
+          <List action={action} list={list} ></List>
         </View>
       </View>
     );
