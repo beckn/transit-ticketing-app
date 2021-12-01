@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
-import AppContainer from "./src/Navigators/index";
+import AppContainer from "./src/navigator/index";
 
 const getFonts = () :Promise<void> =>  Font.loadAsync({
   "Inter": require("./assets/fonts/Inter-Black.ttf"),

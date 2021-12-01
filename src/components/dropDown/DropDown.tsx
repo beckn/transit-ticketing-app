@@ -7,6 +7,7 @@ import { colors } from "../../../assets/theme/colors";
 import { List } from "../List/List";
 import { useSelector } from "react-redux";
 import { State } from "../../store/reducers/stationsReducer";
+import { setOriginStation, setDestinationStation } from "../../store/actions/stationsAction";
 
 const selectLocation = (location: string, placeholder: string): ReactElement => {
   return (
@@ -19,24 +20,25 @@ const selectLocation = (location: string, placeholder: string): ReactElement => 
 };
 
 const DropDown = (): ReactElement => {
-  const stationsList = useSelector((state:State) => state.stations);
-  const originStation = useSelector((state:State) => state.originStation);
-  const destinationStation = useSelector((state:State) => state.destinationStation);
+  const stationsList = useSelector((state: State) => state.stations);
+  const originStation = useSelector((state: State) => state.originStation);
+  const destinationStation = useSelector((state: State) => state.destinationStation);
 
   const ModalContent = (): ReactElement => {
-    const label = location === "origin" ? ORIGIN_PLACEHOLDER: DESTINATION_PLACEHOLER;
+    const label = location === "origin" ? ORIGIN_PLACEHOLDER : DESTINATION_PLACEHOLER;
+    const action = location === "origin" ? setOriginStation: setDestinationStation;
     return (
       <View style={styles.modalContent}>
         <ListHeader label={label} icon={require("../../../assets/icons/cross.png")}></ListHeader>
         <View style={styles.list} >
-          <List list={stationsList} ></List>
+          <List action={action} list={stationsList} ></List>
         </View>
       </View>
     );
   };
 
-  const ListHeader: React.FC<{label: string, icon: ImageProps}> = ({ label, icon }) => {
-    return ( 
+  const ListHeader: React.FC<{ label: string, icon: ImageProps }> = ({ label, icon }) => {
+    return (
       <View style={styles.header}>
         <Text style={styles.headerText}>{label}</Text>
         <View style={styles.headerIcon} onTouchEnd={() => setModalVisibility(!modalVisibility)}>
@@ -64,11 +66,11 @@ const DropDown = (): ReactElement => {
     <><View style={styles.container}>
       <View style={styles.box} />
       <View style={styles.lineStyle} />
-      <View style={styles.origin} onTouchStart={() => {setModalVisibility(true);  setLocation("origin"); }}>
-        {selectLocation(originStation, ORIGIN_PLACEHOLDER)}
+      <View style={styles.origin} onTouchStart={() => { setModalVisibility(true); setLocation("origin"); }}>
+        {selectLocation(originStation.name, ORIGIN_PLACEHOLDER)}
       </View>
-      <View style={styles.destination} onTouchStart={() => {setModalVisibility(true); setLocation("destination"); }}>
-        {selectLocation(destinationStation, DESTINATION_PLACEHOLER)}
+      <View style={styles.destination} onTouchStart={() => { setModalVisibility(true); setLocation("destination"); }}>
+        {selectLocation(destinationStation.name, DESTINATION_PLACEHOLER)}
       </View>
       <View style={styles.icon}><OriginToDestinationIcon /></View>
     </View>
@@ -151,33 +153,33 @@ const styles = StyleSheet.create({
     color: colors.Black,
     marginHorizontal: 50
   },
-  header:{
+  header: {
     position: "absolute",
     display: "flex",
     flexDirection: "row",
-    justifyContent:"flex-start",
+    justifyContent: "flex-start",
     left: "7%",
-    width:"100%"
+    width: "100%"
   },
-  headerText:{
+  headerText: {
     color: colors.GreyBlack,
     fontWeight: "600",
     fontSize: 14,
     lineHeight: 22,
-    width:"45%",
+    width: "45%",
     marginRight: "35%"
   },
-  headerIcon:{
+  headerIcon: {
     width: 17,
     height: 17
   },
   list: {
     marginTop: "7%"
   },
-  modalContent:{
+  modalContent: {
     display: "flex",
-    height:"100%",
-    marginTop:"15%",
+    height: "100%",
+    marginTop: "15%",
     flexDirection: "column"
   }
 });

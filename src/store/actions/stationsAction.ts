@@ -3,17 +3,21 @@ export const enum STATION_ACTIONS {
   setDestinationStation= "SET_DESTINATION_STATION"
 }
 
-export type StationAction = {
-  type: string,
-  payload: string
+export type StationDetail = {
+  id: string,
+  name: string
+}
+export interface StationAction {
+  type: STATION_ACTIONS,
+  payload: StationDetail
 }
 
-export const setOriginStation = (id: string): StationAction  => ({
-  type: STATION_ACTIONS.setOriginStation,
-  payload: id
-});
+export const setOriginStation = (payload: StationDetail): StationAction => {
+  return { type: STATION_ACTIONS.setOriginStation, payload };
+};
 
-export const setDestinationStation = (id:string): StationAction => ({
-  type: STATION_ACTIONS.setDestinationStation,
-  payload: id
-});
+export const setDestinationStation = (payload: StationDetail): StationAction => {
+  return { type: STATION_ACTIONS.setDestinationStation, payload };
+};
+
+// export type StationActions = setOriginStation | setDestinationStation ;

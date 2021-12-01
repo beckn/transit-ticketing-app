@@ -1,9 +1,9 @@
 import { Station } from "../../response/searchStationsResponse";
-import { StationAction, STATION_ACTIONS } from "../actions/stationsAction";
+import { StationAction, STATION_ACTIONS, StationDetail } from "../actions/stationsAction";
 
 export type State = {
-  originStation: string,
-  destinationStation: string,
+  originStation: StationDetail,
+  destinationStation: StationDetail,
   stations: Station []
 }
 
@@ -35,12 +35,12 @@ const DATA: Station[] = [
 ];
 
 const initialState: State =  {
-  originStation:"",
-  destinationStation:"",
+  originStation: { id: "", name: "" },
+  destinationStation: { id: "", name: "" },
   stations: DATA
 };
 export default (state = initialState, action: StationAction ): State => {  
-  switch (action.type) {
+  switch (action.type) {    
     case STATION_ACTIONS.setOriginStation:
       return { 
         ...state, originStation: action.payload

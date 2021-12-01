@@ -3,31 +3,33 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { useDispatch } from "react-redux";
 import { colors } from "../../../assets/theme/colors";
-import { setOriginStation } from "../../store/actions/stationsAction";
 import { Station } from "../../response/searchStationsResponse";
+import {  StationAction,StationDetail } from "../../store/actions/stationsAction";
 
-export const List: React.FC<{ list: Station[] }> = (props): ReactElement => {
+export const List: React.FC<{ list: Station[], action: (payload: StationDetail)=> StationAction }> = ({ list, action }): ReactElement => {
   const dispatch = useDispatch();
-  const [ selectedITem, setSelectedITem ] = useState("");
+  const stationDetail = { id: "", name: "" };
+  const [ selectedItem, setSelectedITem ] = useState(stationDetail);
+
   useEffect(() => {
-    if(selectedITem == "" ) return;
-    dispatch(setOriginStation(selectedITem)); 
-  },[ selectedITem ]);
+    if(selectedItem.id == "" ) return;
+    dispatch(action(selectedItem)); 
+  },[ selectedItem ]);
 
   const Item: React.FC<{ item: Station }> = ({ item }): ReactElement => {
   
     return (
-      <TouchableWithoutFeedback onPress={() => setSelectedITem(item.id) }>
+      <TouchableWithoutFeedback onPress={() => setSelectedITem({ id: item.id, name: item.name }) }>
         <Text style={styles.text}>{item.name}</Text>
       </TouchableWithoutFeedback>
     );
   };
 
   return (<View style={styles.container}>
-    <FlatList data={props.list}
+    <FlatList data={list}
       renderItem={Item}
-      keyExtractor={(item) => item.id}
-      extraData={selectedITem}
+      // keyExtractor={(item) => item.id}
+      extraData={selectedItem}
       ItemSeparatorComponent={ListSeperator}>
     </FlatList>
   </View>);
