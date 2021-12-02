@@ -32,7 +32,7 @@ const searchTrips = async (trip: { origin: string, destination: string }): Promi
 };
 
 const blockTicket = async (requestBody: BlockTicketRequest): Promise<BlockTicketResponse> => {
-  const blockTicketURL = baseURL+"block_ticket";
+  const blockTicketURL = baseURL+"/block_ticket";
   const response = await axiosInstance.post(blockTicketURL, requestBody).then((res => {
     return res.status === 200 && res.data ; 
   })).catch( () => {
@@ -42,7 +42,7 @@ const blockTicket = async (requestBody: BlockTicketRequest): Promise<BlockTicket
 };
 
 const bookTicket = async (requestBody: BookTicketRequest): Promise<BookTicketResponse> => {
-  const bookTicketURL = baseURL+"book_ticket";
+  const bookTicketURL = baseURL+"/book_ticket";
   const response = await axiosInstance.post(bookTicketURL, requestBody).then((res => {
     return res.status === 200 && res.data ; 
     

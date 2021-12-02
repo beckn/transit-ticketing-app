@@ -5,19 +5,20 @@ import { colors } from "../../../assets/theme/colors";
 export const Stepper: React.FC<{
   maxLimit: number,
   label: string,
-  icon: ImageProps
-}> = ({ maxLimit, label, icon }): ReactElement => {
+  icon: ImageProps,
+  bubbleUpValue: (value: number) => void
+}> = ({ maxLimit, label, icon, bubbleUpValue }): ReactElement => {
 
   const [ counter, setCounter ] = useState(0);
   const increment = ():void => {
-    if (counter < maxLimit)
-      setCounter(counter + 1);
+    if (counter < maxLimit) 
+      setCounter(counter + 1);    
   };
   const decrement = (): void => {
-    if (counter > 0)
+    if (counter > 0) 
       setCounter(counter - 1);
   };
-
+  bubbleUpValue(counter);
   return (
     <View style={styles.container}>
       <Image source={icon}
