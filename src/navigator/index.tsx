@@ -7,6 +7,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import store from "../store/store";
 import { Ticket } from "../screens/ticket/Ticket";
+import BookingConfirmation from "../screens/BookingConfirmation/BookingConfirmation";
 
 const MyTheme = {
   ...DefaultTheme,
@@ -40,6 +41,29 @@ const MainStackNavigator = () :ReactElement => {
         <MainStack.Screen
           name="Ticket"
           component={Ticket}
+          options={({ navigation }) => ({
+            headerTitle: () => <TicketHeader  />,
+            headerLeft: () => (
+              <TouchableOpacity 
+                onPress={() => navigation.goBack()}
+              >
+                <Image source={require("../../assets/icons/backIcon.png")} style={ styles.iconRotate } />
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity 
+                onPress={() => navigation.navigate("LoginPage")}
+              >
+                <Image source={require("../../assets/icons/logout.png")} style={ styles.logoutIcon } />
+              </TouchableOpacity>
+            ),
+            gestureEnabled: false
+          })}
+        />
+
+        <MainStack.Screen
+          name="BookingConfirmation"
+          component={BookingConfirmation}
           options={({ navigation }) => ({
             headerTitle: () => <TicketHeader  />,
             headerLeft: () => (
