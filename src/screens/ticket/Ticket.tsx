@@ -102,7 +102,7 @@ export const Ticket:React.FC<{
             style={styles.fareLabel}
             onPress={blockTicket}
           >
-            <Text style={styles.availableSeats}>{fareDetailsLabel}</Text>
+            <Text style={[ styles.availableSeats, styles.fontBold ]}>{fareDetailsLabel}</Text>
           </TouchableOpacity>
           {!hideFareDetails && <View style={styles.fareDetails}>
             <FareDetails fareBreakUp={fareBreakUp}></FareDetails>
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   fareDetails: {
     display: "flex",
     alignItems: "center",
-    marginTop: 14
+    marginTop: 18
   },
 
   ticketButton: {
@@ -173,12 +173,15 @@ const styles = StyleSheet.create({
     marginVertical: 200
   },
   marginVerticalSmall: {
-    marginVertical: 74
+    marginVertical: 20
   },
   ticketButtonText: {
     color: colors.White,
     fontSize: 18,
     fontWeight: "500",
     letterSpacing: 2
+  },
+  fontBold: {
+    fontWeight: "bold"
   }
 });
