@@ -5,9 +5,14 @@ import {
   Text,
   View
 } from "react-native";
-import { useSelector } from "react-redux";
+import { NavigationScreenProp } from "react-navigation";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../components/Button/Button";
 import TicketDetails from "../../components/TicketDetails/TicketDetails";
+import { clearBlockTicketResponse } from "../../store/actions/blockTicketAction";
+import { clearStationsLinkedToOrigin } from "../../store/actions/linkedStationAction";
+import { clearDestinationStation, clearOriginStation } from "../../store/actions/stationsAction";
+import { clearTrip } from "../../store/actions/tripsAction";
 import { State } from "../../store/reducers/reducer";
 
 const ConfirmationBox = (): ReactElement => {
@@ -21,15 +26,23 @@ const ConfirmationBox = (): ReactElement => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const onPress = (): void => {};
+const BookingConfirmation:React.FC<{
+  navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
+}> = ({ navigation }): ReactElement => {
 
-const BookingConfirmation: React.FC = (): ReactElement => {
-  const {
-    trip: { source, destination, selected_slot, seats }
-  } = useSelector((state: State) => state.blockTicketResponse);
+  const dispatch = useDispatch();
+  const onPress = (navigation: NavigationScreenProp<any,any> ):void => {
+    dispatch(clearBlockTicketResponse());
+    dispatch(clearTrip());
+    dispatch(clearStationsLinkedToOrigin());
+    dispatch(clearDestinationStation());
+    dispatch(clearOriginStation());
+    navigation.navigate("Ticket");
+  };
 
-
+  const { selected_slot, seats } = useSelector((state: State) => state.blockTicketResponse.trip);
+  const source = useSelector((state: State) => state.originStation.name);
+  const destination = useSelector((state: State) => state.destinationStation.name);
   return (
     <View style={[ styles.flexColumn, styles.container ]}>
       <View style={styles.mainContent}>
@@ -44,7 +57,7 @@ const BookingConfirmation: React.FC = (): ReactElement => {
         </View>
       </View>
       <View style={[ styles.createTicketBtn, styles.flexRow ]}>
-        <Button label="CREATE NEW TICKET" onPress={onPress} />
+        <Button label="CREATE NEW TICKET" onPress={() => onPress(navigation)} />
       </View>
     </View>
   );

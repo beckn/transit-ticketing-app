@@ -66,13 +66,7 @@ const MainStackNavigator = () :ReactElement => {
           component={BookingConfirmation}
           options={({ navigation }) => ({
             headerTitle: () => <TicketHeader  />,
-            headerLeft: () => (
-              <TouchableOpacity 
-                onPress={() => navigation.goBack()}
-              >
-                <Image source={require("../../assets/icons/backIcon.png")} style={ styles.iconRotate } />
-              </TouchableOpacity>
-            ),
+            headerLeft: () => null,
             headerRight: () => (
               <TouchableOpacity 
                 onPress={() => navigation.navigate("LoginPage")}

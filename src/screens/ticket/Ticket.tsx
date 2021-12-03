@@ -12,8 +12,11 @@ import { stationService } from "../../services/stationService";
 import { setBlockTicket } from "../../store/actions/blockTicketAction";
 import { State } from "../../store/reducers/reducer";
 import { fareBreakUpGenerator, fetchFirstAvailableSlot } from "../../utils/util";
+import { NavigationScreenProp } from "react-navigation";
 
-export const Ticket = (): ReactElement => {
+export const Ticket:React.FC<{
+  navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
+}> = ({ navigation }): ReactElement =>  {
   const label = "Number of passengers";
   const buttonLabel = "CREATE TICKET";
   const availableSeatsLabel = "Available Seats: ";
@@ -38,7 +41,11 @@ export const Ticket = (): ReactElement => {
   });
   let passengerCount = 0;
   useEffect(() => {
-    if (!tripDetails.availability.length) return;
+    if (tripDetails.availability.length === 0) {
+      setHideTripDetails(true);
+      setHideFairDetails(true);
+      return;
+    } 
     else {
       const result = fetchFirstAvailableSlot(tripDetails.availability);
       if (result) {
@@ -52,7 +59,7 @@ export const Ticket = (): ReactElement => {
   const passenger = (value: number): void => {
     if (value !== 0)
       passengerCount = value;
-
+    passengerCount === 0 &&  setHideFairDetails(true);
   };
   const blockTicket = (): void => {
     const blockTicketReq: BlockTicketRequest = {
@@ -102,6 +109,7 @@ export const Ticket = (): ReactElement => {
           </View>}
 
           <TouchableOpacity
+            onPress={() => passengerCount > 0 && !hideFareDetails && navigation.navigate("BookingConfirmation")}
             style={[ styles.ticketButton, hideFareDetails ? styles.marginVerticalLarge : styles.marginVerticalSmall ]}
           >
             <Text style={styles.ticketButtonText}>{buttonLabel}</Text>
