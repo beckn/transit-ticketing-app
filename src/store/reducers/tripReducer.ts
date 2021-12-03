@@ -6,6 +6,8 @@ export const tripReducer =(state = initialState.trip, action: TripAction): TripR
   switch(action.type) {
     case TRIP_ACTION.SET_TRIP:
       return action.payload ;
+    case TRIP_ACTION.CLEAR_TRIP:
+      return action.payload ;
     default:
       return state;
   }

@@ -6,6 +6,8 @@ export const blockTicketReducer =(state = initialState.blockTicketResponse, acti
   switch(action.type) {
     case BLOCK_TICKET_ACTION.BLOCK_TICKET:
       return action.payload ;
+    case BLOCK_TICKET_ACTION.CLEAR_BLOCK_TICKET_RESPONSE:
+      return action.payload;
     default:
       return state;
   }

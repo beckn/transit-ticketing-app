@@ -15,6 +15,10 @@ export const destinationStationReducer =(state = initialState.destinationStation
   switch(action.type) {
     case STATION_ACTIONS.setDestinationStation:
       return action.payload ;
+    case STATION_ACTIONS.clearOriginStation:
+      return action.payload ;
+    case STATION_ACTIONS.clearDestinationStation:
+      return action.payload ;
     default:
       return state;
   }

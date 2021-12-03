@@ -59,17 +59,21 @@ const upi_payment = {
   reference_no: null
 };
 
+export const initialBlockTicketResponse = {
+  ticket_no: "",
+  trip: blockTrip,
+  fare,
+  upi_payment,
+  card_payment: upi_payment
+};
+
+export const initalTripDetails = { trip: initialTrip, availability: [] };
 export const initialState: State = {
   originStation: { id: "", name: "" },
   destinationStation: { id: "", name: "" },
   stations: DATA,
   linkedStationsToOrigin: [],
-  trip: { trip: initialTrip, availability: [] },
-  blockTicketResponse: {
-    ticket_no: "",
-    trip: blockTrip,
-    fare,
-    upi_payment,
-    card_payment: upi_payment
-  }
+  trip: initalTripDetails,
+  blockTicketResponse: initialBlockTicketResponse
+
 };

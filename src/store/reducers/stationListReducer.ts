@@ -15,6 +15,8 @@ export const linkedStationsToOriginReducer =(state = initialState.linkedStations
   switch (action.type) {  
     case STATIONS_LIST_ACTIONS.setStationsLinkedToOrigin:
       return action.payload ;
+    case STATIONS_LIST_ACTIONS.clearLinkedStations:
+      return action.payload ;
     default:
       return state;
   }
