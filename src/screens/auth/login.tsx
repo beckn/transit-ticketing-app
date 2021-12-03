@@ -27,7 +27,7 @@ const LoginComponent :React.FC<{
         <Header />
 
         <View style={[ styles.inputTextBox, styles.fullWidth ]}>
-          <Text style={[ styles.inputText ]}> Let’s get started </Text>
+          <Text style={styles.inputText}> Let’s get started </Text>
           <OutlineBox
             width= { width/1.1 }
             borderRadius= { 10 }
@@ -41,7 +41,7 @@ const LoginComponent :React.FC<{
               onChangeText={setUserName}
               value={userName}
             />
-            <View style={[ styles.singleLine ]} />
+            <View style={styles.singleLine} />
             <TextInput
               style={styles.input}
               placeholder="Password"
@@ -50,10 +50,10 @@ const LoginComponent :React.FC<{
               secureTextEntry={true}
             />
           </OutlineBox>
-          <Text style={[ styles.inputTextForgot ]}> Forgot Password? </Text>
+          <Text style={styles.inputTextForgot}> Forgot Password? </Text>
         </View>
 
-        <View style={[ styles.buttonBox ]}>
+        <View style={ styles.buttonBox }>
           <TouchableOpacity
             style={styles.loginButton}
             onPress={() => navigation.navigate("LandingPage")}

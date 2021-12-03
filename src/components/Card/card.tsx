@@ -18,7 +18,7 @@ export const Card: React.FC<{
 
   const pushedToNavigate = () :void => {
     setToggleColor(!toggleColor);
-    navigation?.navigate("Ticket");
+    navigation && navigation.navigate("Ticket");
   };
 
   return (

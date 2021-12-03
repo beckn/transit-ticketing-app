@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderStyle: "solid",
     borderWidth: 1,
-    marginVertical: 20,
+    marginVertical: 10,
     height: 53,
     width: 350,
     borderColor: colors.Dim_Black,
