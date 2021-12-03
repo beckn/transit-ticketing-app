@@ -5,8 +5,10 @@ import {
   Text,
   View
 } from "react-native";
+import { useSelector } from "react-redux";
 import { Button } from "../../components/Button/Button";
 import TicketDetails from "../../components/TicketDetails/TicketDetails";
+import { State } from "../../store/reducers/reducer";
 
 const ConfirmationBox = (): ReactElement => {
   return (
@@ -23,12 +25,22 @@ const ConfirmationBox = (): ReactElement => {
 const onPress = (): void => {};
 
 const BookingConfirmation: React.FC = (): ReactElement => {
-  return(
+  const {
+    trip: { source, destination, selected_slot, seats }
+  } = useSelector((state: State) => state.blockTicketResponse);
+
+
+  return (
     <View style={[ styles.flexColumn, styles.container ]}>
       <View style={styles.mainContent}>
         <ConfirmationBox />
         <View style={[ styles.flexRow, styles.ticketDetailsWrapper ]}>
-          <TicketDetails origin="Edathua" destination="Nedumudy" timeSlot="10.00 am" totalPassengers={3} />
+          <TicketDetails
+            origin={source}
+            destination={destination}
+            selectedSlot={selected_slot}
+            totalPassengers={seats}
+          />
         </View>
       </View>
       <View style={[ styles.createTicketBtn, styles.flexRow ]}>

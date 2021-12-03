@@ -9,31 +9,16 @@ import { colors } from "../../../assets/theme/colors";
 import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
 
 export interface TicketDetailsProps {
-  /**
-   * Origin station
-   */
   origin: string;
-
-  /**
-   * Destination station
-   */
   destination: string;
-
-  /**
-   * Selected time slot
-   */
-  timeSlot: string;
-
-  /**
-   * Total number of passengers for current ticket
-   */
+  selectedSlot: string;
   totalPassengers: number;
 }
 
 const TicketDetails: React.FC<TicketDetailsProps> = ({
   origin,
   destination,
-  timeSlot,
+  selectedSlot,
   totalPassengers
 }: TicketDetailsProps) => {
   return (
@@ -65,7 +50,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
               </View>
               <View>
                 <Text style={styles.detailsTitle}>Time</Text>
-                <Text style={styles.boldText}>{timeSlot}</Text>
+                <Text style={styles.boldText}>{selectedSlot}</Text>
               </View>
             </View>
           
