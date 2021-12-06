@@ -58,3 +58,11 @@ export const fareBreakUpGenerator = (fareDetailsObject: Fare, passengerCount: nu
   };
   return fareConfig; 
 };
+
+export const getTimeInTwelveHourFormat = (twentyFourHourFormatTime: string): string => {
+  const [ hours, minutes ] = twentyFourHourFormatTime.split(":");
+  const hoursInt = parseInt(hours);
+  const amOrPm = hoursInt > 12 ? "pm" : "am";
+  const hoursInTwelveHourFormat = parseInt(hours) % 12;
+  return hoursInTwelveHourFormat + ":" + minutes + " " + amOrPm;
+};
