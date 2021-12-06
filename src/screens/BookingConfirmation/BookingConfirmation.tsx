@@ -14,6 +14,7 @@ import { clearStationsLinkedToOrigin } from "../../store/actions/linkedStationAc
 import { clearDestinationStation, clearOriginStation } from "../../store/actions/stationsAction";
 import { clearTrip } from "../../store/actions/tripsAction";
 import { State } from "../../store/reducers/reducer";
+import { getTimeInTwelveHourFormat } from "../../utils/util";
 
 const ConfirmationBox = (): ReactElement => {
   return (
@@ -39,8 +40,9 @@ const BookingConfirmation:React.FC<{
     dispatch(clearOriginStation());
     navigation.navigate("Ticket");
   };
-
+  
   const { selected_slot, seats } = useSelector((state: State) => state.blockTicketResponse.trip);
+  const selectedSlot = getTimeInTwelveHourFormat(selected_slot);
   const source = useSelector((state: State) => state.originStation.name);
   const destination = useSelector((state: State) => state.destinationStation.name);
   return (
@@ -51,7 +53,7 @@ const BookingConfirmation:React.FC<{
           <TicketDetails
             origin={source}
             destination={destination}
-            selectedSlot={selected_slot}
+            selectedSlot={selectedSlot}
             totalPassengers={seats}
           />
         </View>
