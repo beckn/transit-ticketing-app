@@ -1,110 +1,49 @@
-/**
- * Import Node Modules
- */
 import React, { ReactElement } from "react";
 import { 
   StyleSheet,
   View,
-  Image,
-  Text,
-  Dimensions 
+  Text
 } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
-
-/**
- * Import Other Dependencies
- */
-
-
-const width = Dimensions.get("window").width;
-
+import  LogOut from "../../../assets/svg/LogOut";
+import Logo from "../../../assets/svg/Logo";
 const Header: React.FC<{
   navigation?: NavigationScreenProp<any,any>    // eslint-disable-line @typescript-eslint/no-explicit-any
-  logStatus?: boolean,
-}> = ({ navigation, logStatus }): ReactElement => {
+  showLogOutButton?: boolean,
+}> = ({ navigation, showLogOutButton }): ReactElement => {
+  const logoLabel = "Government of Kerala";
   return(
-    <>
-      <View style={[ styles.logoBox, styles.fullWidth ]}>
-        <View style={styles.logoContainer}>
-          <Image style={styles.logoIcon} source={require("../../../assets/icons/logo.png")} />
-          <Text style={[ styles.logoLabel, styles.fullWidth ]}> Government of Kerala </Text>
-        </View>
-        {logStatus && 
+    <View style={ styles.logoBox }>
+      <View>
+        <Logo></Logo>
+        <Text style={styles.logoLabel}>{logoLabel}</Text>
+      </View>
+      {showLogOutButton && 
           <View onTouchEndCapture={() => navigation?.navigate("LoginPage")} >
-            <Image style={styles.logoutIcon} source={require("../../../assets/icons/logout.png")} />
+            <LogOut style={styles.logoutIcon}/>
           </View>
-        } 
-      </View>
-
-      <View style={[ styles.bannerTextBox, styles.fullWidth ]}>
-        <Text style={styles.bannerText}> Kerala State Water {"\n"} Transport Department </Text>
-        <View style={[ styles.fullWidth, styles.bannerImageBox ]}>
-          <Image style={styles.bannerImage} source={require("../../../assets/icons/slide.png")} />
-        </View>
-      </View>
-    </>
+      } 
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  fullWidth: {
-    width: width
-  },
   logoBox: {
-    position: "relative",
-    top: 10,
+    width:"100%",
     height: 40,
-    marginBottom: 20,
     flexDirection: "row",
-    justifyContent: "space-around"
-  },
-  logoContainer: {
-    position: "relative"
+    alignItems:"center",
+    justifyContent: "space-between"
   },
   logoLabel: {
     fontFamily: "Inter-ExtraBold",
-    marginBottom: 20,
-    marginLeft: 10,
     fontWeight: "600",
     fontSize: 9
   },
-  logoIcon: {
-    width: 55,
-    height: 35,
-    marginLeft: 10
-  },
   logoutIcon: {
-    position: "absolute",
     width: 35,
     height: 35,
     right: 40
-  },
-  bannerTextBox: {
-    position: "relative",
-    width: width ,
-    textAlign: "left",
-    writingDirection: "ltr",
-    marginTop: 20,
-    marginBottom: 20
-  },
-  bannerText: {
-    fontWeight: "200",
-    fontSize: 24,
-    includeFontPadding: false
-  },
-  bannerImageBox: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center", 
-    alignItems: "center",
-    position: "relative",
-    bottom: -40
-  },
-  bannerImage:{
-    position: "absolute",
-    right: 0,
-    width: width,
-    resizeMode: "stretch"
   }
 });
 

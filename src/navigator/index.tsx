@@ -1,8 +1,8 @@
 import React, { ReactElement } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import LoginComponent from "../screens/auth/login";
-import LandingPage from "../screens/landingPage/LandingPage";
+import LoginComponent from "../screens/Authorization/Login";
+import LandingPage from "../screens/LandingScreen/LandingPage";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import store from "../store/store";
