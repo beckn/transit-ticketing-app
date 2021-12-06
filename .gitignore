@@ -1,5 +1,7 @@
 node_modules/
-.expo/
+android/.expo
+.expo
+.idea
 dist/
 npm-debug.*
 *.jks
