@@ -6,7 +6,9 @@ import {
   View
 } from "react-native";
 import { colors } from "../../../assets/theme/colors";
-import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
+import OriginToDestinationIcon from "../OriginToDestinationIcon/originToDestinationIcon";
+import WatchIcon from "../../../assets/svg/Watch";
+import Passengers from "../../../assets/svg/Passengers";
 
 export interface TicketDetailsProps {
   origin: string;
@@ -46,7 +48,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
           <View>
             <View style={[ styles.flexRow, styles.infoSection ]}>
               <View style={styles.imageHolder}>
-                <Image source={require("../../../assets/icons/watch.png")} />
+                <WatchIcon />
               </View>
               <View>
                 <Text style={styles.detailsTitle}>Time</Text>
@@ -56,7 +58,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
           
             <View style={styles.flexRow}>
               <View style={styles.imageHolder}>
-                <Image source={require("../../../assets/icons/passenger.png")} />
+                <Passengers />
               </View>
               <View>
                 <Text style={styles.detailsTitle}>Number of Passengers</Text>
