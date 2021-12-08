@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { StyleSheet, View, Image, Text, ImageProps } from "react-native";
 import Modal from "react-native-modal";
-import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
+import OriginToDestinationIcon from "../OriginToDestinationIcon/originToDestinationIcon";
 import * as Font from "expo-font";
 import { colors } from "../../../assets/theme/colors";
 import { List } from "../List/List";
@@ -12,13 +12,14 @@ import { stationService } from "../../services/stationService";
 import { setStationsLinkedToOrigin } from "../../store/actions/linkedStationAction";
 import { Station } from "../../response/searchStationsResponse";
 import { setTrip } from "../../store/actions/tripsAction";
+import RightArrow from "../../../assets/svg/RightArrow";
 
 const selectLocation = (location: string, placeholder: string): ReactElement => {
   return (
     <>
       <Text style={styles.placeholder}>{location ? placeholder : location}</Text>
       <Text style={styles.text}>{location ? location : placeholder}</Text>
-      <Image style={styles.arrow} source={require("../../../assets/icons/arrow.png")} />
+      <RightArrow style={styles.arrow} />
     </>
   );
 };
@@ -175,7 +176,8 @@ const styles = StyleSheet.create({
   arrow: {
     position: "absolute",
     marginVertical: 10,
-    left: 300
+    left: 300,
+    transform: [ { rotate: "90deg" } ]
   },
   placeholder: {
     fontSize: 10,
