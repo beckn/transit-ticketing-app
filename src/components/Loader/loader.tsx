@@ -1,5 +1,6 @@
 import React, { ReactFragment } from "react";
-import { StyleSheet, View, Animated, Easing, Text, Image } from "react-native";
+import { StyleSheet, View, Animated, Easing, Text } from "react-native";
+import LoaderIcon from "../../../assets/svg/LoaderIcon";
 
 const SpinnerLoader = (): ReactFragment => {
   const spinValue = new Animated.Value(0);
@@ -26,7 +27,7 @@ const SpinnerLoader = (): ReactFragment => {
   return (
     <View style={styles.mainContainer}>
       <Animated.View style={[ styles.container, { transform: [ { rotate: spin } ] } ]}>
-        <Image source={require("../../../assets/icons/loader.png")} />
+        <LoaderIcon />
       </Animated.View>
       <View style={[ styles.textBox ]}>
         <Text style={ styles.textCenter }>
