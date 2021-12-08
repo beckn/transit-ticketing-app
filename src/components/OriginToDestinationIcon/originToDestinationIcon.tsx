@@ -1,12 +1,15 @@
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { ReactElement } from "react";
+import GreenOval from "../../../assets/svg/GreenOval";
+import RedOval from "../../../assets/svg/RedOval";
+import DashedLine from "../../../assets/svg/DashedLine";
 
 const OriginToDestinationIcon = ():ReactElement => {
   return(
     <View style={styles.container}>
-      <Image source={require("../../../assets/icons/greenOval.png")} />
-      <Image style={styles.line} source={require("../../../assets/icons/line.png")} />
-      <Image source={require("../../../assets/icons/orangeOval.png")} />
+      <GreenOval />
+      <DashedLine style={styles.line} />
+      <RedOval />
     </View>
   );
 };
@@ -16,8 +19,7 @@ const styles = StyleSheet.create({
     flexDirection:"column"
   },
   line:{
-    left:5,
-    height:40
+    left:6
   }
 });
 
