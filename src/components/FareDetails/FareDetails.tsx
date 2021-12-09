@@ -18,16 +18,10 @@ export const FareDetails: React.FC<{ fareBreakUp: FareBreakUp }> = ({ fareBreakU
         <View style={styles.columnLeft}>
           <Text style={[ styles.label, styles.fontBold ]}>{fareBreakUp.amount.label}</Text>
           <Text style={[ styles.label, styles.fontBold ]}>{fareBreakUp.passengerCount.label}</Text>
-          <Text style={styles.label}>{fareBreakUp.base.label}</Text>
-          <Text style={styles.label}>{fareBreakUp.sgst.label}</Text>
-          <Text style={styles.label}>{fareBreakUp.cgst.label}</Text>
         </View>
         <View style={styles.columnRight}>
           <Text style={[ styles.label, styles.fontBold ]}>{fareBreakUp.amount.value}</Text>
           <Text style={[ styles.label, styles.fontBold ]}>{fareBreakUp.passengerCount.value}</Text>
-          <Text style={styles.label}>{fareBreakUp.base.value}</Text>
-          <Text style={styles.label}>{fareBreakUp.sgst.value}</Text>
-          <Text style={styles.label}>{fareBreakUp.cgst.value}</Text>
         </View>
       </View>
       <Divider />
@@ -40,7 +34,7 @@ export const FareDetails: React.FC<{ fareBreakUp: FareBreakUp }> = ({ fareBreakU
 };
 const styles = StyleSheet.create({
   container: {
-    width: 330
+    width: 350
   },
   flexHorizontal: {
     display: "flex",

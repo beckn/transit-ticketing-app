@@ -28,7 +28,7 @@ const LoginComponent :React.FC<{
 
   return(
     <View style={styles.boxContainer}>
-      <Header showLogOutButton={true} />
+      <Header showLogOutButton={false} />
       <Title label={loginPageTitle}></Title>
       <Boat  style={styles.bannerImage}></Boat>
       <View style={ styles.inputTextBox }>

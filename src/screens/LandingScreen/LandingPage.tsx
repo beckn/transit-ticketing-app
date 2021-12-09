@@ -18,6 +18,8 @@ const LandingPage :React.FC<{
   navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
 }> = ({ navigation }): ReactElement => {
   const loginPageTitle = "Kerala State Water Transport Department";
+  const issueTicketLabel = "Issue a new ticket";
+  const validateTicketLabel = "Validate a ticket";
   return(
     <View style={styles.boxContainer}>
       <Header navigation= {navigation} showLogOutButton={true} />
@@ -29,7 +31,7 @@ const LandingPage :React.FC<{
           <Card 
             navigation= {navigation}
             navigationStatus= {true}
-            label="Ticket Conductor"
+            label={issueTicketLabel}
             iconPath={require("../../../assets/icons/conductorIcon.png")}
             otherIconPath={require("../../../assets/icons/arrow.png")}
             tanslateIcon={require("../../../assets/icons/translateValidator.png")}
@@ -40,7 +42,7 @@ const LandingPage :React.FC<{
           <Card 
             navigation= {navigation}
             navigationStatus= {true}
-            label="Ticket Validator"
+            label={validateTicketLabel}
             iconPath={require("../../../assets/icons/validatorIcon.png")}
             otherIconPath={require("../../../assets/icons/arrow.png")}
             tanslateIcon={require("../../../assets/icons/translateValidator.png")}

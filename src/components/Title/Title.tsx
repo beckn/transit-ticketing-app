@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     fontWeight: "200",
     fontSize: 24,
     lineHeight: 29,
-    fontFamily: "Inter",
     textAlign: "center",
     marginVertical: 20
   }

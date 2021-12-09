@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../../assets/theme/colors";
@@ -14,9 +14,11 @@ import { State } from "../../store/reducers/reducer";
 import { fareBreakUpGenerator, fetchFirstAvailableSlot } from "../../utils/util";
 import { NavigationScreenProp } from "react-navigation";
 
-export const Ticket:React.FC<{
-  navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
-}> = ({ navigation }): ReactElement =>  {
+const height = Dimensions.get("window").height;
+const width = Dimensions.get("window").width;
+export const Ticket: React.FC<{
+  navigation: NavigationScreenProp<any, any>   // eslint-disable-line @typescript-eslint/no-explicit-any
+}> = ({ navigation }): ReactElement => {
   const label = "Number of passengers";
   const buttonLabel = "CREATE TICKET";
   const availableSeatsLabel = "Available Seats: ";
@@ -45,7 +47,7 @@ export const Ticket:React.FC<{
       setHideTripDetails(true);
       setHideFairDetails(true);
       return;
-    } 
+    }
     else {
       const result = fetchFirstAvailableSlot(tripDetails.availability);
       if (result) {
@@ -59,7 +61,7 @@ export const Ticket:React.FC<{
   const passenger = (value: number): void => {
     if (value !== 0)
       passengerCount = value;
-    passengerCount === 0 &&  setHideFairDetails(true);
+    passengerCount === 0 && setHideFairDetails(true);
   };
   const blockTicket = (): void => {
     const blockTicketReq: BlockTicketRequest = {
@@ -79,12 +81,12 @@ export const Ticket:React.FC<{
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.welcomeMessage}>Welcome Gopal Iyer,</Text>
       <View style={styles.dropDown}>
         <DropDown></DropDown>
       </View>
-      {!hideTripDetails &&
+      {!hideTripDetails && 
         <View style={styles.tripDetailsContainer}>
           <View style={styles.tripDetails}>
             <SmallCard suffix="Available time slot"
@@ -98,19 +100,17 @@ export const Ticket:React.FC<{
             </Stepper>
           </View>
           <Text style={styles.availableSeats}>{availableSeatsLabel + totalAvailableSeats}</Text>
+          <Text style={[ styles.fontBold, styles.fareLabel ]} onPress={blockTicket}>{fareDetailsLabel}</Text>
+         
+          {
+            !hideFareDetails &&
+            <View style={styles.fareDetails}>
+              <FareDetails fareBreakUp={fareBreakUp}></FareDetails>
+            </View>}
           <TouchableOpacity
-            style={styles.fareLabel}
-            onPress={blockTicket}
-          >
-            <Text style={[ styles.availableSeats, styles.fontBold ]}>{fareDetailsLabel}</Text>
-          </TouchableOpacity>
-          {!hideFareDetails && <View style={styles.fareDetails}>
-            <FareDetails fareBreakUp={fareBreakUp}></FareDetails>
-          </View>}
-
-          <TouchableOpacity
-            onPress={() => passengerCount > 0 && !hideFareDetails && navigation.navigate("BookingConfirmation")}
-            style={[ styles.ticketButton, hideFareDetails ? styles.marginVerticalLarge : styles.marginVerticalSmall ]}
+            onPress={() => passengerCount > 0 && !hideFareDetails && navigation.navigate("BookingConfirmation")
+            }
+            style={styles.ticketButton}
           >
             <Text style={styles.ticketButtonText}>{buttonLabel}</Text>
           </TouchableOpacity>
@@ -121,9 +121,16 @@ export const Ticket:React.FC<{
 };
 
 const styles = StyleSheet.create({
+  container: {
+    width: width / 1.102,
+    alignItems: "center",
+    alignSelf: "center"
+  },
   tripDetailsContainer: {
     position: "relative",
-    height: 450
+    height: height / 1.5,
+    justifyContent: "space-between"
+
   },
   welcomeMessage: {
     fontWeight: "500",
@@ -139,41 +146,40 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   tripDetails: {
-    position: "relative",
     marginTop: 20,
-    display: "flex",
-    alignItems: "center"
-  },
-  availableSeats: {
-    marginLeft: 30,
-    lineHeight: 15,
-    color: colors.GreyBlack
-  },
-  fareLabel:{
-    fontWeight: "bold",
-    marginTop: 18,
-    fontFamily:"Inter"
-  },
-  fareDetails: {
+    height:height/6.2,
     display: "flex",
     alignItems: "center",
-    marginTop: 18
+    justifyContent: "space-between"
+  },
+  availableSeats: {
+    position: "absolute",
+    lineHeight: 15,
+    top: height/5.4,
+    color: colors.GreyBlack
+  },
+  fareLabel: {
+    position:"absolute",
+    fontWeight: "bold",
+    fontFamily: "Inter",
+    top: height/4.3,
+    color: colors.GreyBlack
+  },
+  fareDetails: {
+    position: "absolute",
+    backgroundColor: colors.Beige,
+    alignItems: "center",
+    marginTop: height/3.5
   },
 
   ticketButton: {
+    flexDirection: "column",
     width: 350,
+    bottom: 0,
     backgroundColor: colors.GreyBlack,
     borderRadius: 14,
     paddingVertical: 13,
-    alignItems: "center",
-    alignSelf: "center",
-    position: "relative"
-  },
-  marginVerticalLarge: {
-    marginVertical: 200
-  },
-  marginVerticalSmall: {
-    marginVertical: 20
+    alignItems: "center"
   },
   ticketButtonText: {
     color: colors.White,
