@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import { G, Svg, Path, SvgProps } from "react-native-svg";
-const Logo = (props: SvgProps): ReactElement => {
+import { G, Svg, Path } from "react-native-svg";
+const Logo = (): ReactElement => {
   return (
 
     <Svg width="49.272040302267" height="31" viewBox="0 0 631.000000 397.000000" preserveAspectRatio="xMidYMid meet">
