@@ -4,15 +4,13 @@ import LoaderIcon from "../../../assets/svg/LoaderIcon";
 
 const SpinnerLoader = (): ReactFragment => {
   const spinValue = new Animated.Value(0);
-
-  // First set up animation 
   Animated.loop(
     Animated.timing(
       spinValue,
       {
         toValue: 1,
         duration: 3000,
-        easing: Easing.linear, // Easing is an additional import from react-native
+        easing: Easing.linear, 
         useNativeDriver: true  // To make use of native driver for performance
       }
     )
@@ -29,7 +27,7 @@ const SpinnerLoader = (): ReactFragment => {
       <Animated.View style={[ styles.container, { transform: [ { rotate: spin } ] } ]}>
         <LoaderIcon />
       </Animated.View>
-      <View style={[ styles.textBox ]}>
+      <View style={ styles.textBox }>
         <Text style={ styles.textCenter }>
           Please Wait 
         </Text>

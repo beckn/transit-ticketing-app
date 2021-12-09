@@ -4,14 +4,7 @@ import { GestureResponderEvent } from "react-native-modal";
 import { colors } from "../../../assets/theme/colors";
 
 export interface ButtonProps {
-  /**
-   * Label for the button
-   */
   label: string;
-
-  /**
-   * Function to be executed on button press
-   */
   onPress?: (event: GestureResponderEvent) => void;
 }
 
