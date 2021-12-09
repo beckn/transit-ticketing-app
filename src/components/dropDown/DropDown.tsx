@@ -16,11 +16,13 @@ import RightArrow from "../../../assets/svg/RightArrow";
 
 const selectLocation = (location: string, placeholder: string): ReactElement => {
   return (
-    <>
-      <Text style={styles.placeholder}>{location ? placeholder : location}</Text>
-      <Text style={styles.text}>{location ? location : placeholder}</Text>
+    <View style={[ styles.flexRow, styles.locationHolderWidth, styles.justifyBetween ]}>
+      <View style={[ styles.flexColumn, styles.left30, styles.paddingVertical ]}>
+        <Text style={styles.placeholder}>{location ? placeholder : location}</Text>
+        <Text style={styles.text}>{location ? location : placeholder}</Text>
+      </View>
       <RightArrow style={styles.arrow} />
-    </>
+    </View>
   );
 };
 
@@ -31,32 +33,34 @@ const DropDown = (): ReactElement => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if( originStation.id === "") return;
+    // eslint-disable-next-line no-console
+    console.log("origin station", originStation.id);
+    if (originStation.id === "") return;
     stationService.searchStations(originStation.id).then((data) => {
       dispatch(setStationsLinkedToOrigin(data));
     });
-  },[ originStation.id ]);
+  }, [ originStation.id ]);
 
   useEffect(() => {
-    if(destinationStation.id === "") return;
-    stationService.searchTrips({  origin: originStation.id, destination: destinationStation.id }).then((data) => {
+    if (destinationStation.id === "") return;
+    stationService.searchTrips({ origin: originStation.id, destination: destinationStation.id }).then((data) => {
       dispatch(setTrip(data));
     });
   }, [ destinationStation.id ]);
 
 
   const ModalContent = (): ReactElement => {
-    let list: Station [] = [];
-    const isLocationIsOrigin= (): boolean => {
+    let list: Station[] = [];
+    const isLocationIsOrigin = (): boolean => {
       return location === "origin";
     };
     const isLocationIsDestination = (): boolean => {
       return location === "destination";
     };
 
-    const label = isLocationIsOrigin()? ORIGIN_PLACEHOLDER : DESTINATION_PLACEHOLER;
-    const action = isLocationIsOrigin() ? setOriginStation: setDestinationStation;
-    list = isLocationIsDestination() ?  useSelector((state: State) => state.linkedStationsToOrigin) : stationlist;
+    const label = isLocationIsOrigin() ? ORIGIN_PLACEHOLDER : DESTINATION_PLACEHOLER;
+    const action = isLocationIsOrigin() ? setOriginStation : setDestinationStation;
+    list = isLocationIsDestination() ? useSelector((state: State) => state.linkedStationsToOrigin) : stationlist;
     return (
       <View style={styles.modalContent}>
         <ListHeader label={label} icon={require("../../../assets/icons/cross.png")}></ListHeader>
@@ -70,7 +74,7 @@ const DropDown = (): ReactElement => {
   const ListHeader: React.FC<{ label: string, icon: ImageProps }> = ({ label, icon }) => {
     return (
       <View style={styles.header}>
-        <Text style={styles.headerText}>{label}</Text>
+        <Text style={[ styles.headerText ]}>{label}</Text>
         <View style={styles.headerIcon} onTouchEnd={() => setModalVisibility(!modalVisibility)}>
           <Image source={icon}></Image>
         </View>
@@ -93,13 +97,12 @@ const DropDown = (): ReactElement => {
   });
 
   return (
-    <><View style={styles.container}>
-      <View style={styles.box} />
-      <View style={styles.lineStyle} />
-      <View style={styles.origin} onTouchStart={() => { setModalVisibility(true); setLocation("origin"); }}>
+    <><View style={[ styles.container, styles.box, styles.paddingHorizontalVertical ]}>
+      <View onTouchStart={() => { setModalVisibility(true); setLocation("origin"); }}>
         {selectLocation(originStation.name, ORIGIN_PLACEHOLDER)}
       </View>
-      <View style={styles.destination} onTouchStart={() => { setModalVisibility(true); setLocation("destination"); }}>
+      <View style={styles.lineStyle} />
+      <View onTouchStart={() => { setModalVisibility(true); setLocation("destination"); }}>
         {selectLocation(destinationStation.name, DESTINATION_PLACEHOLER)}
       </View>
       <View style={styles.icon}><OriginToDestinationIcon /></View>
@@ -121,27 +124,48 @@ const DropDown = (): ReactElement => {
 
 
 const styles = StyleSheet.create({
+  justifyBetween: {
+    display: "flex",
+    justifyContent: "space-between"
+  },
+  locationHolderWidth: {
+    width: 300
+  },
+  paddingVertical: {
+    paddingVertical: 10
+  },
+  paddingHorizontalVertical:{
+    paddingHorizontal: 20,
+    paddingVertical: 5
+  },
   container: {
-    position: "relative",
-    width: 350,
-    height: 105
+    width: "100%",
+    alignSelf: "center",
+    alignContent: "center"
+  },
+  left30: {
+    left:30
   },
   lineStyle: {
-    position: "absolute",
     borderWidth: 0.5,
-    width: 300,
-    borderColor: colors.Dim_Black,
-    marginVertical: 50,
-    left: 50
+    width: 270,
+    left: 30,
+    borderColor: colors.Dim_Black
   },
   box: {
-    position: "absolute",
-    height: 100,
-    width: 350,
     borderWidth: 1,
     borderColor: colors.Dim_Black,
     borderStyle: "solid",
     borderRadius: 10
+  },
+  flexColumn: {
+    display: "flex",
+    flexDirection: "column"
+
+  },
+  flexRow: {
+    display: "flex",
+    flexDirection: "row"
   },
   modal: {
     marginHorizontal: 0,
@@ -153,20 +177,11 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: "absolute",
-    left: 15,
-    top: 17
-  },
-  origin: {
-    justifyContent: "center",
-    top: 10
-  },
-  destination: {
-    justifyContent: "center",
-    top: 25
+    left: "5%",
+    top: "25%"
   },
   text: {
-    left: 50,
-    width: "70%",
+    width: "100%",
     color: colors.Black,
     fontWeight: "600",
     fontStyle: "normal",
@@ -175,14 +190,13 @@ const styles = StyleSheet.create({
   },
   arrow: {
     position: "absolute",
-    marginVertical: 10,
+    marginVertical: 20,
     left: 300,
     transform: [ { rotate: "90deg" } ]
   },
   placeholder: {
     fontSize: 10,
-    color: colors.Black,
-    marginHorizontal: 50
+    color: colors.Black
   },
   header: {
     position: "absolute",
