@@ -7,12 +7,13 @@ import DropDown from "../../components/DropDown/DropDown";
 import { FareDetails } from "../../components/FareDetails/FareDetails";
 import { SmallCard } from "../../components/SmallCard/SmallCard";
 import { Stepper } from "../../components/Stepper/stepper";
-import { BlockTicketRequest } from "../../request/blockTicketRequest";
+import { ClientBookTicketRequest } from "../../request/clientBookTicketRequest";
 import { stationService } from "../../services/stationService";
-import { setBlockTicket } from "../../store/actions/blockTicketAction";
+import { setBookTicket } from "../../store/actions/blockTicketAction";
 import { State } from "../../store/reducers/reducer";
-import { fareBreakUpGenerator, fetchFirstAvailableSlot } from "../../utils/util";
+import { appendAM_PM, fareBreakUpGenerator, fetchFirstAvailableSlot } from "../../utils/util";
 import { NavigationScreenProp } from "react-navigation";
+import { setStationsList } from "../../store/actions/linkedStationAction";
 
 const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
@@ -25,46 +26,56 @@ export const Ticket: React.FC<{
   const fareDetailsLabel = "Fare Details";
   const tripDetails = useSelector((state: State) => state.trip);
   const dispatch = useDispatch();
-  const initalFareDetail = { label: "", value: "" };
+  const KeyValueObject = { label: "", value: "" };
   const [ hideTripDetails, setHideTripDetails ] = useState(true);
   const [ availableSlotTime, setAvailableSlotTime ] = useState("");
   const [ totalAvailableSeats, setTotalAvailableSeats ] = useState(0);
   const [ tripId, setTripId ] = useState("");
   const [ hideFareDetails, setHideFairDetails ] = useState(true);
   const [ fareBreakUp, setFareBreakUp ] = useState({
-    totalPrice: initalFareDetail,
-    passengerCount: initalFareDetail,
+    totalPrice: KeyValueObject,
+    passengerCount: KeyValueObject,
     currency: "",
-    base: initalFareDetail,
-    cgst: initalFareDetail,
-    sgst: initalFareDetail,
-    amount: initalFareDetail
-
+    base: KeyValueObject,
+    cgst: KeyValueObject,
+    sgst: KeyValueObject,
+    amount: KeyValueObject
   });
-  let passengerCount = 0;
+  const [ passengerCount, setPassengerCount ] = useState(0);
+
+  useEffect(() => {
+    stationService.searchStations().then( (res) => {
+      res && dispatch(setStationsList(res));
+    });
+  },[]);
+
   useEffect(() => {
     if (tripDetails.availability.length === 0) {
       setHideTripDetails(true);
       setHideFairDetails(true);
+      setPassengerCount(0);
       return;
     }
     else {
       const result = fetchFirstAvailableSlot(tripDetails.availability);
       if (result) {
-        setAvailableSlotTime(result.slot);
+        setAvailableSlotTime(result.arrival.slot);
+        setFareBreakUp(fareBreakUpGenerator(result.fare, passengerCount>0 ? passengerCount : 1));
+        setHideFairDetails(false);
         setTotalAvailableSeats(result.seats);
         setTripId(result.trip_id);
       }
       setHideTripDetails(false);
     }
-  }, [ tripDetails.availability.length ]);
+  }, [ tripDetails.availability.length, passengerCount ]);
+ 
   const passenger = (value: number): void => {
-    if (value !== 0)
-      passengerCount = value;
-    passengerCount === 0 && setHideFairDetails(true);
+    if (value !== 0) {
+      setPassengerCount(value);
+    }
   };
-  const blockTicket = (): void => {
-    const blockTicketReq: BlockTicketRequest = {
+  const bookClientTicket = (): void => {
+    const blockTicketReq: ClientBookTicketRequest = {
       source: tripDetails.trip.source,
       destination: tripDetails.trip.destination,
       date: tripDetails.trip.date,
@@ -72,11 +83,9 @@ export const Ticket: React.FC<{
       seats: passengerCount,
       trip_id: tripId
     };
-
-    passengerCount > 0 && stationService.blockTicket(blockTicketReq).then((res) => {
-      dispatch(setBlockTicket(res));
-      setFareBreakUp(fareBreakUpGenerator(res.fare, res.trip.seats));
-      setHideFairDetails(false);
+    stationService.clientBookTicket(blockTicketReq).then((res) => {
+      res && dispatch(setBookTicket(res));
+      navigation.navigate("BookingConfirmation");
     });
   };
 
@@ -91,16 +100,17 @@ export const Ticket: React.FC<{
           <View style={styles.tripDetails}>
             <SmallCard suffix="Available time slot"
               icon={require("../../../assets/icons/watch.png")}
-              label={availableSlotTime}>
+              label={appendAM_PM(availableSlotTime)}>
             </SmallCard>
-            <Stepper bubbleUpValue={passenger}
+            <Stepper 
+              bubbleUpValue={passenger}
               icon={require("../../../assets/icons/passenger.png")}
               label={label}
               maxLimit={totalAvailableSeats}>
             </Stepper>
           </View>
           <Text style={styles.availableSeats}>{availableSeatsLabel + totalAvailableSeats}</Text>
-          <Text style={[ styles.fontBold, styles.fareLabel ]} onPress={blockTicket}>{fareDetailsLabel}</Text>
+          <Text style={[ styles.fontBold, styles.fareLabel ]}>{fareDetailsLabel}</Text>
          
           {
             !hideFareDetails &&
@@ -108,9 +118,9 @@ export const Ticket: React.FC<{
               <FareDetails fareBreakUp={fareBreakUp}></FareDetails>
             </View>}
           <TouchableOpacity
-            onPress={() => passengerCount > 0 && !hideFareDetails && navigation.navigate("BookingConfirmation")
-            }
-            style={styles.ticketButton}
+            disabled ={ passengerCount ==0 ? true: false }
+            onPress={() => passengerCount > 0 && bookClientTicket()}
+            style={[ styles.ticketButton, passengerCount>0 ? styles.enabledButton : styles.disabledButton ]}
           >
             <Text style={styles.ticketButtonText}>{buttonLabel}</Text>
           </TouchableOpacity>
@@ -128,7 +138,7 @@ const styles = StyleSheet.create({
   },
   tripDetailsContainer: {
     position: "relative",
-    height: height / 1.5,
+    height: height / 1.6,
     justifyContent: "space-between"
 
   },
@@ -155,28 +165,31 @@ const styles = StyleSheet.create({
   availableSeats: {
     position: "absolute",
     lineHeight: 15,
-    top: height/5.4,
+    top: height/4.8,
     color: colors.GreyBlack
   },
   fareLabel: {
     position:"absolute",
     fontWeight: "bold",
     fontFamily: "Inter",
-    top: height/4.3,
+    top: height/4,
     color: colors.GreyBlack
   },
   fareDetails: {
     position: "absolute",
-    backgroundColor: colors.Beige,
     alignItems: "center",
     marginTop: height/3.5
   },
-
+  disabledButton: {
+    backgroundColor: colors.Disabled_Button
+  },
+  enabledButton :{
+    backgroundColor: colors.GreyBlack
+  },
   ticketButton: {
     flexDirection: "column",
     width: 350,
     bottom: 0,
-    backgroundColor: colors.GreyBlack,
     borderRadius: 14,
     paddingVertical: 13,
     alignItems: "center"
@@ -191,3 +204,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   }
 });
+
+

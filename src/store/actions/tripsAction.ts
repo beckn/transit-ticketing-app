@@ -1,4 +1,4 @@
-import { TripResponse } from "../../response/searchTripResponse";
+import { SearchTripResponse } from "../../response/searchTripResponse";
 import { initalTripDetails } from "../reducers/reducer";
 
 export const enum TRIP_ACTION { 
@@ -8,10 +8,10 @@ export const enum TRIP_ACTION {
 
 export interface TripAction {
   type: TRIP_ACTION,
-  payload: TripResponse
+  payload: SearchTripResponse
 } 
 
-export const setTrip = (payload: TripResponse): TripAction => {
+export const setTrip = (payload: SearchTripResponse): TripAction => {
   return { type: TRIP_ACTION.SET_TRIP, payload };
 };
 export const clearTrip = (): TripAction => {

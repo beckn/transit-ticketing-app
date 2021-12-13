@@ -6,6 +6,8 @@ export const stationListReducer = (state = initialState.stations, action: Statio
   switch (action.type) {  
     case STATIONS_LIST_ACTIONS.setStationsList:
       return action.payload ;
+    case STATIONS_LIST_ACTIONS.clearStationsList:
+      return action.payload ;
     default:
       return state;
   }

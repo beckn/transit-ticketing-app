@@ -20,7 +20,7 @@ export default function App(): ReactElement {
     return(
       <AppLoading 
         startAsync={ getFonts }
-        onError={() => console.log("Not Capuring Font: ")}      // eslint-disable-line no-console
+        onError={() => { return ; } }     
         onFinish={() => {
           setFontsLoaded( true );
         }}

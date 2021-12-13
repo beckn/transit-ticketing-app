@@ -30,11 +30,10 @@ const DropDown = (): ReactElement => {
   const originStation = useSelector((state: State) => state.originStation);
   const destinationStation = useSelector((state: State) => state.destinationStation);
   const stationlist = useSelector((state: State) => state.stations);
+  const [ location, setLocation ] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log("origin station", originStation.id);
     if (originStation.id === "") return;
     stationService.searchStations(originStation.id).then((data) => {
       dispatch(setStationsLinkedToOrigin(data));
@@ -48,24 +47,36 @@ const DropDown = (): ReactElement => {
     });
   }, [ destinationStation.id ]);
 
+  const isLocationIsOrigin = (): boolean => {
+    return location === "origin";
+  };
+  const isLocationIsDestination = (): boolean => {
+    return location === "destination";
+  };
 
+  const isLocationEmpty = (): boolean => {     
+    return location === "";
+  };
   const ModalContent = (): ReactElement => {
     let list: Station[] = [];
-    const isLocationIsOrigin = (): boolean => {
-      return location === "origin";
+    const label = !isLocationEmpty() && isLocationIsOrigin() ? ORIGIN_PLACEHOLDER : DESTINATION_PLACEHOLER;
+    const action = !isLocationEmpty() && isLocationIsOrigin() ? setOriginStation : setDestinationStation;
+    const dispatchAction = (selectedValue: {id: string, name: string}):void => { 
+      dispatch(action(selectedValue));
+      setModalVisibility(false);
     };
-    const isLocationIsDestination = (): boolean => {
-      return location === "destination";
-    };
-
-    const label = isLocationIsOrigin() ? ORIGIN_PLACEHOLDER : DESTINATION_PLACEHOLER;
-    const action = isLocationIsOrigin() ? setOriginStation : setDestinationStation;
-    list = isLocationIsDestination() ? useSelector((state: State) => state.linkedStationsToOrigin) : stationlist;
+    if(isLocationEmpty()) {
+      list = [];
+    }
+    else {
+      list = isLocationIsDestination() ? useSelector((state: State) => state.linkedStationsToOrigin) : stationlist;
+    }
+    
     return (
       <View style={styles.modalContent}>
         <ListHeader label={label} icon={require("../../../assets/icons/cross.png")}></ListHeader>
         <View style={styles.list}>
-          <List action={action} list={list} ></List>
+          <List list={list} bubbleUpValue={dispatchAction} ></List>
         </View>
       </View>
     );
@@ -82,8 +93,6 @@ const DropDown = (): ReactElement => {
     );
   };
   const [ modalVisibility, setModalVisibility ] = useState(false);
-  const [ location, setLocation ] = useState("");
-
   const customFonts = {
     "Inter-ExtraBold": require("../../../assets/fonts/Inter-ExtraBold.ttf"),
     "Inter-SemiBoldItalic": require("../../../assets/fonts/Inter-SemiBoldItalic.ttf")

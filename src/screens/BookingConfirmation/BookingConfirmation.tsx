@@ -10,11 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../components/Button/Button";
 import TicketDetails from "../../components/TicketDetails/TicketDetails";
 import { clearBlockTicketResponse } from "../../store/actions/blockTicketAction";
-import { clearStationsLinkedToOrigin } from "../../store/actions/linkedStationAction";
+import { clearStationsLinkedToOrigin, clearStationsList } from "../../store/actions/linkedStationAction";
 import { clearDestinationStation, clearOriginStation } from "../../store/actions/stationsAction";
 import { clearTrip } from "../../store/actions/tripsAction";
 import { State } from "../../store/reducers/reducer";
-import { getTimeInTwelveHourFormat } from "../../utils/util";
+import { appendAM_PM } from "../../utils/util";
 
 const ConfirmationBox = (): ReactElement => {
   return (
@@ -36,13 +36,14 @@ const BookingConfirmation:React.FC<{
     dispatch(clearBlockTicketResponse());
     dispatch(clearTrip());
     dispatch(clearStationsLinkedToOrigin());
+    dispatch(clearStationsList());
     dispatch(clearDestinationStation());
     dispatch(clearOriginStation());
     navigation.navigate("Ticket");
   };
   
-  const { selected_slot, seats } = useSelector((state: State) => state.blockTicketResponse.trip);
-  const selectedSlot = getTimeInTwelveHourFormat(selected_slot);
+  const { selected_slot, seats } = useSelector((state: State) => state.clientBookTicketResponse.trip);
+  const selectedSlot = appendAM_PM(selected_slot);
   const source = useSelector((state: State) => state.originStation.name);
   const destination = useSelector((state: State) => state.destinationStation.name);
   return (

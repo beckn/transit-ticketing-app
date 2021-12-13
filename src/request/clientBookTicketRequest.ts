@@ -1,4 +1,4 @@
-export interface BlockTicketRequest {
+export interface ClientBookTicketRequest {
   source: string,
   destination: string,
   date: string,

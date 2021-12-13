@@ -1,5 +1,4 @@
-import { Fare } from "../response/blockTicketResponse";
-import { Availability } from "../response/searchTripResponse";
+import { Availability, Fare } from "../response/searchTripResponse";
 
 const isSeatAvailable = (availability: Availability): boolean => {
   return availability.seats > 0;
@@ -21,14 +20,15 @@ export interface FareBreakUp {
   sgst: KeyDetailObject,
   amount: KeyDetailObject
 }
+export const addTwoDecimalPlace = (num: number): string => {
+  const result = Number.isInteger(num) ? num + ".00" : num.toFixed(2)  ;  
+  return "Rs. " +result;
+};
+
 export const fareBreakUpGenerator = (fareDetailsObject: Fare, passengerCount: number) : FareBreakUp => {
   const calculateTotalTicketPrice = 
-  fareDetailsObject.amount * passengerCount + fareDetailsObject.base + fareDetailsObject.cgst + fareDetailsObject.sgst;
-  const addTwoDecimalPlace = (num: number): string => {
-    const result = Number.isInteger(num) ? num + ".00" : num.toFixed(2)  ;  
-    return "Rs. " +result;
-  };
-
+  fareDetailsObject.amount * passengerCount;
+  
   const fareConfig: FareBreakUp = {
     currency:fareDetailsObject.currency,
     totalPrice: {
@@ -59,7 +59,7 @@ export const fareBreakUpGenerator = (fareDetailsObject: Fare, passengerCount: nu
   return fareConfig; 
 };
 
-export const getTimeInTwelveHourFormat = (twentyFourHourFormatTime: string): string => {
+export const appendAM_PM = (twentyFourHourFormatTime: string): string => {
   const [ hours, minutes ] = twentyFourHourFormatTime.split(":");
   const hoursInt = parseInt(hours);
   const amOrPm = hoursInt > 12 ? "pm" : "am";

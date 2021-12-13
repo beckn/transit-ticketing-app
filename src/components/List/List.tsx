@@ -1,21 +1,21 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import { useDispatch } from "react-redux";
 import { colors } from "../../../assets/theme/colors";
 import { Station } from "../../response/searchStationsResponse";
-import {  StationAction,StationDetail } from "../../store/actions/stationsAction";
 
-export const List: React.FC<{ list: Station[], action: (payload: StationDetail)=> StationAction }> = ({ list, action }): ReactElement => {
-  const dispatch = useDispatch();
+export const List: React.FC<{ 
+  list: Station[],
+  bubbleUpValue: (value: { id: string, name: string }) => void 
+}> = 
+({ list, bubbleUpValue }): ReactElement => {
   const stationDetail = { id: "", name: "" };
   const [ selectedItem, setSelectedITem ] = useState(stationDetail);
 
   useEffect(() => {
     if(selectedItem.id == "" ) return;
-    dispatch(action(selectedItem)); 
+    bubbleUpValue(selectedItem); 
   },[ selectedItem ]);
-
   const Item: React.FC<{ item: Station }> = ({ item }): ReactElement => {
   
     return (

@@ -1,8 +1,8 @@
-import { TripResponse } from "../../response/searchTripResponse";
+import { SearchTripResponse } from "../../response/searchTripResponse";
 import { TripAction, TRIP_ACTION } from "../actions/tripsAction";
 import { initialState } from "./reducer";
 
-export const tripReducer =(state = initialState.trip, action: TripAction): TripResponse => {
+export const tripReducer =(state = initialState.trip, action: TripAction): SearchTripResponse => {
   switch(action.type) {
     case TRIP_ACTION.SET_TRIP:
       return action.payload ;

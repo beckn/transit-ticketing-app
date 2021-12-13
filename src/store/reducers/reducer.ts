@@ -1,42 +1,15 @@
-import { BlockTicketResponse } from "../../response/blockTicketResponse";
+import { ClientBookTicketResponse } from "../../response/clientBookTicketResponse";
 import { Station } from "../../response/searchStationsResponse";
-import { TripResponse } from "../../response/searchTripResponse";
+import { SearchTripResponse } from "../../response/searchTripResponse";
 import { StationDetail } from "../actions/stationsAction";
-
-const DATA: Station[] = [
-  {
-    id: "EKM",
-    name: "Ernakulam",
-    location: {
-      stopLat: "76.27833",
-      stopLng: "9.972357"
-    }
-  },
-  {
-    id: "EMB",
-    name: "Embarkation",
-    location: {
-      stopLat: "76.26221",
-      stopLng: "9.970072"
-    }
-  },
-  {
-    id: "FKO",
-    name: "Fort Kochi",
-    location: {
-      stopLat: "76.26221",
-      stopLng: "9.969376"
-    }
-  }
-];
 
 export type State = {
   originStation: StationDetail;
   destinationStation: StationDetail;
   stations: Station[];
   linkedStationsToOrigin: Station[];
-  trip: TripResponse;
-  blockTicketResponse: BlockTicketResponse;
+  trip: SearchTripResponse;
+  clientBookTicketResponse: ClientBookTicketResponse;
 };
 const initialTrip = { source: "", destination: "", date: "" };
 const blockTrip = {
@@ -64,16 +37,16 @@ export const initialBlockTicketResponse = {
   trip: blockTrip,
   fare,
   upi_payment,
-  card_payment: upi_payment
+  card_payment: upi_payment,
+  ticket_code: ""
 };
 
-export const initalTripDetails = { trip: initialTrip, availability: [] };
+export const initalTripDetails = { trip: initialTrip, availability: [], locations: [] };
 export const initialState: State = {
   originStation: { id: "", name: "" },
   destinationStation: { id: "", name: "" },
-  stations: DATA,
+  stations: [],
   linkedStationsToOrigin: [],
   trip: initalTripDetails,
-  blockTicketResponse: initialBlockTicketResponse
-
+  clientBookTicketResponse: initialBlockTicketResponse
 };

@@ -1,20 +1,20 @@
-import { BlockTicketResponse } from "../../response/blockTicketResponse";
+import { ClientBookTicketResponse } from "../../response/clientBookTicketResponse";
 import { initialBlockTicketResponse } from "../reducers/reducer";
 
-export const enum BLOCK_TICKET_ACTION { 
-  BLOCK_TICKET = "BLOCK_TICKET",
+export const enum BOOK_TICKET_ACTION { 
+  BOOK_TICKET = "BOOK_TICKET",
   CLEAR_BLOCK_TICKET_RESPONSE = "CLEAR_BLOCK_TICKET_RESPONSE"
 }
 
 export interface BlockTicketAction {
-  type: BLOCK_TICKET_ACTION,
-  payload: BlockTicketResponse
+  type: BOOK_TICKET_ACTION,
+  payload: ClientBookTicketResponse
 } 
 
-export const setBlockTicket = (payload: BlockTicketResponse): BlockTicketAction => {
-  return { type: BLOCK_TICKET_ACTION.BLOCK_TICKET, payload };
+export const setBookTicket = (payload: ClientBookTicketResponse): BlockTicketAction => {
+  return { type: BOOK_TICKET_ACTION.BOOK_TICKET, payload };
 };
 
 export const clearBlockTicketResponse = (): BlockTicketAction => {
-  return { type: BLOCK_TICKET_ACTION.CLEAR_BLOCK_TICKET_RESPONSE, payload: initialBlockTicketResponse };
+  return { type: BOOK_TICKET_ACTION.CLEAR_BLOCK_TICKET_RESPONSE, payload: initialBlockTicketResponse };
 };

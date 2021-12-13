@@ -6,6 +6,8 @@ export const originStationReducer = (state = initialState.originStation, action:
   switch (action.type) {    
     case STATION_ACTIONS.setOriginStation:
       return action.payload ;
+    case STATION_ACTIONS.clearOriginStation:
+      return action.payload ;
     default:
       return state;
   }
@@ -14,8 +16,6 @@ export const originStationReducer = (state = initialState.originStation, action:
 export const destinationStationReducer =(state = initialState.destinationStation, action: StationAction): StationDetail => {
   switch(action.type) {
     case STATION_ACTIONS.setDestinationStation:
-      return action.payload ;
-    case STATION_ACTIONS.clearOriginStation:
       return action.payload ;
     case STATION_ACTIONS.clearDestinationStation:
       return action.payload ;

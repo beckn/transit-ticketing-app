@@ -1,12 +1,12 @@
-import { BlockTicketResponse } from "../../response/blockTicketResponse";
-import { BlockTicketAction, BLOCK_TICKET_ACTION } from "../actions/blockTicketAction";
+import { ClientBookTicketResponse } from "../../response/clientBookTicketResponse";
+import { BlockTicketAction, BOOK_TICKET_ACTION } from "../actions/blockTicketAction";
 import { initialState } from "./reducer";
 
-export const blockTicketReducer =(state = initialState.blockTicketResponse, action: BlockTicketAction): BlockTicketResponse => {
+export const bookTicketReducer =(state = initialState.clientBookTicketResponse, action: BlockTicketAction): ClientBookTicketResponse => {
   switch(action.type) {
-    case BLOCK_TICKET_ACTION.BLOCK_TICKET:
+    case BOOK_TICKET_ACTION.BOOK_TICKET:
       return action.payload ;
-    case BLOCK_TICKET_ACTION.CLEAR_BLOCK_TICKET_RESPONSE:
+    case BOOK_TICKET_ACTION.CLEAR_BLOCK_TICKET_RESPONSE:
       return action.payload;
     default:
       return state;
