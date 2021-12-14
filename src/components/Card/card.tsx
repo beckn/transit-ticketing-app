@@ -18,13 +18,14 @@ export const Card: React.FC<{
 
   const pushedToNavigate = () :void => {
     setToggleColor(!toggleColor);
-    navigation && navigation.navigate("Ticket");
+    if(navigationStatus) navigation && navigation.navigate("Ticket");
+    navigation && navigation.navigate("ValidateTicket");
   };
 
   return (
     <View style={[ styles.container, toggleColor && styles.highlight ]}
       onTouchStart={changeBackground}
-      onTouchEndCapture={() => navigationStatus ? pushedToNavigate() : setToggleColor(!toggleColor)}
+      onTouchEndCapture={() => pushedToNavigate()}
     >
       <Image source={iconPath} style={styles.icon}></Image>
       <Text style={styles.label}>{label}</Text>

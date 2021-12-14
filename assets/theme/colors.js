@@ -5,6 +5,7 @@ const Beige = "#F3F1E0";
 const Black = "#000000";
 const Dim_Grey = "#F0F0F0";
 const Disabled_Button = "#AAABB5";
+const Transparent = "transparent";
 export const colors = {
   Dim_Black,
   GreyBlack,
@@ -12,5 +13,6 @@ export const colors = {
   Beige,
   Black,
   Dim_Grey,
-  Disabled_Button
+  Disabled_Button,
+  Transparent
 };

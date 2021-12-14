@@ -44,7 +44,7 @@ const LandingPage :React.FC<{
         <View style={styles.buttonBoxMargin}>
           <Card 
             navigation= {navigation}
-            navigationStatus= {true}
+            navigationStatus= {false}
             label={validateTicketLabel}
             iconPath={require("../../../assets/icons/validatorIcon.png")}
             otherIconPath={require("../../../assets/icons/arrow.png")}

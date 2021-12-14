@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../../assets/theme/colors";
-import DropDown from "../../components/DropDown/DropDown";
+import DropDown from "../../components/dropDown/DropDown";
 import { FareDetails } from "../../components/FareDetails/FareDetails";
 import { SmallCard } from "../../components/SmallCard/SmallCard";
 import { Stepper } from "../../components/Stepper/stepper";
