@@ -20,13 +20,16 @@ const LandingPage :React.FC<{
   const loginPageTitle = "Kerala State Water Transport Department";
   const issueTicketLabel = "Issue a new ticket";
   const validateTicketLabel = "Validate a ticket";
+  const selectOneToContinue ="Select one to continue";
   return(
     <View style={styles.boxContainer}>
-      <Header navigation= {navigation} showLogOutButton={true} />
+      <View  style={styles.header}>
+        <Header navigation= {navigation} showLogOutButton={true} />
+      </View>
       <Title label={loginPageTitle}></Title>
       <Slide  style={styles.bannerImage}></Slide>
       <View style={styles.buttonBox}>
-        <Text style={styles.landingHeading}> Select one to continue </Text>
+        <Text style={styles.landingHeading}>{selectOneToContinue}</Text>
         <View style={styles.buttonBoxMargin}>
           <Card 
             navigation= {navigation}
@@ -61,6 +64,10 @@ const styles = StyleSheet.create({
     width: width / 1.1,
     height: height-45
   },
+  header: {
+    marginTop: 10,
+    width: width/1.2
+  },
   buttonBox: {
     marginTop: 100,
     width: width /1.1
@@ -69,6 +76,7 @@ const styles = StyleSheet.create({
     marginLeft: "22%"
   },
   landingHeading: {
+    marginBottom: 15,
     fontSize: 16,
     lineHeight: 19,
     fontWeight: "300"

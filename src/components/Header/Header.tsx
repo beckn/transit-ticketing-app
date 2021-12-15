@@ -18,8 +18,8 @@ const Header: React.FC<{
         <Logo></Logo>
         <Text style={styles.logoLabel}>{logoLabel}</Text>
       </View>
-      {showLogOutButton &&
-        <View onTouchEndCapture={() => navigation?.navigate("LoginPage")} >
+      {showLogOutButton && navigation &&
+        <View onTouchEndCapture={() => navigation.navigate("LoginPage")} >
           <LogOut />
         </View>
       }
@@ -29,6 +29,7 @@ const Header: React.FC<{
 
 const styles = StyleSheet.create({
   logoBox: {
+    marginTop: 20,
     width: "100%",
     height: 40,
     flexDirection: "row",

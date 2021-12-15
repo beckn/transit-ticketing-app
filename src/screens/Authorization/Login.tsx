@@ -28,7 +28,9 @@ const LoginComponent :React.FC<{
 
   return(
     <View style={styles.boxContainer}>
-      <Header showLogOutButton={false} />
+      <View  style={styles.logo}>
+        <Header showLogOutButton={false} />
+      </View>
       <Title label={loginPageTitle}></Title>
       <Boat  style={styles.bannerImage}></Boat>
       <View style={ styles.inputTextBox }>
@@ -77,6 +79,10 @@ const styles = StyleSheet.create({
   },
   inputTextBox: {
     marginTop: 40
+  },
+  logo: {
+    marginTop: 10,
+    right: width/3.5
   },
   inputText: {
     fontWeight: "100",

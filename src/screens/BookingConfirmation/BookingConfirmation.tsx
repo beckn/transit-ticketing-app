@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import { 
-  Image,
   StyleSheet,
   Text,
   View
@@ -15,12 +14,12 @@ import { clearDestinationStation, clearOriginStation } from "../../store/actions
 import { clearTrip } from "../../store/actions/tripsAction";
 import { State } from "../../store/reducers/reducer";
 import { appendAM_PM } from "../../utils/util";
-
+import TicketConfirm from "../../../assets/svg/TicketConfirm";
 const ConfirmationBox = (): ReactElement => {
   return (
     <View>
       <View style={styles.confirmationIconWrapper}>
-        <Image style={styles.confirmationIcon} source={require("../../../assets/icons/ticket-confirm.png")} />
+        <TicketConfirm style={styles.confirmationIcon}></TicketConfirm>
       </View>
       <Text style={styles.confirmationTxt}>Your booking is confirmed.</Text>
     </View>
@@ -32,6 +31,7 @@ const BookingConfirmation:React.FC<{
 }> = ({ navigation }): ReactElement => {
 
   const dispatch = useDispatch();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onPress = (navigation: NavigationScreenProp<any,any> ):void => {
     dispatch(clearBlockTicketResponse());
     dispatch(clearTrip());
