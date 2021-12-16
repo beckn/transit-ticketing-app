@@ -4,6 +4,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import LoginComponent from "../screens/Authorization/Login";
 import LandingPage from "../screens/LandingScreen/LandingPage";
 import QRScanner from "../screens/qrScanner/QrScanner";
+import QrResult from "../screens/qrScanner/QrResult";
 import { Provider } from "react-redux";
 import store from "../store/store";
 import { Ticket } from "../screens/ticket/Ticket";
@@ -43,6 +44,16 @@ const MainStackNavigator = () :ReactElement => {
         <MainStack.Screen
           name="ValidateTicket"
           component={QRScanner}
+          options={({ navigation }) => ({
+            headerTitle: () => HeaderTitle(),
+            headerLeft: () => HeaderLeft(navigation),
+            headerRight: () => HeaderRight(navigation),
+            gestureEnabled: false
+          })}
+        />
+        <MainStack.Screen
+          name="QrResult"
+          component={QrResult}
           options={({ navigation }) => ({
             headerTitle: () => HeaderTitle(),
             headerLeft: () => HeaderLeft(navigation),

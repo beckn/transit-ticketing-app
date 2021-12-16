@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { 
   Image,
   StyleSheet,
@@ -13,6 +13,7 @@ import { clearBlockTicketResponse } from "../../store/actions/blockTicketAction"
 import { clearStationsLinkedToOrigin } from "../../store/actions/linkedStationAction";
 import { clearDestinationStation, clearOriginStation } from "../../store/actions/stationsAction";
 import { clearTrip } from "../../store/actions/tripsAction";
+import { colors } from "../../../assets/theme/colors";
 
 const ConfirmationBox = (): ReactElement => {
   return (
@@ -21,6 +22,17 @@ const ConfirmationBox = (): ReactElement => {
         <Image style={styles.confirmationIcon} source={require("../../../assets/icons/ticket-confirm.png")} />
       </View>
       <Text style={styles.confirmationTxt}>Your booking is confirmed.</Text>
+    </View>
+  );
+};
+
+const RejectionBox = (): ReactElement => {
+  return (
+    <View>
+      <View style={styles.confirmationIconWrapper}>
+        <Image style={styles.confirmationIcon} source={require("../../../assets/icons/RejectTicket.png")} />
+      </View>
+      <Text style={styles.confirmationTxt}>Your ticket is not valid.</Text>
     </View>
   );
 };
@@ -43,22 +55,67 @@ const QrResult:React.FC<{
   const selectedSlot = "10:00 am";
   const source = "Edathua";
   const destination = "Nedumudy";
+  const initalFareDetail = { label: "Fare per person", value: "₹ 10.00 " };
+  const initalPassengerDetail = { label: "Quantity", value: "03" };
+  const initalTotalDetail = { label: "Total Fare", value: "₹ 30.00 " };
+  const [ fareBreakUp ] = useState({
+    totalAmount: initalTotalDetail,
+    passengerCount: initalPassengerDetail,
+    amount: initalFareDetail
+
+  });
+  const [ confirmStatus ] = useState(true);
   return (
     <View style={[ styles.flexColumn, styles.container ]}>
       <View style={styles.mainContent}>
-        <ConfirmationBox />
-        <View style={[ styles.flexRow, styles.ticketDetailsWrapper ]}>
-          <TicketDetails
-            origin={source}
-            destination={destination}
-            selectedSlot={selectedSlot}
-            totalPassengers={seats}
-          />
-        </View>
+        {confirmStatus ? 
+          <ConfirmationBox />:
+          <RejectionBox />
+        }
+
+        {confirmStatus && (
+          <>
+            <View style={[ styles.flexRow, styles.ticketDetailsWrapper ]}>
+              <TicketDetails
+                origin={source}
+                destination={destination}
+                selectedSlot={selectedSlot}
+                totalPassengers={seats}
+              />
+            </View>
+            <View style={[ styles.flexRow, styles.ticketDetailsWrapper ]}>
+              <View style={styles.card}>
+                <Text style={[ styles.detailsHeader, styles.boldText ]}>Fare details</Text>
+                
+                <View style={[ styles.flexRow, styles.justifyContentBetween ]}>
+                  <Text style={styles.detailsHeader}> {fareBreakUp.amount.label} </Text>
+                  <Text style={styles.detailsHeader}>{fareBreakUp.amount.value}</Text>
+                </View>
+
+                <View style={[ styles.flexRow, styles.justifyContentBetween ]}>
+                  <Text style={styles.detailsHeader}> {fareBreakUp.passengerCount.label} </Text>
+                  <Text style={styles.detailsHeader}>{fareBreakUp.passengerCount.value}</Text>
+                </View>
+
+                <View style={[ styles.flexRow, styles.justifyContentBetween ]}>
+                  <Text style={[ styles.detailsHeader, styles.boldText ]}> {fareBreakUp.totalAmount.label} </Text>
+                  <Text style={[ styles.detailsHeader, styles.boldText ]}>{fareBreakUp.totalAmount.value}</Text>
+                </View>
+              </View>
+            </View>
+          </>  
+        )}
       </View>
+      
       <View style={[ styles.createTicketBtn, styles.flexRow ]}>
-        <Button label="Scan Another Ticket" onPress={() => onPress(navigation)} />
+        <Button onTrans={!confirmStatus} label="Scan Another Ticket" onPress={() => onPress(navigation)} />
       </View>
+
+      {!confirmStatus && (
+        <View style={[ styles.createTicketBtn, styles.flexRow ]}>
+          <Button label="Book another TICKET" onPress={() => onPress(navigation)} />
+        </View>
+      )}
     </View>
   );
 };
@@ -71,6 +128,9 @@ const styles = StyleSheet.create({
   flexColumn: {
     display: "flex",
     flexDirection: "column"
+  },
+  justifyContentBetween: {
+    justifyContent: "space-between"
   },
   container: {
     justifyContent: "center",
@@ -98,12 +158,33 @@ const styles = StyleSheet.create({
     paddingBottom: 30
   },
   createTicketBtn: {
-    marginVertical: 30,
+    marginVertical: 15,
     alignItems: "center",
     justifyContent: "center"
   },
   ticketDetailsWrapper: {
     justifyContent: "center"
+  },
+  card: {
+    width: "100%",
+    maxWidth: 330,
+    borderRadius: 16,
+    paddingHorizontal: 15,
+    marginTop: 20,
+    paddingVertical: 20,
+    elevation: 5,
+    shadowColor: colors.Black,
+    backgroundColor: colors.White
+  },
+  detailsHeader: {
+    paddingBottom: 10,
+    fontWeight: "600",
+    lineHeight: 22,
+    color: colors.GreyBlack
+  },
+  boldText: {
+    fontWeight: "500",
+    fontFamily: "Inter"
   }
 });
 
