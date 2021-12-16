@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     width: "100%",
-    maxWidth: 320,
+    // maxWidth: 320,
     backgroundColor: colors.GreyBlack,
     borderRadius: 14,
     paddingVertical: 15,
