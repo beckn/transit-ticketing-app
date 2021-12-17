@@ -24,8 +24,7 @@ const QRScanner: React.FC<{
     })();
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const handleBarCodeScanned = ( scanningResult: BarCodeScannerResult ) => {
+  const handleBarCodeScanned = ( scanningResult: BarCodeScannerResult ):void => {
     if (!scanned) {
       const { data } = scanningResult;
       if(data) { 

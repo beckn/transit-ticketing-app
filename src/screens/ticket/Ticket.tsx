@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../../assets/theme/colors";
-import DropDown from "../../components/dropDown/DropDown";
+import DropDown from "../../components/DropDown/DropDown";
 import { FareDetails } from "../../components/FareDetails/FareDetails";
 import { SmallCard } from "../../components/SmallCard/SmallCard";
 import { Stepper } from "../../components/Stepper/stepper";
@@ -44,10 +44,10 @@ export const Ticket: React.FC<{
   const [ passengerCount, setPassengerCount ] = useState(0);
 
   useEffect(() => {
-    stationService.searchStations().then( (res) => {
+    stationService.searchStations().then((res) => {
       res && dispatch(setStationsList(res));
     });
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (tripDetails.availability.length === 0) {
@@ -60,7 +60,7 @@ export const Ticket: React.FC<{
       const result = fetchFirstAvailableSlot(tripDetails.availability);
       if (result) {
         setAvailableSlotTime(result.arrival.slot);
-        setFareBreakUp(fareBreakUpGenerator(result.fare, passengerCount>0 ? passengerCount : 1));
+        setFareBreakUp(fareBreakUpGenerator(result.fare, passengerCount > 0 ? passengerCount : 1));
         setHideFairDetails(false);
         setTotalAvailableSeats(result.seats);
         setTripId(result.trip_id);
@@ -68,7 +68,7 @@ export const Ticket: React.FC<{
       setHideTripDetails(false);
     }
   }, [ tripDetails.availability.length, passengerCount ]);
- 
+
   const passenger = (value: number): void => {
     if (value !== 0) {
       setPassengerCount(value);
@@ -95,14 +95,14 @@ export const Ticket: React.FC<{
       <View style={styles.dropDown}>
         <DropDown></DropDown>
       </View>
-      {!hideTripDetails && 
+      {!hideTripDetails &&
         <View style={styles.tripDetailsContainer}>
           <View style={styles.tripDetails}>
             <SmallCard suffix="Available time slot"
               icon={require("../../../assets/icons/watch.png")}
               label={appendAM_PM(availableSlotTime)}>
             </SmallCard>
-            <Stepper 
+            <Stepper
               bubbleUpValue={passenger}
               icon={require("../../../assets/icons/passenger.png")}
               label={label}
@@ -111,16 +111,16 @@ export const Ticket: React.FC<{
           </View>
           <Text style={styles.availableSeats}>{availableSeatsLabel + totalAvailableSeats}</Text>
           <Text style={[ styles.fontBold, styles.fareLabel ]}>{fareDetailsLabel}</Text>
-         
+
           {
             !hideFareDetails &&
             <View style={styles.fareDetails}>
               <FareDetails fareBreakUp={fareBreakUp}></FareDetails>
             </View>}
           <TouchableOpacity
-            disabled ={ passengerCount ==0 ? true: false }
+            disabled={passengerCount == 0 ? true : false}
             onPress={() => passengerCount > 0 && bookClientTicket()}
-            style={[ styles.ticketButton, passengerCount>0 ? styles.enabledButton : styles.disabledButton ]}
+            style={[ styles.ticketButton, passengerCount > 0 ? styles.enabledButton : styles.disabledButton ]}
           >
             <Text style={styles.ticketButtonText}>{buttonLabel}</Text>
           </TouchableOpacity>
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   },
   tripDetails: {
     marginTop: 20,
-    height:height/6.2,
+    height: height / 6.2,
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between"
@@ -165,25 +165,25 @@ const styles = StyleSheet.create({
   availableSeats: {
     position: "absolute",
     lineHeight: 15,
-    top: height/4.8,
+    top: height / 4.8,
     color: colors.GreyBlack
   },
   fareLabel: {
-    position:"absolute",
+    position: "absolute",
     fontWeight: "bold",
     fontFamily: "Inter",
-    top: height/4,
+    top: height / 4,
     color: colors.GreyBlack
   },
   fareDetails: {
     position: "absolute",
     alignItems: "center",
-    marginTop: height/3.5
+    marginTop: height / 3.5
   },
   disabledButton: {
     backgroundColor: colors.Disabled_Button
   },
-  enabledButton :{
+  enabledButton: {
     backgroundColor: colors.GreyBlack
   },
   ticketButton: {
