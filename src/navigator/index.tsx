@@ -52,7 +52,7 @@ const MainStackNavigator = () :ReactElement => {
           })}
         />
         <MainStack.Screen
-          name="QrResult"
+          name="ScannedResult"
           component={QrResult}
           options={({ navigation }) => ({
             headerTitle: () => HeaderTitle(),

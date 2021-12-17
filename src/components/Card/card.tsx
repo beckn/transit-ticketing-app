@@ -19,7 +19,7 @@ export const Card: React.FC<{
   const pushedToNavigate = () :void => {
     setToggleColor(!toggleColor);
     if(navigationStatus) navigation && navigation.navigate("Ticket");
-    navigation && navigation.navigate("ValidateTicket");
+    else navigation && navigation.navigate("ValidateTicket");
   };
 
   return (
