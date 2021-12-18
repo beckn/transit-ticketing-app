@@ -3,13 +3,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import LoginComponent from "../screens/Authorization/Login";
 import LandingPage from "../screens/LandingScreen/LandingPage";
-import QRScanner from "../screens/qrScanner/QrScanner";
-import QrResult from "../screens/qrScanner/QrResult";
-import { Provider } from "react-redux";
+import { QRScanner } from "../screens/QRScanner/QRScanner";
 import store from "../store/store";
-import { Ticket } from "../screens/ticket/Ticket";
+import { Ticket } from "../screens/Ticket/Ticket";
 import BookingConfirmation from "../screens/BookingConfirmation/BookingConfirmation";
 import { HeaderLeft, HeaderRight, HeaderTitle } from "../components/PageHeader/PageHeader";
+import { Provider } from "react-redux";
+import { QRResult } from "../screens/QRScanner/QRResult";
 
 
 const MyTheme = {
@@ -53,7 +53,7 @@ const MainStackNavigator = () :ReactElement => {
         />
         <MainStack.Screen
           name="ScannedResult"
-          component={QrResult}
+          component={QRResult}
           options={({ navigation }) => ({
             headerTitle: () => HeaderTitle(),
             headerLeft: () => HeaderLeft(navigation),

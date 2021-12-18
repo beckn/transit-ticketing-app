@@ -37,7 +37,7 @@ const RejectionBox = (): ReactElement => {
   );
 };
 
-const QrResult:React.FC<{
+export const QRResult:React.FC<{
   navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
 }> = ({ navigation }): ReactElement => {
 
@@ -108,7 +108,7 @@ const QrResult:React.FC<{
       </View>
       
       <View style={[ styles.createTicketBtn, styles.flexRow ]}>
-        <Button onTrans={!confirmStatus} label="Scan Another Ticket" onPress={() => onPress(navigation)} />
+        <Button isTansparent={!confirmStatus} label="Scan Another Ticket" onPress={() => onPress(navigation)} />
       </View>
 
       {!confirmStatus && (
@@ -188,4 +188,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default QrResult;

@@ -10,7 +10,7 @@ import { NavigationScreenProp } from "react-navigation";
 
 const width = Dimensions.get("window").width;
 
-const QRScanner: React.FC<{
+export const QRScanner: React.FC<{
   navigation: NavigationScreenProp<any, any>   // eslint-disable-line @typescript-eslint/no-explicit-any
 }> = ({ navigation }) :ReactElement => {
   const [ hasPermission, setHasPermission ] = useState<boolean | null>(null);
@@ -123,5 +123,3 @@ const styles = StyleSheet.create({
     right: "10%"
   }
 });
-
-export default QRScanner;
