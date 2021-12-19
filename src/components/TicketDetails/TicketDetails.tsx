@@ -5,7 +5,7 @@ import {
   View
 } from "react-native";
 import { colors } from "../../../assets/theme/colors";
-import OriginToDestinationIcon from "../OriginToDestinationIcon/originToDestinationIcon";
+import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
 import WatchIcon from "../../../assets/svg/Watch";
 import Passengers from "../../../assets/svg/Passengers";
 

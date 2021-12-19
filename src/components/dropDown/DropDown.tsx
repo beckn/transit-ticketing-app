@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { StyleSheet, View, Image, Text, ImageProps } from "react-native";
 import Modal from "react-native-modal";
-import OriginToDestinationIcon from "../OriginToDestinationIcon/originToDestinationIcon";
+import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
 import * as Font from "expo-font";
 import { colors } from "../../../assets/theme/colors";
 import { List } from "../List/List";

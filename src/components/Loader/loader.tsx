@@ -2,7 +2,7 @@ import React, { ReactFragment } from "react";
 import { StyleSheet, View, Animated, Easing, Text } from "react-native";
 import LoaderIcon from "../../../assets/svg/LoaderIcon";
 
-const SpinnerLoader = (): ReactFragment => {
+const Loader = (): ReactFragment => {
   const spinValue = new Animated.Value(0);
   Animated.loop(
     Animated.timing(
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SpinnerLoader;
+export default Loader;

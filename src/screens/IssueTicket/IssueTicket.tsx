@@ -6,7 +6,7 @@ import { colors } from "../../../assets/theme/colors";
 import DropDown from "../../components/DropDown/DropDown";
 import { FareDetails } from "../../components/FareDetails/FareDetails";
 import { SmallCard } from "../../components/SmallCard/SmallCard";
-import { Stepper } from "../../components/Stepper/stepper";
+import { Stepper } from "../../components/Stepper/Stepper";
 import { ClientBookTicketRequest } from "../../request/clientBookTicketRequest";
 import { stationService } from "../../services/stationService";
 import { setBookTicket } from "../../store/actions/blockTicketAction";
