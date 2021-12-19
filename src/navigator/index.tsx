@@ -22,8 +22,6 @@ const MyTheme = {
 };
 const MainStack = createStackNavigator();
 
-
-
 const MainStackNavigator = () :ReactElement => {
   return (
     <Provider store={store}>
@@ -97,7 +95,5 @@ const AppContainer = () :ReactElement => {
     </NavigationContainer>
   );
 };
-
-
 
 export default AppContainer;
