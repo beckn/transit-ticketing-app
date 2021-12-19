@@ -7,6 +7,7 @@ import {
 import { NavigationScreenProp } from "react-navigation";
 import LogOut from "../../../assets/svg/LogOut";
 import Logo from "../../../assets/svg/Logo";
+import { Navigation } from "../../constants/navigation";
 const Header: React.FC<{
   navigation?: NavigationScreenProp<any, any>    // eslint-disable-line @typescript-eslint/no-explicit-any
   showLogOutButton?: boolean,
@@ -19,7 +20,7 @@ const Header: React.FC<{
         <Text style={styles.logoLabel}>{logoLabel}</Text>
       </View>
       {showLogOutButton && navigation &&
-        <View onTouchEndCapture={() => navigation.navigate("LoginPage")} >
+        <View onTouchEndCapture={() => navigation.navigate(Navigation.Authorization)} >
           <LogOut />
         </View>
       }

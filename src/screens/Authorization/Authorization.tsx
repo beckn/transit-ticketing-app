@@ -13,6 +13,7 @@ import OutlineBox from "../../components/OutlineBox/OutlineBox";
 import { NavigationScreenProp } from "react-navigation";
 import Boat from "../../../assets/svg/Boat";
 import { Title } from "../../components/Title/Title";
+import { Navigation } from "../../constants/navigation";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
@@ -61,7 +62,7 @@ const Authorization :React.FC<{
       </View>
       <TouchableOpacity
         style={styles.loginButton}
-        onPress={() => navigation.navigate("LandingPage")}>
+        onPress={() => navigation.navigate(Navigation.LandingScreen)}>
         <Text style={styles.loginButtonText}>{loginButtonLabel}</Text>
       </TouchableOpacity>
     </View>

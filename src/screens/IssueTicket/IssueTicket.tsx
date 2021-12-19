@@ -14,6 +14,7 @@ import { State } from "../../store/reducers/reducer";
 import { appendAM_PM, fareBreakUpGenerator, fetchFirstAvailableSlot } from "../../utils/util";
 import { NavigationScreenProp } from "react-navigation";
 import { setStationsList } from "../../store/actions/linkedStationAction";
+import { Navigation } from "../../constants/navigation";
 
 const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
@@ -86,7 +87,7 @@ export const IssueTicket: React.FC<{
     };
     stationService.clientBookTicket(blockTicketReq).then((res) => {
       res && dispatch(setBookTicket(res));
-      navigation.navigate("BookingConfirmation");
+      navigation.navigate(Navigation.BookingConfirmation);
     });
   };
 

@@ -14,6 +14,7 @@ import { clearStationsLinkedToOrigin } from "../../store/actions/linkedStationAc
 import { clearDestinationStation, clearOriginStation } from "../../store/actions/stationsAction";
 import { clearTrip } from "../../store/actions/tripsAction";
 import { colors } from "../../../assets/theme/colors";
+import { Navigation } from "../../constants/navigation";
 
 const ConfirmationBox = (): ReactElement => {
   return (
@@ -48,7 +49,7 @@ export const ValidateTicketResult:React.FC<{
     dispatch(clearStationsLinkedToOrigin());
     dispatch(clearDestinationStation());
     dispatch(clearOriginStation());
-    navigation.navigate("ValidateTicket");
+    navigation.navigate(Navigation.LandingScreen);
   };
   
   const seats = 3;

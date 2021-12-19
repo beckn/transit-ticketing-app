@@ -15,6 +15,7 @@ import { clearTrip } from "../../store/actions/tripsAction";
 import { State } from "../../store/reducers/reducer";
 import { appendAM_PM } from "../../utils/util";
 import TicketConfirm from "../../../assets/svg/TicketConfirm";
+import { Navigation } from "../../constants/navigation";
 const ConfirmationBox = (): ReactElement => {
   return (
     <View>
@@ -39,7 +40,7 @@ const BookingConfirmation:React.FC<{
     dispatch(clearStationsList());
     dispatch(clearDestinationStation());
     dispatch(clearOriginStation());
-    navigation.navigate("Ticket");
+    navigation.navigate(Navigation.IssueTicket);
   };
   
   const { selected_slot, seats } = useSelector((state: State) => state.clientBookTicketResponse.trip);

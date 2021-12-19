@@ -10,6 +10,7 @@ import { Card } from "../../components/Card/Card";
 import { NavigationScreenProp } from "react-navigation";
 import Slide from "../../../assets/svg/Slide";
 import { Title } from "../../components/Title/Title";
+import { Navigation } from "../../constants/navigation";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -33,7 +34,7 @@ const LandingScreen :React.FC<{
         <View style={styles.buttonBoxMargin}>
           <Card 
             navigation= {navigation}
-            navigateTo= {"Ticket"}
+            navigationScreen= {Navigation.IssueTicket}
             label={issueTicketLabel}
             iconPath={require("../../../assets/icons/conductorIcon.png")}
             otherIconPath={require("../../../assets/icons/arrow.png")}
@@ -44,7 +45,7 @@ const LandingScreen :React.FC<{
         <View style={styles.buttonBoxMargin}>
           <Card 
             navigation= {navigation}
-            navigateTo= {"ValidateTicket"}
+            navigationScreen= {Navigation.ValidateTicket}
             label={validateTicketLabel}
             iconPath={require("../../../assets/icons/validatorIcon.png")}
             otherIconPath={require("../../../assets/icons/arrow.png")}

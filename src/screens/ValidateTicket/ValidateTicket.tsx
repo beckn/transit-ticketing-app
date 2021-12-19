@@ -7,6 +7,7 @@ import { colors } from "../../../assets/theme/colors";
 import FlashOff from "../../../assets/svg/FlashOff";
 import FlashOn from "../../../assets/svg/FlashOn";
 import { NavigationScreenProp } from "react-navigation";
+import { Navigation } from "../../constants/navigation";
 
 const width = Dimensions.get("window").width;
 
@@ -29,7 +30,7 @@ export const ValidateTicket: React.FC<{
       const { data } = scanningResult;
       if(data) { 
         setScanned(true);
-        navigation.navigate("ScannedResult");
+        navigation.navigate(Navigation.ValidateTicketResult);
         setScanned(false);
       }
     }

@@ -4,6 +4,7 @@ import LogOut from "../../../assets/svg/LogOut";
 import Logo from "../../../assets/svg/Logo";
 import BackIcon from "../../../assets/svg/BackIcon";
 import { NavigationScreenProp } from "react-navigation";
+import { Navigation } from "../../constants/navigation";
 
 export const HeaderTitle = (): ReactElement => {
   const title = "Kerala State Water Transport Department";
@@ -28,7 +29,7 @@ export const HeaderLeft = (navigation: NavigationScreenProp<any,any> ): ReactEle
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const HeaderRight = (navigation: NavigationScreenProp<any,any> ): ReactElement => {
-  return <TouchableOpacity onPress={() => navigation.navigate("LoginPage")}>
+  return <TouchableOpacity onPress={() => navigation.navigate(Navigation.Authorization)}>
     <LogOut style={ styles.logoutIcon } ></LogOut>
   </TouchableOpacity>;
 };

@@ -8,23 +8,23 @@ export const Card: React.FC<{
   iconPath:ImageProps,
   otherIconPath:ImageProps,
   tanslateIcon:ImageProps,
-  navigateTo: string,
+  navigationScreen: string,
   navigation: NavigationScreenProp<any,any>    // eslint-disable-line @typescript-eslint/no-explicit-any
-}> = ({ label, iconPath, otherIconPath, tanslateIcon, navigation, navigateTo }): ReactElement => {
+}> = ({ label, iconPath, otherIconPath, tanslateIcon, navigation, navigationScreen }): ReactElement => {
   const [ toggleColor, setToggleColor ] = useState(false);
   const changeBackground = () : void => {
     setToggleColor(true);
   };
 
-  const pushedToNavigate = () :void => {
+  const navigateToScreen = () :void => {
     setToggleColor(!toggleColor);
-    navigation.navigate(navigateTo);
+    navigation.navigate(navigationScreen);
   };
 
   return (
     <View style={[ styles.container, toggleColor && styles.highlight ]}
       onTouchStart={changeBackground}
-      onTouchEndCapture={() => pushedToNavigate()}
+      onTouchEndCapture={() => navigateToScreen()}
     >
       <Image source={iconPath} style={styles.icon}></Image>
       <Text style={styles.label}>{label}</Text>
