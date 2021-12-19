@@ -8,9 +8,9 @@ export const Card: React.FC<{
   iconPath:ImageProps,
   otherIconPath:ImageProps,
   tanslateIcon:ImageProps,
-  navigationStatus?: boolean,
-  navigation?: NavigationScreenProp<any,any>    // eslint-disable-line @typescript-eslint/no-explicit-any
-}> = ({ label, iconPath, otherIconPath, tanslateIcon, navigation, navigationStatus }): ReactElement => {
+  navigateTo: string,
+  navigation: NavigationScreenProp<any,any>    // eslint-disable-line @typescript-eslint/no-explicit-any
+}> = ({ label, iconPath, otherIconPath, tanslateIcon, navigation, navigateTo }): ReactElement => {
   const [ toggleColor, setToggleColor ] = useState(false);
   const changeBackground = () : void => {
     setToggleColor(true);
@@ -18,8 +18,7 @@ export const Card: React.FC<{
 
   const pushedToNavigate = () :void => {
     setToggleColor(!toggleColor);
-    if(navigationStatus) navigation && navigation.navigate("Ticket");
-    else navigation && navigation.navigate("ValidateTicket");
+    navigation.navigate(navigateTo);
   };
 
   return (
