@@ -37,7 +37,7 @@ const RejectionBox = (): ReactElement => {
   );
 };
 
-export const QRResult:React.FC<{
+export const ValidateTicketResult:React.FC<{
   navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
 }> = ({ navigation }): ReactElement => {
 

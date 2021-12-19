@@ -6,7 +6,7 @@ import {
   Text
 } from "react-native";
 import Header from "../../components/Header/Header";
-import { Card } from "../../components/Card/card";
+import { Card } from "../../components/Card/Card";
 import { NavigationScreenProp } from "react-navigation";
 import Slide from "../../../assets/svg/Slide";
 import { Title } from "../../components/Title/Title";
@@ -14,7 +14,7 @@ import { Title } from "../../components/Title/Title";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-const LandingPage :React.FC<{
+const LandingScreen :React.FC<{
   navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
 }> = ({ navigation }): ReactElement => {
   const loginPageTitle = "Kerala State Water Transport Department";
@@ -33,7 +33,7 @@ const LandingPage :React.FC<{
         <View style={styles.buttonBoxMargin}>
           <Card 
             navigation= {navigation}
-            navigationStatus= {true}
+            navigateTo= {"Ticket"}
             label={issueTicketLabel}
             iconPath={require("../../../assets/icons/conductorIcon.png")}
             otherIconPath={require("../../../assets/icons/arrow.png")}
@@ -44,7 +44,7 @@ const LandingPage :React.FC<{
         <View style={styles.buttonBoxMargin}>
           <Card 
             navigation= {navigation}
-            navigationStatus= {false}
+            navigateTo= {"ValidateTicket"}
             label={validateTicketLabel}
             iconPath={require("../../../assets/icons/validatorIcon.png")}
             otherIconPath={require("../../../assets/icons/arrow.png")}
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LandingPage;
+export default LandingScreen;

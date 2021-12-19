@@ -1,15 +1,16 @@
 import React, { ReactElement } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import LoginComponent from "../screens/Authorization/Login";
-import LandingPage from "../screens/LandingScreen/LandingPage";
-import { QRScanner } from "../screens/QRScanner/QRScanner";
+import Authorization from "../screens/Authorization/Authorization";
+import LandingScreen from "../screens/LandingScreen/LandingScreen";
+import { ValidateTicket } from "../screens/ValidateTicket/ValidateTicket";
 import store from "../store/store";
-import { Ticket } from "../screens/Ticket/Ticket";
+import { IssueTicket } from "../screens/IssueTicket/IssueTicket";
 import BookingConfirmation from "../screens/BookingConfirmation/BookingConfirmation";
 import { HeaderLeft, HeaderRight, HeaderTitle } from "../components/PageHeader/PageHeader";
 import { Provider } from "react-redux";
-import { QRResult } from "../screens/QRScanner/QRResult";
+import { ValidateTicketResult } from "../screens/ValidateTicket/QRResult";
+import { Navigation } from "../constants/navigation";
 
 
 const MyTheme = {
@@ -21,29 +22,31 @@ const MyTheme = {
 };
 const MainStack = createStackNavigator();
 
+
+
 const MainStackNavigator = () :ReactElement => {
   return (
     <Provider store={store}>
       <MainStack.Navigator>
         <MainStack.Screen
-          name="LoginPage"
-          component={LoginComponent}
+          name={Navigation.Authorization}
+          component={Authorization}
           options={{
             headerShown: false,
             gestureEnabled: false
           }}
         />
         <MainStack.Screen
-          name="LandingPage"
-          component={LandingPage}
+          name={Navigation.LandingScreen}
+          component={LandingScreen}
           options={{
             headerShown: false,
             gestureEnabled: false
           }}
         />
         <MainStack.Screen
-          name="ValidateTicket"
-          component={QRScanner}
+          name={Navigation.ValidateTicket}
+          component={ValidateTicket}
           options={({ navigation }) => ({
             headerTitle: () => HeaderTitle(),
             headerLeft: () => HeaderLeft(navigation),
@@ -52,8 +55,8 @@ const MainStackNavigator = () :ReactElement => {
           })}
         />
         <MainStack.Screen
-          name="ScannedResult"
-          component={QRResult}
+          name={Navigation.ValidateTicketResult}
+          component={ValidateTicketResult}
           options={({ navigation }) => ({
             headerTitle: () => HeaderTitle(),
             headerLeft: () => HeaderLeft(navigation),
@@ -62,8 +65,8 @@ const MainStackNavigator = () :ReactElement => {
           })}
         />
         <MainStack.Screen
-          name="Ticket"
-          component={Ticket}
+          name={Navigation.IssueTicket}
+          component={IssueTicket}
           options={({ navigation }) => ({
             headerTitle: () => HeaderTitle(),
             headerLeft: () => HeaderLeft(navigation),
@@ -73,7 +76,7 @@ const MainStackNavigator = () :ReactElement => {
         />
 
         <MainStack.Screen
-          name="BookingConfirmation"
+          name={Navigation.BookingConfirmation}
           component={BookingConfirmation}
           options={({ navigation }) => ({
             headerTitle: () => HeaderTitle(),

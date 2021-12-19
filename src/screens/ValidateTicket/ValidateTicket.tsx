@@ -10,7 +10,7 @@ import { NavigationScreenProp } from "react-navigation";
 
 const width = Dimensions.get("window").width;
 
-export const QRScanner: React.FC<{
+export const ValidateTicket: React.FC<{
   navigation: NavigationScreenProp<any, any>   // eslint-disable-line @typescript-eslint/no-explicit-any
 }> = ({ navigation }) :ReactElement => {
   const [ hasPermission, setHasPermission ] = useState<boolean | null>(null);

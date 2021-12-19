@@ -17,7 +17,8 @@ import { setStationsList } from "../../store/actions/linkedStationAction";
 
 const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
-export const Ticket: React.FC<{
+
+export const IssueTicket: React.FC<{
   navigation: NavigationScreenProp<any, any>   // eslint-disable-line @typescript-eslint/no-explicit-any
 }> = ({ navigation }): ReactElement => {
   const label = "Number of passengers";

@@ -16,7 +16,7 @@ import { Title } from "../../components/Title/Title";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-const LoginComponent :React.FC<{
+const Authorization :React.FC<{
   navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
 }> = ({ navigation }): ReactElement => {
   const [ emailAddress, setEmailAddress ] = React.useState("");
@@ -131,6 +131,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginComponent;
+export default Authorization;
 
 
