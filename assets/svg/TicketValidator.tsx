@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
-const TicketValidator = (props: SvgProps): ReactElement => (
+const TicketValidator = (props?: SvgProps): ReactElement => (
   <Svg width="30" height="51" viewBox="0 0 30 51" fill="none" preserveAspectRatio="xMidYMid meet" {...props}>
     <Path d="M0 16C0 9.37258 5.37258 4 12 4C18.6274 4 24 9.37258 24 16V39C24 45.6274 18.6274 51 12 51C5.37258 51 0 45.6274 0 39V16Z" fill="#F3F1E0"/>
     <Path d="M5.5 12.5C5.5 5.8726 10.8726 0.5 17.5 0.5C24.1274 0.5 29.5 5.87258 29.5 12.5V36.2179C29.5 42.8454 24.1274 48.2179 17.5 48.2179C10.8726 48.2179 5.5 42.8454 5.5 36.218V12.5Z" stroke="#3E4059"/>

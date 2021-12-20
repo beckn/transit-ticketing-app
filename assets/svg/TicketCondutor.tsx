@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
-const TicketCondutor = (props: SvgProps): ReactElement => (
+const TicketCondutor = (props?: SvgProps): ReactElement => (
   <Svg width="30" height="52" viewBox="0 0 30 52" fill="none" preserveAspectRatio="xMidYMid meet" {...props}>
     <Path d="M0 17C0 10.3726 5.37258 5 12 5C18.6274 5 24 10.3726 24 17V40C24 46.6274 18.6274 52 12 52C5.37258 52 0 46.6274 0 40V17Z" fill="#F3F1E0"/>
     <Path d="M5.5 12.5C5.5 5.8726 10.8726 0.5 17.5 0.5C24.1274 0.5 29.5 5.87258 29.5 12.5V36.2179C29.5 42.8454 24.1274 48.2179 17.5 48.2179C10.8726 48.2179 5.5 42.8454 5.5 36.218V12.5Z" stroke="#3E4059"/>

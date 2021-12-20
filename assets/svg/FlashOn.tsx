@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
-const FlashOn = (props: SvgProps): ReactElement => {
+const FlashOn = (props?: SvgProps): ReactElement => {
   return (
     <Svg width="26" height="26" viewBox="0 0 26 26" fill="none" preserveAspectRatio="xMidYMid meet" {...props}>
       <Path d="M18.6667 6.57612C18.9872 6.88171 19.0021 7.37385 18.6965 7.69444L17.511 8.95444C17.2127 9.26767 16.7057 9.28239 16.3927 8.9843C16.0794 8.68608 16.0647 8.17908 16.3628 7.86599L17.5483 6.60599C17.8539 6.2854 18.3534 6.2779 18.6667 6.57612Z" fill="#3E4059"/>

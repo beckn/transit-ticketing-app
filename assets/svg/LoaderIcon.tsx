@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
-const LoaderIcon = (props: SvgProps): ReactElement => (
+const LoaderIcon = (props?: SvgProps): ReactElement => (
   <Svg width="37" height="37" viewBox="0 0 37 37" fill="none" preserveAspectRatio="xMidYMid meet" {...props}>
     <Path d="M33.0091 11.771C33.3315 11.771 33.6137 11.6904 33.9362 11.5291C34.8231 11.0051 35.1053 9.91668 34.5812 9.07013C34.0572 8.18328 32.9687 7.90109 32.1222 8.42515C31.2353 8.90889 30.9532 10.0376 31.4772 10.9245C31.7594 11.4485 32.3641 11.771 33.0091 11.771Z" fill="#3E4059"/>
     <Path d="M26.1158 5.56303C26.398 5.72428 26.7204 5.8049 27.0429 5.8049C27.6476 5.8049 28.2926 5.48241 28.6151 4.87773C29.0988 4.03119 28.8167 2.90246 27.9701 2.41872C27.0832 1.93498 25.9948 2.21716 25.4708 3.06371C24.987 3.95056 25.2692 5.03898 26.1158 5.56303Z" fill="#3E4059"/>
