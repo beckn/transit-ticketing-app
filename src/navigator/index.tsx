@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, StackNavigationOptions } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import Authorization from "../screens/Authorization/Authorization";
 import LandingScreen from "../screens/LandingScreen/LandingScreen";
@@ -11,6 +11,7 @@ import { HeaderLeft, HeaderRight, HeaderTitle } from "../components/PageHeader/P
 import { Provider } from "react-redux";
 import { ValidateTicketResult } from "../screens/ValidateTicket/QRResult";
 import { Navigation } from "../constants/navigation";
+import { NavigationScreenProp } from "react-navigation";
 
 
 const MyTheme = {
@@ -45,47 +46,36 @@ const MainStackNavigator = () :ReactElement => {
         <MainStack.Screen
           name={Navigation.ValidateTicket}
           component={ValidateTicket}
-          options={({ navigation }) => ({
-            headerTitle: () => HeaderTitle(),
-            headerLeft: () => HeaderLeft(navigation),
-            headerRight: () => HeaderRight(navigation),
-            gestureEnabled: false
-          })}
+          options={({ navigation }) => (headerContent(navigation))}
         />
         <MainStack.Screen
           name={Navigation.ValidateTicketResult}
           component={ValidateTicketResult}
-          options={({ navigation }) => ({
-            headerTitle: () => HeaderTitle(),
-            headerLeft: () => HeaderLeft(navigation),
-            headerRight: () => HeaderRight(navigation),
-            gestureEnabled: false
-          })}
+          options={({ navigation }) => (headerContent(navigation))}
         />
         <MainStack.Screen
           name={Navigation.IssueTicket}
           component={IssueTicket}
-          options={({ navigation }) => ({
-            headerTitle: () => HeaderTitle(),
-            headerLeft: () => HeaderLeft(navigation),
-            headerRight: () => HeaderRight(navigation),
-            gestureEnabled: false
-          })}
+          options={({ navigation }) => ((headerContent(navigation)))}
         />
 
         <MainStack.Screen
           name={Navigation.BookingConfirmation}
           component={BookingConfirmation}
-          options={({ navigation }) => ({
-            headerTitle: () => HeaderTitle(),
-            headerLeft: () => HeaderLeft(navigation),
-            headerRight: () => HeaderRight(navigation),
-            gestureEnabled: false
-          })}
+          options={({ navigation }) => ((headerContent(navigation)))}
         />
       </MainStack.Navigator>
     </Provider>
   );
+};
+const headerContent = (navigation: NavigationScreenProp<any,any> ): StackNavigationOptions => {
+  return {
+    headerTitle: () => HeaderTitle(),
+    headerLeft: () => HeaderLeft(navigation),
+    headerRight: () => HeaderRight(navigation),
+    gestureEnabled: false,
+    headerStyle: { height: 70 }
+  };
 };
 
 const AppContainer = () :ReactElement => {
