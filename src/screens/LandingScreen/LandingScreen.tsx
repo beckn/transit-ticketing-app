@@ -11,6 +11,9 @@ import { NavigationScreenProp } from "react-navigation";
 import Slide from "../../../assets/svg/Slide";
 import { Title } from "../../components/Title/Title";
 import { Navigation } from "../../constants/navigation";
+import  TicketValidator  from "../../../assets/svg/TicketValidator";
+import  TicketCondutor  from "../../../assets/svg/TicketCondutor";
+import RightArrow from "../../../assets/svg/RightArrow";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -36,9 +39,7 @@ const LandingScreen :React.FC<{
             navigation= {navigation}
             navigationScreen= {Navigation.IssueTicket}
             label={issueTicketLabel}
-            iconPath={require("../../../assets/icons/conductorIcon.png")}
-            otherIconPath={require("../../../assets/icons/arrow.png")}
-            tanslateIcon={require("../../../assets/icons/translateValidator.png")}
+            svgIcons={[ TicketCondutor, RightArrow ]}
           />
         </View>
           
@@ -47,9 +48,7 @@ const LandingScreen :React.FC<{
             navigation= {navigation}
             navigationScreen= {Navigation.ValidateTicket}
             label={validateTicketLabel}
-            iconPath={require("../../../assets/icons/validatorIcon.png")}
-            otherIconPath={require("../../../assets/icons/arrow.png")}
-            tanslateIcon={require("../../../assets/icons/translateValidator.png")}
+            svgIcons={[ TicketValidator, RightArrow ]}
           />
         </View>
       </View>
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
   },
   header: {
     marginTop: 10,
-    width: width/1.2
+    width: width/1.1
   },
   buttonBox: {
     marginTop: 100,
@@ -84,7 +83,6 @@ const styles = StyleSheet.create({
   },
   buttonBoxMargin: {
     marginVertical: 15,
-    display: "flex",
     alignItems: "center",
     width: width /1.1
   }
