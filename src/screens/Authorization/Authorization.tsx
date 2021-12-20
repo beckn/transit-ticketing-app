@@ -20,7 +20,7 @@ const height = Dimensions.get("window").height;
 const Authorization :React.FC<{
   navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
 }> = ({ navigation }): ReactElement => {
-  const [ emailAddress, setEmailAddress ] = React.useState("");
+  const [ userName, setUserName ] = React.useState("");
   const [ password, setPassword ] = React.useState("");
   const loginTitle = "Let’s get started";
   const forgotPasswordLabel = "Forgot Password?";
@@ -38,6 +38,7 @@ const Authorization :React.FC<{
         <Text style={styles.inputText}>{loginTitle}</Text>
         <OutlineBox
           width= { width/1.1 }
+          height={130}
           borderRadius= { 10 }
           backgroundColor= { colors.White }
           borderWidth= { 1 }
@@ -45,9 +46,9 @@ const Authorization :React.FC<{
         >
           <TextInput
             style={styles.input}
-            placeholder="Email address"
-            onChangeText={setEmailAddress}
-            value={emailAddress}
+            placeholder="Username"
+            onChangeText={setUserName}
+            value={userName}
           />
           <View style={styles.singleLine} />
           <TextInput
@@ -76,19 +77,19 @@ const styles = StyleSheet.create({
     marginVertical:30,
     alignSelf: "center",
     width: width / 1.102,
-    height: height-50 
+    height: height-10 
   },
   inputTextBox: {
     marginTop: 40
   },
   logo: {
     marginTop: 10,
-    right: width/3.5
+    right: width/3.05
   },
   inputText: {
     fontWeight: "100",
     fontSize: 22,
-    lineHeight: 27,
+    lineHeight: 20,
     marginVertical: 20,
     color:colors.GreyBlack
   },
@@ -122,11 +123,9 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    margin: 12,
-    padding: 10
+    margin: 12
   },
   singleLine: {
-    height: 10,
     borderBottomWidth: 1,
     width: width /1.102
   }

@@ -8,6 +8,7 @@ import { NavigationScreenProp } from "react-navigation";
 import LogOut from "../../../assets/svg/LogOut";
 import Logo from "../../../assets/svg/Logo";
 import { Navigation } from "../../constants/navigation";
+import { colors } from "../../../assets/theme/colors";
 const Header: React.FC<{
   navigation?: NavigationScreenProp<any, any>    // eslint-disable-line @typescript-eslint/no-explicit-any
   showLogOutButton?: boolean,
@@ -38,9 +39,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   logoLabel: {
-    fontFamily: "Inter-ExtraBold",
+    fontFamily: "Inter",
     fontWeight: "600",
-    fontSize: 9
+    fontSize: 9,
+    color: colors.Off_Black
   }
 });
 
