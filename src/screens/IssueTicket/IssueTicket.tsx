@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 18,
     lineHeight: 22,
-    color: colors.GreyBlack,
+    color: colors.Grey_Black,
     marginTop: 30,
     marginBottom: 20,
     marginLeft: 20
@@ -168,14 +168,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     lineHeight: 15,
     top: height / 4.8,
-    color: colors.GreyBlack
+    color: colors.Grey_Black
   },
   fareLabel: {
     position: "absolute",
     fontWeight: "bold",
     fontFamily: "Inter",
     top: height / 4,
-    color: colors.GreyBlack
+    color: colors.Grey_Black
   },
   fareDetails: {
     position: "absolute",
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.Disabled_Button
   },
   enabledButton: {
-    backgroundColor: colors.GreyBlack
+    backgroundColor: colors.Grey_Black
   },
   ticketButton: {
     flexDirection: "column",

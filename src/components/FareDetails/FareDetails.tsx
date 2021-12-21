@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 12,
     lineHeight: 18,
-    color: colors.GreyBlack,
+    color: colors.Grey_Black,
     marginBottom: 8
   },
   fontBold: {

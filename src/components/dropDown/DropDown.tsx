@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   headerText: {
-    color: colors.GreyBlack,
+    color: colors.Grey_Black,
     fontWeight: "600",
     fontSize: 14,
     lineHeight: 22,

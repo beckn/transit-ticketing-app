@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   label: {
-    color: colors.GreyBlack
+    color: colors.Grey_Black
   }
 });

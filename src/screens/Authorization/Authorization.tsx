@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     lineHeight: 20,
     marginVertical: 20,
-    color:colors.GreyBlack
+    color:colors.Grey_Black
   },
   bannerImage: {
     marginTop: 15,
@@ -102,11 +102,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 30,
     lineHeight: 17,
-    color: colors.GreyBlack
+    color: colors.Grey_Black
   },
   loginButton: {
     position: "absolute",
-    backgroundColor: colors.GreyBlack,
+    backgroundColor: colors.Grey_Black,
     borderRadius: 14,
     width: "100%",
     height:50,

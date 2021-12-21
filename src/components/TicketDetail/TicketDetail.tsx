@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     fontWeight: "600",
     lineHeight: 22,
-    color: colors.GreyBlack
+    color: colors.Grey_Black
   },
   infoSection: {
     paddingBottom: 20
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   detailsTitle: {
     fontSize: 10,
     lineHeight: 12,
-    color: colors.GreyBlack
+    color: colors.Grey_Black
   },
   originToDestImg: {
     alignSelf: "center",

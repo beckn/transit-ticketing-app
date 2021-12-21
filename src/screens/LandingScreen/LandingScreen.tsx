@@ -12,7 +12,7 @@ import Slide from "../../../assets/svg/Slide";
 import { Title } from "../../components/Title/Title";
 import { Navigation } from "../../constants/navigation";
 import  TicketValidator  from "../../../assets/svg/TicketValidator";
-import  TicketCondutor  from "../../../assets/svg/TicketCondutor";
+import  TicketCondutor  from "../../../assets/svg/TicketConductor";
 import RightArrow from "../../../assets/svg/RightArrow";
 
 const width = Dimensions.get("window").width;

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     width: "100%",
-    backgroundColor: colors.GreyBlack,
+    backgroundColor: colors.Grey_Black,
     borderRadius: 14,
     paddingVertical: 15,
     alignItems: "center"
@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
   },
   transparent: {
     backgroundColor: colors.Transparent,
-    borderColor: colors.GreyBlack,
+    borderColor: colors.Grey_Black,
     borderWidth: 2
   },
   transLabel: {
-    color: colors.GreyBlack
+    color: colors.Grey_Black
   }
 });

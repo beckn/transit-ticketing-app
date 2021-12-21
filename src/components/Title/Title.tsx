@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     alignSelf:"stretch",
     lineHeight: 29,
     marginVertical: 40,
-    color: colors.GreyBlack,
+    color: colors.Grey_Black,
     textAlign: "center"
   }
 });

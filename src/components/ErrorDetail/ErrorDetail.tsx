@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     textAlign:"center"
   },
   fontColor: {
-    color: colors.GreyBlack
+    color: colors.Grey_Black
   },
   alignCenter: {
     alignSelf:"center",

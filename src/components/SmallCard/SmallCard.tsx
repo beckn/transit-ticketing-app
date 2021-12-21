@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   suffix:{
     fontSize: 10,
-    color: colors.GreyBlack
+    color: colors.Grey_Black
   },
   icon: {
     marginVertical: "5%",

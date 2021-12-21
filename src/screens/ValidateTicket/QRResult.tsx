@@ -8,7 +8,7 @@ import {
 import { NavigationScreenProp } from "react-navigation";
 import { useDispatch } from "react-redux";
 import { Button } from "../../components/Button/Button";
-import TicketDetails from "../../components/TicketDetails/TicketDetails";
+import TicketDetails from "../../components/TicketDetail/TicketDetail";
 import { clearBlockTicketResponse } from "../../store/actions/blockTicketAction";
 import { clearStationsLinkedToOrigin } from "../../store/actions/linkedStationAction";
 import { clearDestinationStation, clearOriginStation } from "../../store/actions/stationsAction";
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     fontWeight: "600",
     lineHeight: 22,
-    color: colors.GreyBlack
+    color: colors.Grey_Black
   },
   boldText: {
     fontWeight: "500",

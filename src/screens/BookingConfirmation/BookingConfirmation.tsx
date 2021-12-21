@@ -7,7 +7,7 @@ import {
 import { NavigationScreenProp } from "react-navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../components/Button/Button";
-import TicketDetails from "../../components/TicketDetails/TicketDetails";
+import TicketDetails from "../../components/TicketDetail/TicketDetail";
 import { clearBlockTicketResponse } from "../../store/actions/blockTicketAction";
 import { clearStationsLinkedToOrigin, clearStationsList } from "../../store/actions/linkedStationAction";
 import { clearDestinationStation, clearOriginStation } from "../../store/actions/stationsAction";
