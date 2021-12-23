@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   passengerIcon: {
-    marginHorizontal: 16,
+    marginLeft: 7,
     marginTop: 12
   },
   counter: {
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     color: colors.Black
   },
   label: {
-    right: 20
+    right: 20,
+    left: 5
   }
 });

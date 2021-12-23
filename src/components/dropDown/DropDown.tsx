@@ -152,7 +152,6 @@ const styles = StyleSheet.create({
   },
   container: {
     width: "100%",
-    height: "51%",
     alignSelf: "center",
     alignContent: "center"
   },
