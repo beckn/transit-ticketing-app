@@ -102,7 +102,6 @@ export const IssueTicket: React.FC<{
         <View style={styles.tripDetailsContainer}>
           <View style={styles.tripDetails}>
             <SmallCard suffix="Available time slot"
-              icon={require("../../../assets/icons/watch.png")}
               label={appendAM_PM(availableSlotTime)}>
             </SmallCard>
             <Stepper
@@ -154,8 +153,8 @@ const styles = StyleSheet.create({
     marginLeft: 20
   },
   dropDown: {
-    display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    width: 350
   },
   tripDetails: {
     marginTop: 20,
