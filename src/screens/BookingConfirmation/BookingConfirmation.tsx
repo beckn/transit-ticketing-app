@@ -10,7 +10,7 @@ import { Button } from "../../components/Button/Button";
 import TicketDetails from "../../components/TicketDetail/TicketDetail";
 import { clearBlockTicketResponse } from "../../store/actions/blockTicketAction";
 import { clearStationsLinkedToOrigin, clearStationsList } from "../../store/actions/linkedStationAction";
-import { clearDestinationStation, clearOriginStation } from "../../store/actions/stationsAction";
+import { clearDestinationStation } from "../../store/actions/stationsAction";
 import { clearTrip } from "../../store/actions/tripsAction";
 import { State } from "../../store/reducers/reducer";
 import { appendAM_PM } from "../../utils/util";
@@ -39,7 +39,6 @@ const BookingConfirmation:React.FC<{
     dispatch(clearStationsLinkedToOrigin());
     dispatch(clearStationsList());
     dispatch(clearDestinationStation());
-    dispatch(clearOriginStation());
     navigation.navigate(Navigation.IssueTicket);
   };
   
