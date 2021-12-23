@@ -1,8 +1,8 @@
-import React, { ReactFragment } from "react";
-import { StyleSheet, View, Animated, Easing, Text } from "react-native";
+import React, { ReactElement } from "react";
+import { StyleSheet, View, Animated, Easing, Text, StyleProp, ViewStyle } from "react-native";
 import LoaderIcon from "../../../assets/svg/LoaderIcon";
 
-const Loader = (): ReactFragment => {
+const Loader = (style?: StyleProp<ViewStyle>): ReactElement => {
   const spinValue = new Animated.Value(0);
   Animated.loop(
     Animated.timing(
@@ -23,7 +23,7 @@ const Loader = (): ReactFragment => {
   });
 
   return (
-    <View style={styles.mainContainer}>
+    <View style={[ styles.mainContainer, style ]}>
       <Animated.View style={[ styles.container, { transform: [ { rotate: spin } ] } ]}>
         <LoaderIcon />
       </Animated.View>
@@ -41,14 +41,13 @@ const Loader = (): ReactFragment => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
+    // flex: 1,
     justifyContent: "center",
     alignItems: "center"
   },
   container: {
     width: 40,
     height: 40,
-    position: "relative",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -56,6 +55,7 @@ const styles = StyleSheet.create({
   },
   textBox: {
     marginTop: 20
+    // backgroundColor:colors.Beige
   },
   textCenter: {
     textAlign: "center"

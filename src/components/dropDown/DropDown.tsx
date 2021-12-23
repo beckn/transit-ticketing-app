@@ -13,6 +13,7 @@ import { setStationsLinkedToOrigin } from "../../store/actions/linkedStationActi
 import { Station } from "../../response/searchStationsResponse";
 import { setTrip } from "../../store/actions/tripsAction";
 import RightArrow from "../../../assets/svg/RightArrow";
+import Loader from "../Loader/loader";
 
 const selectLocation = (location: string, placeholder: string): ReactElement => {
   return (
@@ -33,6 +34,7 @@ const DropDown = (): ReactElement => {
   const destinationStation = useSelector((state: State) => state.destinationStation);
   const stationlist = useSelector((state: State) => state.stations);
   const [ location, setLocation ] = useState("");
+  const [ showLoader, setShowLoader ] = useState(false); 
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -47,7 +49,13 @@ const DropDown = (): ReactElement => {
     stationService.searchTrips({ origin: originStation.id, destination: destinationStation.id }).then((data) => {
       if(!data.availability.length) 
         alert(noAvailability);
-      dispatch(setTrip(data));
+      else {
+        setShowLoader(true);
+        setTimeout(() => {
+          setShowLoader(false);
+          dispatch(setTrip(data));
+        },2000);
+      }
     });
   }, [ destinationStation.id ]);
 
@@ -120,6 +128,7 @@ const DropDown = (): ReactElement => {
       </View>
       <OriginToDestinationIcon style={styles.icon}></OriginToDestinationIcon>
     </View>
+    { showLoader && Loader(styles.loader)}
     <Modal
       style={styles.modal}
       animationIn="slideInUp"
@@ -241,6 +250,9 @@ const styles = StyleSheet.create({
     height: "100%",
     marginTop: "15%",
     flexDirection: "column"
+  },
+  loader: {
+    marginTop: 30
   }
 });
 
