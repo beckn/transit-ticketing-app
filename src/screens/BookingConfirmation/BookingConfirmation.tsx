@@ -10,19 +10,19 @@ import { Button } from "../../components/Button/Button";
 import TicketDetails from "../../components/TicketDetail/TicketDetail";
 import { clearBlockTicketResponse } from "../../store/actions/blockTicketAction";
 import { clearStationsLinkedToOrigin, clearStationsList } from "../../store/actions/linkedStationAction";
-import { clearDestinationStation, clearOriginStation } from "../../store/actions/stationsAction";
+import { clearDestinationStation } from "../../store/actions/stationsAction";
 import { clearTrip } from "../../store/actions/tripsAction";
 import { State } from "../../store/reducers/reducer";
 import { appendAM_PM } from "../../utils/util";
 import TicketConfirm from "../../../assets/svg/TicketConfirm";
 import { Navigation } from "../../constants/navigation";
+
 const ConfirmationBox = (): ReactElement => {
+  const bookingConfirmationMessage = "Your booking is confirmed.";
   return (
-    <View>
-      <View style={styles.confirmationIconWrapper}>
-        <TicketConfirm style={styles.confirmationIcon}></TicketConfirm>
-      </View>
-      <Text style={styles.confirmationTxt}>Your booking is confirmed.</Text>
+    <View style={styles.confirmationIconWrapper}>
+      <TicketConfirm style={styles.confirmationIcon}></TicketConfirm>
+      <Text style={styles.confirmationTxt}>{bookingConfirmationMessage}</Text>
     </View>
   );
 };
@@ -39,7 +39,6 @@ const BookingConfirmation:React.FC<{
     dispatch(clearStationsLinkedToOrigin());
     dispatch(clearStationsList());
     dispatch(clearDestinationStation());
-    dispatch(clearOriginStation());
     navigation.navigate(Navigation.IssueTicket);
   };
   
@@ -69,7 +68,6 @@ const BookingConfirmation:React.FC<{
 
 const styles = StyleSheet.create({
   flexRow: {
-    display: "flex",
     flexDirection: "row"
   },
   flexColumn: {
@@ -77,9 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   container: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%",
+    height: "95%",
     marginHorizontal: 15
   },
   mainContent: {
@@ -87,7 +83,7 @@ const styles = StyleSheet.create({
   },
   confirmationIconWrapper: {
     alignItems: "center",
-    paddingTop: 60
+    marginTop: "20%"
   },
   confirmationIcon: {
     width: 86,
@@ -102,12 +98,12 @@ const styles = StyleSheet.create({
     paddingBottom: 30
   },
   createTicketBtn: {
-    marginVertical: 30,
     alignItems: "center",
     justifyContent: "center"
   },
   ticketDetailsWrapper: {
-    justifyContent: "center"
+    justifyContent: "center",
+    marginTop: "15%"
   }
 });
 

@@ -1,13 +1,13 @@
 import React, { ReactElement } from "react";
-import { ImageProps, StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import Watch from "../../../assets/svg/Watch";
 import { colors } from "../../../assets/theme/colors";
 
 export const SmallCard : React.FC<{label: string, 
-  icon: ImageProps, 
-  suffix: string}> = ({ label,icon,suffix }): ReactElement => {
+  suffix: string}> = ({ label,suffix }): ReactElement => {
   return(
     <View style = {styles.container}>
-      <Image style={styles.icon} source={icon}></Image>
+      <Watch style={styles.icon}></Watch>
       <View style={styles.labelContainer}>
         <Text style={styles.suffix}>{suffix}</Text>
         <Text style={styles.label}>{label}</Text>
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius:10,
     borderColor: colors.Dim_Black,
-    display: "flex",
     flexDirection: "row",
     alignItems: "center"
   },

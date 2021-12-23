@@ -13,6 +13,7 @@ import { setStationsLinkedToOrigin } from "../../store/actions/linkedStationActi
 import { Station } from "../../response/searchStationsResponse";
 import { setTrip } from "../../store/actions/tripsAction";
 import RightArrow from "../../../assets/svg/RightArrow";
+import Loader from "../Loader/loader";
 
 const selectLocation = (location: string, placeholder: string): ReactElement => {
   return (
@@ -27,10 +28,13 @@ const selectLocation = (location: string, placeholder: string): ReactElement => 
 };
 
 const DropDown = (): ReactElement => {
+  const noAvailability = "Sorry! No Availability of slots.";
+
   const originStation = useSelector((state: State) => state.originStation);
   const destinationStation = useSelector((state: State) => state.destinationStation);
   const stationlist = useSelector((state: State) => state.stations);
   const [ location, setLocation ] = useState("");
+  const [ showLoader, setShowLoader ] = useState(false); 
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,7 +47,15 @@ const DropDown = (): ReactElement => {
   useEffect(() => {
     if (destinationStation.id === "") return;
     stationService.searchTrips({ origin: originStation.id, destination: destinationStation.id }).then((data) => {
-      dispatch(setTrip(data));
+      if(!data.availability.length) 
+        alert(noAvailability);
+      else {
+        setShowLoader(true);
+        setTimeout(() => {
+          setShowLoader(false);
+          dispatch(setTrip(data));
+        },2000);
+      }
     });
   }, [ destinationStation.id ]);
 
@@ -54,24 +66,24 @@ const DropDown = (): ReactElement => {
     return location === "destination";
   };
 
-  const isLocationEmpty = (): boolean => {     
+  const isLocationEmpty = (): boolean => {
     return location === "";
   };
   const ModalContent = (): ReactElement => {
     let list: Station[] = [];
     const label = !isLocationEmpty() && isLocationIsOrigin() ? ORIGIN_PLACEHOLDER : DESTINATION_PLACEHOLER;
     const action = !isLocationEmpty() && isLocationIsOrigin() ? setOriginStation : setDestinationStation;
-    const dispatchAction = (selectedValue: {id: string, name: string}):void => { 
+    const dispatchAction = (selectedValue: { id: string, name: string }): void => {
       dispatch(action(selectedValue));
       setModalVisibility(false);
     };
-    if(isLocationEmpty()) {
+    if (isLocationEmpty()) {
       list = [];
     }
     else {
       list = isLocationIsDestination() ? useSelector((state: State) => state.linkedStationsToOrigin) : stationlist;
     }
-    
+
     return (
       <View style={styles.modalContent}>
         <ListHeader label={label} icon={require("../../../assets/icons/cross.png")}></ListHeader>
@@ -98,8 +110,8 @@ const DropDown = (): ReactElement => {
     "Inter-SemiBoldItalic": require("../../../assets/fonts/Inter-SemiBoldItalic.ttf")
   };
 
-  const ORIGIN_PLACEHOLDER = "Select origin station";
-  const DESTINATION_PLACEHOLER = "Select destination station";
+  const ORIGIN_PLACEHOLDER = "Select origin";
+  const DESTINATION_PLACEHOLER = "Select destination";
 
   Font.loadAsync(customFonts).then(() => {
     styles.text.fontFamily = "Inter-SemiBoldItalic";
@@ -114,8 +126,9 @@ const DropDown = (): ReactElement => {
       <View onTouchStart={() => { setModalVisibility(true); setLocation("destination"); }}>
         {selectLocation(destinationStation.name, DESTINATION_PLACEHOLER)}
       </View>
-      <View style={styles.icon}><OriginToDestinationIcon /></View>
+      <OriginToDestinationIcon style={styles.icon}></OriginToDestinationIcon>
     </View>
+    { showLoader && Loader(styles.loader)}
     <Modal
       style={styles.modal}
       animationIn="slideInUp"
@@ -143,9 +156,8 @@ const styles = StyleSheet.create({
   paddingVertical: {
     paddingVertical: 10
   },
-  paddingHorizontalVertical:{
-    paddingHorizontal: 20,
-    paddingVertical: 5
+  paddingHorizontalVertical: {
+    paddingHorizontal: 20
   },
   container: {
     width: "100%",
@@ -153,11 +165,12 @@ const styles = StyleSheet.create({
     alignContent: "center"
   },
   left30: {
-    left:30
+    left: 30
   },
   lineStyle: {
-    borderWidth: 0.5,
-    width: 270,
+    borderWidth: 0.6,
+    borderStyle: "solid",
+    width: "97%",
     left: 30,
     borderColor: colors.Dim_Black
   },
@@ -187,7 +200,7 @@ const styles = StyleSheet.create({
   icon: {
     position: "absolute",
     left: "5%",
-    top: "25%"
+    top: "15%"
   },
   text: {
     width: "100%",
@@ -195,16 +208,18 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontStyle: "normal",
     fontFamily: "Inter-SemiBoldItalic",
-    fontSize: 14
+    fontSize: 14,
+    bottom: 5
   },
   arrow: {
     position: "absolute",
-    marginVertical: 20,
+    marginVertical: 23,
     left: 300,
     transform: [ { rotate: "90deg" } ]
   },
   placeholder: {
     fontSize: 10,
+    bottom:5,
     color: colors.Black
   },
   header: {
@@ -235,6 +250,9 @@ const styles = StyleSheet.create({
     height: "100%",
     marginTop: "15%",
     flexDirection: "column"
+  },
+  loader: {
+    marginTop: 30
   }
 });
 
