@@ -7,7 +7,7 @@ import {
 import { colors } from "../../../assets/theme/colors";
 import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
 import WatchIcon from "../../../assets/svg/Watch";
-import Passengers from "../../../assets/svg/Passengers";
+import Passenger from "../../../assets/svg/Passengers";
 
 export interface TicketDetailsProps {
   origin: string;
@@ -57,7 +57,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
           
             <View style={styles.flexRow}>
               <View style={styles.imageHolder}>
-                <Passengers />
+                <Passenger />
               </View>
               <View>
                 <Text style={styles.detailsTitle}>Number of Passengers</Text>

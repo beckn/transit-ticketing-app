@@ -97,7 +97,8 @@ export const IssueTicket: React.FC<{
       <View style={styles.dropDown}>
         <DropDown></DropDown>
       </View>
-      {!hideTripDetails &&
+      {
+        !hideTripDetails &&
         <View style={styles.tripDetailsContainer}>
           <View style={styles.tripDetails}>
             <SmallCard suffix="Available time slot"
@@ -106,7 +107,6 @@ export const IssueTicket: React.FC<{
             </SmallCard>
             <Stepper
               bubbleUpValue={passenger}
-              icon={require("../../../assets/icons/passenger.png")}
               label={label}
               maxLimit={totalAvailableSeats}>
             </Stepper>
