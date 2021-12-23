@@ -1,15 +1,13 @@
 import React from "react";
 import {
-  StyleProp,
   StyleSheet,
   Text,
-  View,
-  ViewStyle
+  View
 } from "react-native";
 import { colors } from "../../../assets/theme/colors";
 import OriginToDestinationIcon from "../OriginToDestinationIcon/OriginToDestinationIcon";
 import WatchIcon from "../../../assets/svg/Watch";
-import Passenger from "../../../assets/svg/Passengers";
+import Passengers from "../../../assets/svg/Passengers";
 
 export interface TicketDetailsProps {
   origin: string;
@@ -24,30 +22,48 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
   selectedSlot,
   totalPassengers
 }: TicketDetailsProps) => {
-  const numberOfPassengers = "Number of Passengers";
-  const time = "Time";
-  const originLabel = "Origin";
-  const destinationLabel = "Destination";
-  const ticketDetailsLabel = "Ticket details";
   return (
     <View style={styles.card}>
-      <Text style={styles.detailsHeader}>{ticketDetailsLabel}</Text>
-      <OriginToDestinationIcon style={styles.originToDestIcon}></OriginToDestinationIcon>
-      <View style={[ styles.flexRow, styles.detailsMain ]}>
-        <View>
-          <TripDetailsSection style={styles.infoSection} title={originLabel} info={origin}></TripDetailsSection>
-          <TripDetailsSection title={destinationLabel} info={destination}></TripDetailsSection>
+      <Text style={styles.detailsHeader}>Ticket details</Text>
+
+      <View style={styles.flexRow}>
+        <View style={styles.originToDestImg}>
+          <OriginToDestinationIcon />
         </View>
-        <View>
-          <View style={[ styles.flexRow, styles.infoSection ]}>
-            <View style={styles.imageHolder}>
-              <WatchIcon />
+
+        <View style={[ styles.flexRow, styles.detailsMain ]}>
+          <View>
+            <View style={styles.infoSection}>
+              <Text style={styles.detailsTitle}>Origin</Text>
+              <Text style={styles.boldText}>{origin}</Text>
             </View>
-            <TripDetailsSection title={time} info={selectedSlot}></TripDetailsSection>
+
+            <View>
+              <Text style={styles.detailsTitle}>Destination</Text>
+              <Text style={styles.boldText}>{destination}</Text>
+            </View>
           </View>
-          <View style={styles.flexRow}>
-            <Passenger/>
-            <TripDetailsSection title={numberOfPassengers} info={totalPassengers}></TripDetailsSection>
+
+          <View>
+            <View style={[ styles.flexRow, styles.infoSection ]}>
+              <View style={styles.imageHolder}>
+                <WatchIcon />
+              </View>
+              <View>
+                <Text style={styles.detailsTitle}>Time</Text>
+                <Text style={styles.boldText}>{selectedSlot}</Text>
+              </View>
+            </View>
+          
+            <View style={styles.flexRow}>
+              <View style={styles.imageHolder}>
+                <Passengers />
+              </View>
+              <View>
+                <Text style={styles.detailsTitle}>Number of Passengers</Text>
+                <Text style={styles.boldText}>{totalPassengers}</Text>
+              </View>
+            </View>
           </View>
         </View>
       </View>
@@ -55,14 +71,6 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
   );
 };
 
-const TripDetailsSection: React.FC<{title: string, info:string | number, style?: StyleProp<ViewStyle>}> = ({ title,info,style }) => {
-  return(
-    <View style={style}>
-      <Text style={styles.detailsTitle}>{title}</Text>
-      <Text style={styles.boldText}>{info}</Text>
-    </View>
-  );
-};
 const styles = StyleSheet.create({
   flexRow: {
     display: "flex",
@@ -80,6 +88,7 @@ const styles = StyleSheet.create({
   },
   detailsHeader: {
     paddingBottom: 10,
+    fontWeight: "600",
     lineHeight: 22,
     color: colors.Grey_Black
   },
@@ -87,12 +96,12 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   detailsMain: {
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     flexGrow: 1
   },
   imageHolder: {
     alignSelf: "center",
-    marginHorizontal: 10
+    paddingHorizontal: 6
   },
   boldText: {
     fontWeight: "500",
@@ -103,10 +112,9 @@ const styles = StyleSheet.create({
     lineHeight: 12,
     color: colors.Grey_Black
   },
-  originToDestIcon: {
-    position: "absolute",
-    top: "50%",
-    marginHorizontal: 15
+  originToDestImg: {
+    alignSelf: "center",
+    marginRight: 6
   }
 });
 

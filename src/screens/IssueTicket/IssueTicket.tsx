@@ -26,8 +26,6 @@ export const IssueTicket: React.FC<{
   const buttonLabel = "CREATE TICKET";
   const availableSeatsLabel = "Available Seats: ";
   const fareDetailsLabel = "Fare Details";
-  const welcomeMessage = "Welcome Gopal Iyer,";
-
   const tripDetails = useSelector((state: State) => state.trip);
   const dispatch = useDispatch();
   const KeyValueObject = { label: "", value: "" };
@@ -36,7 +34,6 @@ export const IssueTicket: React.FC<{
   const [ totalAvailableSeats, setTotalAvailableSeats ] = useState(0);
   const [ tripId, setTripId ] = useState("");
   const [ hideFareDetails, setHideFairDetails ] = useState(true);
-
   const [ fareBreakUp, setFareBreakUp ] = useState({
     totalPrice: KeyValueObject,
     passengerCount: KeyValueObject,
@@ -96,19 +93,20 @@ export const IssueTicket: React.FC<{
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcomeMessage}>{welcomeMessage}</Text>
+      <Text style={styles.welcomeMessage}>Welcome Gopal Iyer,</Text>
       <View style={styles.dropDown}>
         <DropDown></DropDown>
       </View>
-      {
-        !hideTripDetails &&
+      {!hideTripDetails &&
         <View style={styles.tripDetailsContainer}>
           <View style={styles.tripDetails}>
             <SmallCard suffix="Available time slot"
+              icon={require("../../../assets/icons/watch.png")}
               label={appendAM_PM(availableSlotTime)}>
             </SmallCard>
             <Stepper
               bubbleUpValue={passenger}
+              icon={require("../../../assets/icons/passenger.png")}
               label={label}
               maxLimit={totalAvailableSeats}>
             </Stepper>
@@ -153,12 +151,11 @@ const styles = StyleSheet.create({
     color: colors.Grey_Black,
     marginTop: 30,
     marginBottom: 20,
-    left: 7,
-    alignSelf: "flex-start"
+    marginLeft: 20
   },
   dropDown: {
-    alignItems: "center",
-    width: 350
+    display: "flex",
+    alignItems: "center"
   },
   tripDetails: {
     marginTop: 20,

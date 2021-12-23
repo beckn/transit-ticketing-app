@@ -1,32 +1,33 @@
 import React, { ReactElement, useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Image, Text, ImageProps } from "react-native";
 import { colors } from "../../../assets/theme/colors";
-import Passenger from "../../../assets/svg/Passengers";
 
 export const Stepper: React.FC<{
   maxLimit: number,
   label: string,
+  icon: ImageProps,
   bubbleUpValue: (value: number) => void
-}> = ({ maxLimit, label, bubbleUpValue }): ReactElement => {
+}> = ({ maxLimit, label, icon, bubbleUpValue }): ReactElement => {
 
-  const [ counter, setCounter ] = useState(1);
+  const [ counter, setCounter ] = useState(0);
   const increment = ():void => {
     if (counter < maxLimit) 
       setCounter(counter + 1);    
   };
   const decrement = (): void => {
-    if (counter > 1) 
+    if (counter > 0) 
       setCounter(counter - 1);
   };
   bubbleUpValue(counter);
   return (
     <View style={styles.container}>
-      <Passenger style={styles.passengerIcon}></Passenger>
-      <Text style={styles.label}>{label}</Text>
+      <Image source={icon}
+        style={styles.passengerIcon}></Image>
+      <Text>{label}</Text>
       <View style={styles.button} onTouchStart={decrement}>
         <Text>-</Text>
       </View>
-      <Text style={styles.counter}>
+      <Text style={styles.label}>
         {counter}
       </Text>
       <View style={styles.button} onTouchStart={increment}>
@@ -38,6 +39,7 @@ export const Stepper: React.FC<{
 
 const styles = StyleSheet.create({
   container: {
+    display: "flex",
     flexDirection: "row",
     borderRadius: 10,
     borderStyle: "solid",
@@ -46,7 +48,9 @@ const styles = StyleSheet.create({
     height: 53,
     width: 350,
     borderColor: colors.Dim_Black,
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "space-evenly"
+
   },
   button: {
     height: 30,
@@ -56,16 +60,11 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   passengerIcon: {
-    marginLeft: 7,
-    marginTop: 12
+    marginHorizontal: 15
   },
-  counter: {
+  label: {
     width: 20,
     fontSize: 14,
     color: colors.Black
-  },
-  label: {
-    right: 20,
-    left: 5
   }
 });
