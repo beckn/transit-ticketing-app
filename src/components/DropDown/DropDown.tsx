@@ -32,6 +32,7 @@ const DropDown = (): ReactElement => {
 
   const originStation = useSelector((state: State) => state.originStation);
   const destinationStation = useSelector((state: State) => state.destinationStation);
+  const linkedStationToOrigin = useSelector((state: State) => state.linkedStationsToOrigin);
   const stationlist = useSelector((state: State) => state.stations);
   const [ location, setLocation ] = useState("");
   const [ showLoader, setShowLoader ] = useState(false); 
@@ -81,7 +82,7 @@ const DropDown = (): ReactElement => {
       list = [];
     }
     else {
-      list = isLocationIsDestination() ? useSelector((state: State) => state.linkedStationsToOrigin) : stationlist;
+      list = isLocationIsDestination()  ? linkedStationToOrigin : stationlist;
     }
 
     return (

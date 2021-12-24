@@ -23,14 +23,16 @@ export const Stepper: React.FC<{
     <View style={styles.container}>
       <Passenger style={styles.passengerIcon}></Passenger>
       <Text style={styles.label}>{label}</Text>
-      <View style={styles.button} onTouchStart={decrement}>
-        <Text>-</Text>
-      </View>
-      <Text style={styles.counter}>
-        {counter}
-      </Text>
-      <View style={styles.button} onTouchStart={increment}>
-        <Text>+</Text>
+      <View style={styles.incrementDecrement}>
+        <View style={styles.button} onTouchStart={decrement}>
+          <Text>-</Text>
+        </View>
+        <Text style={styles.counter}>
+          {counter}
+        </Text>
+        <View style={styles.button} onTouchStart={increment}>
+          <Text>+</Text>
+        </View>
       </View>
     </View>
   );
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderStyle: "solid",
     borderWidth: 1,
-    marginVertical: 10,
+    marginVertical: 20,
     height: 53,
     width: 350,
     borderColor: colors.Dim_Black,
@@ -54,6 +56,11 @@ const styles = StyleSheet.create({
     marginHorizontal:10,
     alignItems: "center",
     justifyContent: "center"
+  },
+  incrementDecrement: {
+    marginLeft:40,
+    flexDirection: "row",
+    alignItems: "center"
   },
   passengerIcon: {
     marginLeft: 7,

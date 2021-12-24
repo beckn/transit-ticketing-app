@@ -12,7 +12,7 @@ import { stationService } from "../../services/stationService";
 import { setBookTicket } from "../../store/actions/blockTicketAction";
 import { State } from "../../store/reducers/reducer";
 import { appendAM_PM, fareBreakUpGenerator, fetchFirstAvailableSlot } from "../../utils/util";
-import { NavigationScreenProp } from "react-navigation";
+import { NavigationParams, NavigationScreenProp, NavigationState } from "react-navigation";
 import { setStationsList } from "../../store/actions/linkedStationAction";
 import { Navigation } from "../../constants/navigation";
 
@@ -20,7 +20,7 @@ const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
 
 export const IssueTicket: React.FC<{
-  navigation: NavigationScreenProp<any, any>   // eslint-disable-line @typescript-eslint/no-explicit-any
+  navigation: NavigationScreenProp<NavigationState,NavigationParams> 
 }> = ({ navigation }): ReactElement => {
   const label = "Number of passengers";
   const buttonLabel = "CREATE TICKET";
@@ -36,7 +36,6 @@ export const IssueTicket: React.FC<{
   const [ totalAvailableSeats, setTotalAvailableSeats ] = useState(0);
   const [ tripId, setTripId ] = useState("");
   const [ hideFareDetails, setHideFairDetails ] = useState(true);
-
   const [ fareBreakUp, setFareBreakUp ] = useState({
     totalPrice: KeyValueObject,
     passengerCount: KeyValueObject,
@@ -142,7 +141,7 @@ const styles = StyleSheet.create({
   },
   tripDetailsContainer: {
     position: "relative",
-    height: height / 1.6,
+    height: height / 1.5,
     justifyContent: "space-between"
 
   },
@@ -170,20 +169,20 @@ const styles = StyleSheet.create({
   availableSeats: {
     position: "absolute",
     lineHeight: 15,
-    top: height / 4.8,
+    top: height / 4.6,
     color: colors.Grey_Black
   },
   fareLabel: {
     position: "absolute",
     fontWeight: "bold",
     fontFamily: "Inter",
-    top: height / 4,
+    top: height / 3.6,
     color: colors.Grey_Black
   },
   fareDetails: {
     position: "absolute",
     alignItems: "center",
-    marginTop: height / 3.5
+    marginTop: height / 3.2
   },
   disabledButton: {
     backgroundColor: colors.Disabled_Button
