@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import LogOut from "../../../assets/svg/LogOut";
 import Logo from "../../../assets/svg/Logo";
 import BackIcon from "../../../assets/svg/BackIcon";
-import { NavigationScreenProp } from "react-navigation";
+import { NavigationParams, NavigationScreenProp, NavigationState } from "react-navigation";
 import { Navigation } from "../../constants/navigation";
 
 export const HeaderTitle = (): ReactElement => {
@@ -20,15 +20,13 @@ export const HeaderTitle = (): ReactElement => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const HeaderLeft = (navigation: NavigationScreenProp<any,any> ): ReactElement => {
+export const HeaderLeft = (navigation: NavigationScreenProp<NavigationState,NavigationParams> ): ReactElement => {
   return <TouchableOpacity onPress={() => navigation.goBack()}>
     <BackIcon style={styles.marginLeft}></BackIcon>
   </TouchableOpacity>;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const HeaderRight = (navigation: NavigationScreenProp<any,any> ): ReactElement => {
+export const HeaderRight = (navigation: NavigationScreenProp<NavigationState,NavigationParams> ): ReactElement => {
   return <TouchableOpacity onPress={() => navigation.navigate(Navigation.Authorization)}>
     <LogOut style={ styles.logoutIcon } ></LogOut>
   </TouchableOpacity>;

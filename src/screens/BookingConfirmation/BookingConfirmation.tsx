@@ -4,12 +4,12 @@ import {
   Text,
   View
 } from "react-native";
-import { NavigationScreenProp } from "react-navigation";
+import { NavigationParams, NavigationScreenProp, NavigationState } from "react-navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../components/Button/Button";
 import TicketDetails from "../../components/TicketDetail/TicketDetail";
 import { clearBlockTicketResponse } from "../../store/actions/blockTicketAction";
-import { clearStationsLinkedToOrigin, clearStationsList } from "../../store/actions/linkedStationAction";
+import { clearStationsList } from "../../store/actions/linkedStationAction";
 import { clearDestinationStation } from "../../store/actions/stationsAction";
 import { clearTrip } from "../../store/actions/tripsAction";
 import { State } from "../../store/reducers/reducer";
@@ -28,15 +28,13 @@ const ConfirmationBox = (): ReactElement => {
 };
 
 const BookingConfirmation:React.FC<{
-  navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
+  navigation: NavigationScreenProp<NavigationState,NavigationParams> 
 }> = ({ navigation }): ReactElement => {
 
   const dispatch = useDispatch();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onPress = (navigation: NavigationScreenProp<any,any> ):void => {
+  const onPress = (navigation:  NavigationScreenProp<NavigationState,NavigationParams> ):void => {
     dispatch(clearBlockTicketResponse());
     dispatch(clearTrip());
-    dispatch(clearStationsLinkedToOrigin());
     dispatch(clearStationsList());
     dispatch(clearDestinationStation());
     navigation.navigate(Navigation.IssueTicket);

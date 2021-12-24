@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import Header from "../../components/Header/Header";
 import { Card } from "../../components/Card/Card";
-import { NavigationScreenProp } from "react-navigation";
+import { NavigationParams, NavigationScreenProp, NavigationState } from "react-navigation";
 import Slide from "../../../assets/svg/Slide";
 import { Title } from "../../components/Title/Title";
 import { Navigation } from "../../constants/navigation";
@@ -19,7 +19,7 @@ const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
 const LandingScreen :React.FC<{
-  navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
+  navigation: NavigationScreenProp<NavigationState,NavigationParams>  
 }> = ({ navigation }): ReactElement => {
   const loginPageTitle = "Kerala State Water Transport Department";
   const issueTicketLabel = "Issue a new ticket";

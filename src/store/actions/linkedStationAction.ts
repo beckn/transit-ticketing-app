@@ -25,5 +25,5 @@ export const clearStationsLinkedToOrigin = () : StationListActions => {
 };
 
 export const clearStationsList = () : StationListActions => {
-  return { type: STATIONS_LIST_ACTIONS.clearLinkedStations, payload: [] };
+  return { type: STATIONS_LIST_ACTIONS.clearStationsList, payload: [] };
 };

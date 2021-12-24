@@ -11,7 +11,7 @@ import { HeaderLeft, HeaderRight, HeaderTitle } from "../components/PageHeader/P
 import { Provider } from "react-redux";
 import { ValidateTicketResult } from "../screens/ValidateTicket/QRResult";
 import { Navigation } from "../constants/navigation";
-import { NavigationScreenProp } from "react-navigation";
+import { NavigationParams, NavigationScreenProp, NavigationState } from "react-navigation";
 
 
 const MyTheme = {
@@ -68,7 +68,7 @@ const MainStackNavigator = () :ReactElement => {
     </Provider>
   );
 };
-const headerContent = (navigation: NavigationScreenProp<any,any> ): StackNavigationOptions => {
+const headerContent = (navigation: NavigationScreenProp<NavigationState,NavigationParams>  ): StackNavigationOptions => {
   return {
     headerTitle: () => HeaderTitle(),
     headerLeft: () => HeaderLeft(navigation),

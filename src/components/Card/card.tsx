@@ -1,14 +1,14 @@
 import React, { ReactElement, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { colors } from "../../../assets/theme/colors";
-import { NavigationScreenProp } from "react-navigation";
+import { NavigationParams, NavigationScreenProp, NavigationState } from "react-navigation";
 import { SvgProps } from "react-native-svg";
 
 export const Card: React.FC<{
   label: string,
   svgIcons: Array<(svgProps?: SvgProps)=>ReactElement>,
   navigationScreen: string,
-  navigation: NavigationScreenProp<any,any>    // eslint-disable-line @typescript-eslint/no-explicit-any
+  navigation:  NavigationScreenProp<NavigationState,NavigationParams> 
 }> = ({ label, svgIcons, navigation, navigationScreen }): ReactElement => {
   const [ toggleColor, setToggleColor ] = useState(false);
   const changeBackground = () : void => {
