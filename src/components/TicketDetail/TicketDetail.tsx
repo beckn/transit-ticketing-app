@@ -34,7 +34,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
       <Text style={styles.detailsHeader}>{ticketDetailsLabel}</Text>
       <OriginToDestinationIcon style={styles.originToDestIcon}></OriginToDestinationIcon>
       <View style={[ styles.flexRow, styles.detailsMain ]}>
-        <View>
+        <View style={styles.marginHorizontal}>
           <TripDetailsSection style={styles.infoSection} title={originLabel} info={origin}></TripDetailsSection>
           <TripDetailsSection title={destinationLabel} info={destination}></TripDetailsSection>
         </View>
@@ -107,6 +107,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "50%",
     marginHorizontal: 15
+  },
+  marginHorizontal: {
+    marginHorizontal:20
   }
 });
 

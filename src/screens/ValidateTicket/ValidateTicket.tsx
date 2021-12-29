@@ -6,13 +6,13 @@ import { Camera } from "expo-camera";
 import { colors } from "../../../assets/theme/colors";
 import FlashOff from "../../../assets/svg/FlashOff";
 import FlashOn from "../../../assets/svg/FlashOn";
-import { NavigationScreenProp } from "react-navigation";
+import { NavigationParams, NavigationScreenProp,NavigationState } from "react-navigation";
 import { Navigation } from "../../constants/navigation";
 
 const width = Dimensions.get("window").width;
 
 export const ValidateTicket: React.FC<{
-  navigation: NavigationScreenProp<any, any>   // eslint-disable-line @typescript-eslint/no-explicit-any
+  navigation: NavigationScreenProp<NavigationState,NavigationParams> 
 }> = ({ navigation }) :ReactElement => {
   const [ hasPermission, setHasPermission ] = useState<boolean | null>(null);
   const [ flash, setFlash ] = useState(Camera.Constants.FlashMode.off);

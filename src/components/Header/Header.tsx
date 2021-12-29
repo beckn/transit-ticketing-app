@@ -4,13 +4,13 @@ import {
   View,
   Text
 } from "react-native";
-import { NavigationScreenProp } from "react-navigation";
+import { NavigationParams, NavigationScreenProp, NavigationState } from "react-navigation";
 import LogOut from "../../../assets/svg/LogOut";
 import Logo from "../../../assets/svg/Logo";
 import { Navigation } from "../../constants/navigation";
 import { colors } from "../../../assets/theme/colors";
 const Header: React.FC<{
-  navigation?: NavigationScreenProp<any, any>    // eslint-disable-line @typescript-eslint/no-explicit-any
+  navigation?:  NavigationScreenProp<NavigationState,NavigationParams> 
   showLogOutButton?: boolean,
 }> = ({ navigation, showLogOutButton }): ReactElement => {
   const logoLabel = "Government of Kerala";

@@ -5,7 +5,7 @@ import {
   Text,
   View
 } from "react-native";
-import { NavigationScreenProp } from "react-navigation";
+import { NavigationParams, NavigationScreenProp, NavigationState } from "react-navigation";
 import { useDispatch } from "react-redux";
 import { Button } from "../../components/Button/Button";
 import TicketDetails from "../../components/TicketDetail/TicketDetail";
@@ -39,11 +39,11 @@ const RejectionBox = (): ReactElement => {
 };
 
 export const ValidateTicketResult:React.FC<{
-  navigation: NavigationScreenProp<any,any>   // eslint-disable-line @typescript-eslint/no-explicit-any
+  navigation:  NavigationScreenProp<NavigationState,NavigationParams> 
 }> = ({ navigation }): ReactElement => {
 
   const dispatch = useDispatch();
-  const onPress = (navigation: NavigationScreenProp<any,any> ):void => {
+  const onPress = (navigation:  NavigationScreenProp<NavigationState,NavigationParams> ):void => {
     dispatch(clearBlockTicketResponse());
     dispatch(clearTrip());
     dispatch(clearStationsLinkedToOrigin());
